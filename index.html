@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mr B's Geometry Compendium</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
@@ -12,7 +13,7 @@
   --paper:#EEF1EE; --sheet:#FFFFFF; --ink:#1E2B3F; --muted:#5B6874; --line:#D3DAD6; --dot:#97A4AF;
   --accent:#2260A6; --accent-soft:#E2ECF7; --on-accent:#FFFFFF;
   --f-top:#E4ECF6; --f-left:#A7C0DD; --f-right:#6B8FBD;
-  --ok:#1D7A4A; --ok-soft:#E1F2E8; --bad:#C23E2B; --bad-soft:#F8E4E0; --opt:#9DB2CC; --amb:#B86E00; --amb-soft:#FBEBD3; --c-iso:#2260A6; --t-iso:#E8EEF7; --c-pe:#0E7F74; --t-pe:#E3F2EF; --c-tri:#B8561A; --t-tri:#F8ECE2; --c-loci:#6E45B8; --t-loci:#EEE8F8; --c-scale:#357D29; --t-scale:#E7F2E3; --c-angles:#B53165; --t-angles:#F8E6EE; --c-trans:#8A6A00; --t-trans:#F6F0DA; --c-nets:#7A4E2D; --t-nets:#F4ECE4; --c-coords:#A33A2A; --t-coords:#F7E8E4; --c-graphs:#455A64; --t-graphs:#E8EDEF; --on-tab:#FFFFFF;
+  --ok:#1D7A4A; --ok-soft:#E1F2E8; --bad:#C23E2B; --bad-soft:#F8E4E0; --opt:#9DB2CC; --amb:#B86E00; --amb-soft:#FBEBD3; --c-iso:#2260A6; --t-iso:#E8EEF7; --c-pe:#0E7F74; --t-pe:#E3F2EF; --c-tri:#B8561A; --t-tri:#F8ECE2; --c-loci:#6E45B8; --t-loci:#EEE8F8; --c-scale:#357D29; --t-scale:#E7F2E3; --c-angles:#B53165; --t-angles:#F8E6EE; --c-trans:#8A6A00; --t-trans:#F6F0DA; --c-nets:#7A4E2D; --t-nets:#F4ECE4; --c-coords:#A33A2A; --t-coords:#F7E8E4; --c-graphs:#455A64; --t-graphs:#E8EDEF; --c-topple:#4338CA; --t-topple:#ECEBFA; --on-tab:#FFFFFF;
   --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
   --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -21,12 +22,12 @@
   --paper:#11161D; --sheet:#18202A; --ink:#E4EAF0; --muted:#97A4B1; --line:#2B3643; --dot:#4F5D6C;
   --accent:#6EA7E5; --accent-soft:#1F3047; --on-accent:#0E1620;
   --f-top:#5E7EA6; --f-left:#3F5E86; --f-right:#2B4567;
-  --ok:#52C48C; --ok-soft:#173327; --bad:#EF7B64; --bad-soft:#3A1E19; --opt:#4C6A8E; --amb:#E9A23B; --amb-soft:#3A2A12; --c-iso:#6EA7E5; --t-iso:#121A26; --c-pe:#4FC4B6; --t-pe:#0F201E; --c-tri:#F0975A; --t-tri:#22180F; --c-loci:#AE8CF0; --t-loci:#1A1526; --c-scale:#7DCB6B; --t-scale:#131E12; --c-angles:#F07FA8; --t-angles:#24121B; --c-trans:#E2BC45; --t-trans:#211C0B; --c-nets:#D9A47C; --t-nets:#1F1811; --c-coords:#F08A74; --t-coords:#241412; --c-graphs:#A7BCC7; --t-graphs:#151B1E; --on-tab:#0E1620; color-scheme:dark }}
+  --ok:#52C48C; --ok-soft:#173327; --bad:#EF7B64; --bad-soft:#3A1E19; --opt:#4C6A8E; --amb:#E9A23B; --amb-soft:#3A2A12; --c-iso:#6EA7E5; --t-iso:#121A26; --c-pe:#4FC4B6; --t-pe:#0F201E; --c-tri:#F0975A; --t-tri:#22180F; --c-loci:#AE8CF0; --t-loci:#1A1526; --c-scale:#7DCB6B; --t-scale:#131E12; --c-angles:#F07FA8; --t-angles:#24121B; --c-trans:#E2BC45; --t-trans:#211C0B; --c-nets:#D9A47C; --t-nets:#1F1811; --c-coords:#F08A74; --t-coords:#241412; --c-graphs:#A7BCC7; --t-graphs:#151B1E; --c-topple:#A5A0FF; --t-topple:#16152A; --on-tab:#0E1620; color-scheme:dark }}
 :root[data-theme="dark"]{
   --paper:#11161D; --sheet:#18202A; --ink:#E4EAF0; --muted:#97A4B1; --line:#2B3643; --dot:#4F5D6C;
   --accent:#6EA7E5; --accent-soft:#1F3047; --on-accent:#0E1620;
   --f-top:#5E7EA6; --f-left:#3F5E86; --f-right:#2B4567;
-  --ok:#52C48C; --ok-soft:#173327; --bad:#EF7B64; --bad-soft:#3A1E19; --opt:#4C6A8E; --amb:#E9A23B; --amb-soft:#3A2A12; --c-iso:#6EA7E5; --t-iso:#121A26; --c-pe:#4FC4B6; --t-pe:#0F201E; --c-tri:#F0975A; --t-tri:#22180F; --c-loci:#AE8CF0; --t-loci:#1A1526; --c-scale:#7DCB6B; --t-scale:#131E12; --c-angles:#F07FA8; --t-angles:#24121B; --c-trans:#E2BC45; --t-trans:#211C0B; --c-nets:#D9A47C; --t-nets:#1F1811; --c-coords:#F08A74; --t-coords:#241412; --c-graphs:#A7BCC7; --t-graphs:#151B1E; --on-tab:#0E1620; color-scheme:dark }
+  --ok:#52C48C; --ok-soft:#173327; --bad:#EF7B64; --bad-soft:#3A1E19; --opt:#4C6A8E; --amb:#E9A23B; --amb-soft:#3A2A12; --c-iso:#6EA7E5; --t-iso:#121A26; --c-pe:#4FC4B6; --t-pe:#0F201E; --c-tri:#F0975A; --t-tri:#22180F; --c-loci:#AE8CF0; --t-loci:#1A1526; --c-scale:#7DCB6B; --t-scale:#131E12; --c-angles:#F07FA8; --t-angles:#24121B; --c-trans:#E2BC45; --t-trans:#211C0B; --c-nets:#D9A47C; --t-nets:#1F1811; --c-coords:#F08A74; --t-coords:#241412; --c-graphs:#A7BCC7; --t-graphs:#151B1E; --c-topple:#A5A0FF; --t-topple:#16152A; --on-tab:#0E1620; color-scheme:dark }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
@@ -107,9 +108,10 @@ details summary{font-family:var(--display);font-weight:600;letter-spacing:.08em;
 .tips ul{margin:8px 0 0;padding-left:20px;display:grid;gap:4px;font-size:15px}
 
 /* app tabs */
-.apptabs{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;border:2px solid var(--ink);background:var(--ink)}
-@media (max-width:900px){.apptabs{grid-template-columns:repeat(3,1fr)}.apptabs button:last-child{grid-column:span 3}}
-@media (max-width:520px){.apptabs button:last-child{grid-column:auto}}
+.apptabs{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;border:2px solid var(--ink);background:var(--ink)}
+.apptabs #tabTopple{grid-column:span 2}
+@media (max-width:900px){.apptabs{grid-template-columns:repeat(3,1fr)}.apptabs #tabTopple{grid-column:span 1}}
+@media (max-width:520px){.apptabs #tabTopple{grid-column:span 2}}
 @media (max-width:520px){.apptabs{grid-template-columns:repeat(2,1fr)}}
 .apptabs button{border:0;background:var(--sheet);padding:10px 8px;font-family:var(--display);font-weight:700;font-size:15px;line-height:1.15;text-align:center;letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:6px;min-width:0}
 .apptabs button{background:var(--tt);box-shadow:inset 0 -4px 0 var(--tc)}
@@ -118,9 +120,9 @@ details summary{font-family:var(--display);font-weight:600;letter-spacing:.08em;
 .apptabs button[aria-selected="true"]{background:var(--tc);color:var(--on-tab);box-shadow:none}
 .apptabs button[aria-selected="true"] .ico{color:var(--on-tab)}
 #tabIso{--tc:var(--c-iso);--tt:var(--t-iso)}#tabPE{--tc:var(--c-pe);--tt:var(--t-pe)}#tabTri{--tc:var(--c-tri);--tt:var(--t-tri)}
-#tabLoci{--tc:var(--c-loci);--tt:var(--t-loci)}#tabScale{--tc:var(--c-scale);--tt:var(--t-scale)}#tabAngles{--tc:var(--c-angles);--tt:var(--t-angles)}#tabTrans{--tc:var(--c-trans);--tt:var(--t-trans)}#tabNets{--tc:var(--c-nets);--tt:var(--t-nets)}#tabCoords{--tc:var(--c-coords);--tt:var(--t-coords)}#tabGraphs{--tc:var(--c-graphs);--tt:var(--t-graphs)}
+#tabLoci{--tc:var(--c-loci);--tt:var(--t-loci)}#tabScale{--tc:var(--c-scale);--tt:var(--t-scale)}#tabAngles{--tc:var(--c-angles);--tt:var(--t-angles)}#tabTrans{--tc:var(--c-trans);--tt:var(--t-trans)}#tabNets{--tc:var(--c-nets);--tt:var(--t-nets)}#tabCoords{--tc:var(--c-coords);--tt:var(--t-coords)}#tabGraphs{--tc:var(--c-graphs);--tt:var(--t-graphs)}#tabTopple{--tc:var(--c-topple);--tt:var(--t-topple)}
 body[data-app="iso"]{--paper:var(--t-iso);--app:var(--c-iso)}body[data-app="pe"]{--paper:var(--t-pe);--app:var(--c-pe)}body[data-app="tri"]{--paper:var(--t-tri);--app:var(--c-tri)}
-body[data-app="loci"]{--paper:var(--t-loci);--app:var(--c-loci)}body[data-app="scale"]{--paper:var(--t-scale);--app:var(--c-scale)}body[data-app="angles"]{--paper:var(--t-angles);--app:var(--c-angles)}body[data-app="trans"]{--paper:var(--t-trans);--app:var(--c-trans)}body[data-app="nets"]{--paper:var(--t-nets);--app:var(--c-nets)}body[data-app="coords"]{--paper:var(--t-coords);--app:var(--c-coords)}body[data-app="graphs"]{--paper:var(--t-graphs);--app:var(--c-graphs)}
+body[data-app="loci"]{--paper:var(--t-loci);--app:var(--c-loci)}body[data-app="scale"]{--paper:var(--t-scale);--app:var(--c-scale)}body[data-app="angles"]{--paper:var(--t-angles);--app:var(--c-angles)}body[data-app="trans"]{--paper:var(--t-trans);--app:var(--c-trans)}body[data-app="nets"]{--paper:var(--t-nets);--app:var(--c-nets)}body[data-app="coords"]{--paper:var(--t-coords);--app:var(--c-coords)}body[data-app="graphs"]{--paper:var(--t-graphs);--app:var(--c-graphs)}body[data-app="topple"]{--paper:var(--t-topple);--app:var(--c-topple)}
 body{transition:background-color .25s}
 .titleblock{box-shadow:inset 0 -5px 0 var(--app,transparent)}
 .task,.board{border-top:4px solid var(--app,var(--line))}
@@ -161,6 +163,21 @@ body{transition:background-color .25s}
 .dual canvas{max-width:100%}
 
 .mcopts{display:flex;flex-wrap:wrap;gap:8px}
+.ttbadge{font-family:var(--body);font-size:10px;font-weight:700;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:var(--tc);color:var(--on-tab);margin-left:4px}
+#tabTopple[aria-selected="true"] .ttbadge{background:var(--on-tab);color:var(--tc)}
+.tt-wrap{position:relative;background:var(--paper)}
+.tt-wrap canvas{display:block;touch-action:none}
+.tt-ov{position:absolute;inset:0;pointer-events:none}
+.tt-help ul{margin:0 0 4px;padding-left:18px;display:grid;gap:3px;font-size:14px}
+.tt-levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px}
+.tt-lv{border:1.5px solid var(--line);background:var(--sheet);border-radius:6px;padding:4px 0;display:grid;justify-items:center;gap:0;font:inherit;color:var(--ink);min-height:44px}
+.tt-lv b{font-family:var(--mono);font-size:14px}.tt-lv i{font-style:normal;font-size:10px;color:var(--amb);min-height:12px;letter-spacing:-1px}
+.tt-lv.done{background:var(--ok-soft);border-color:var(--ok)}
+.tt-lv.on{border-color:var(--app);box-shadow:0 0 0 2px var(--app)}
+.tt-lv:disabled{opacity:.45;cursor:not-allowed}
+.tt-done{position:absolute;inset:0;display:grid;place-items:center;background:rgba(10,14,30,.35)}
+.tt-card{background:var(--sheet);border-radius:10px;padding:20px 28px;display:grid;gap:10px;justify-items:center;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:17px}
+.tt-big{font-size:40px;color:var(--amb);letter-spacing:4px}
 .tablewrap{overflow-x:auto}
 table.vt{border-collapse:collapse;font-family:var(--mono);font-size:15px}
 table.vt th,table.vt td{border:1.5px solid var(--ink);padding:3px 3px;text-align:center;min-width:2.2em;background:var(--sheet)}
@@ -220,7 +237,7 @@ input.pok,input.pbad{outline-offset:1px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
-<style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}</style>
+<style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 <div class="page">
@@ -246,6 +263,7 @@ input.pok,input.pbad{outline-offset:1px}
     <button role="tab" id="tabNets" aria-selected="false"><span class="ico" aria-hidden="true">⬚</span>Nets</button>
     <button role="tab" id="tabCoords" aria-selected="false"><span class="ico" aria-hidden="true">⌖</span>Coordinates</button>
     <button role="tab" id="tabGraphs" aria-selected="false"><span class="ico" aria-hidden="true">∿</span>Graphs</button>
+    <button role="tab" id="tabTopple" aria-selected="false"><span class="ico" aria-hidden="true">▮</span>Tower Topple<span class="ttbadge">Game</span></button>
   </nav>
 
   <div id="appIso" class="app">
@@ -321,6 +339,7 @@ input.pok,input.pbad{outline-offset:1px}
   <div id="appNets" class="app" hidden></div>
   <div id="appCoords" class="app" hidden></div>
   <div id="appGraphs" class="app" hidden></div>
+  <div id="appTopple" class="app" hidden></div>
 </div>
 
 <script>
@@ -2984,6 +3003,363 @@ function makeGraphs(){
   return{show(){meta();size();},redraw:draw,_test:{gen,cur,work,rec}};
 }
 
+const TT_LEVELS=[{"W": 5, "H": 5, "start": 0, "entry": {"x": 2, "y": 4, "side": 1}, "exit": {"x": 4, "y": 1, "side": 0}, "t": [[2, 4, 2], [4, 3, 2]], "sol": [[0, 0], [1, 3]]}, {"W": 5, "H": 5, "start": 0, "entry": {"x": 0, "y": 1, "side": 2}, "exit": {"x": 1, "y": 0, "side": 3}, "t": [[0, 1, 3], [1, 2, 2], [2, 3, 2], [4, 2, 2]], "sol": [[0, 1], [1, 3]]}, {"W": 5, "H": 6, "start": 0, "entry": {"x": 1, "y": 5, "side": 1}, "exit": {"x": 4, "y": 0, "side": 3}, "t": [[1, 5, 3], [4, 4, 2], [4, 1, 1], [1, 4, 1], [2, 3, 2]], "sol": [[0, 0], [1, 3], [2, 3]]}, {"W": 5, "H": 6, "start": 0, "entry": {"x": 0, "y": 2, "side": 2}, "exit": {"x": 4, "y": 0, "side": 0}, "t": [[0, 2, 2], [1, 0, 1], [3, 0, 1], [1, 2, 3], [2, 2, 1], [3, 3, 1], [4, 4, 2]], "sol": [[0, 3], [1, 0], [2, 0]]}, {"W": 6, "H": 6, "start": 0, "entry": {"x": 0, "y": 4, "side": 2}, "exit": {"x": 5, "y": 3, "side": 0}, "t": [[0, 4, 2], [1, 5, 1], [3, 5, 1], [3, 3, 2], [0, 3, 1], [0, 2, 2], [4, 4, 3], [1, 1, 1]], "sol": [[0, 0], [1, 0], [2, 3], [3, 0]]}, {"W": 6, "H": 6, "start": 0, "entry": {"x": 1, "y": 0, "side": 3}, "exit": {"x": 5, "y": 5, "side": 0}, "t": [[1, 0, 3], [0, 2, 3], [1, 5, 2], [4, 5, 1], [2, 0, 1], [3, 0, 2], [3, 4, 3], [4, 2, 1]], "sol": [[0, 1], [1, 1], [2, 0], [3, 0]]}, {"W": 6, "H": 6, "start": 0, "entry": {"x": 2, "y": 0, "side": 3}, "exit": {"x": 5, "y": 4, "side": 0}, "t": [[2, 0, 2], [5, 0, 2], [5, 3, 3], [4, 4, 1], [2, 1, 1], [1, 1, 3]], "sol": [[0, 0], [1, 1], [2, 2], [3, 0]]}, {"W": 6, "H": 7, "start": 0, "entry": {"x": 2, "y": 0, "side": 3}, "exit": {"x": 5, "y": 3, "side": 0}, "t": [[2, 0, 2], [1, 1, 2], [1, 4, 2], [3, 3, 2], [0, 0, 2], [3, 0, 1], [4, 0, 4], [4, 5, 1], [5, 6, 2]], "sol": [[0, 1], [1, 1], [2, 0], [3, 0]]}, {"W": 6, "H": 6, "start": 0, "entry": {"x": 0, "y": 2, "side": 2}, "exit": {"x": 4, "y": 0, "side": 3}, "t": [[0, 2, 3], [1, 3, 3], [2, 2, 3], [3, 3, 3], [4, 2, 2], [0, 1, 3], [0, 0, 1], [5, 3, 1]], "sol": [[0, 1], [1, 3], [2, 1], [3, 3], [4, 3]]}, {"W": 6, "H": 7, "start": 0, "entry": {"x": 1, "y": 6, "side": 1}, "exit": {"x": 0, "y": 4, "side": 2}, "t": [[1, 6, 3], [5, 6, 4], [5, 1, 1], [3, 1, 4], [2, 4, 2], [0, 6, 1], [2, 1, 1], [1, 2, 4], [0, 3, 3], [1, 1, 2]], "sol": [[0, 0], [1, 3], [2, 2], [3, 1], [4, 2]]}, {"W": 6, "H": 7, "start": 0, "entry": {"x": 2, "y": 0, "side": 3}, "exit": {"x": 2, "y": 6, "side": 1}, "t": [[2, 0, 3], [5, 1, 3], [4, 2, 2], [4, 5, 3], [3, 6, 1], [2, 1, 3], [1, 1, 2], [0, 1, 3], [0, 0, 2]], "sol": [[0, 0], [1, 1], [2, 1], [3, 2], [4, 2]]}, {"W": 7, "H": 7, "start": 0, "entry": {"x": 6, "y": 3, "side": 0}, "exit": {"x": 1, "y": 6, "side": 1}, "t": [[6, 3, 4], [4, 2, 2], [3, 1, 3], [0, 2, 2], [1, 4, 2], [2, 2, 3], [0, 5, 3], [4, 5, 1], [2, 6, 3], [6, 2, 4], [6, 1, 1]], "sol": [[0, 2], [1, 3], [2, 2], [3, 1], [4, 1]]}, {"W": 7, "H": 7, "start": 0, "entry": {"x": 0, "y": 3, "side": 2}, "exit": {"x": 6, "y": 0, "side": 3}, "t": [[0, 3, 2], [0, 0, 4], [4, 1, 2], [5, 2, 1], [6, 3, 3], [1, 3, 2], [2, 3, 1], [3, 4, 1], [1, 6, 1], [5, 5, 2]], "sol": [[0, 3], [1, 0], [2, 1], [3, 1], [4, 3]]}, {"W": 7, "H": 7, "start": 0, "entry": {"x": 1, "y": 0, "side": 3}, "exit": {"x": 1, "y": 6, "side": 1}, "t": [[1, 0, 2], [4, 0, 2], [5, 1, 3], [4, 2, 4], [2, 3, 3], [1, 4, 2], [5, 4, 4], [0, 0, 1], [5, 5, 1], [6, 6, 4], [6, 5, 4]], "sol": [[0, 0], [1, 0], [2, 2], [3, 2], [4, 1], [5, 1]]}, {"W": 7, "H": 7, "start": 0, "entry": {"x": 4, "y": 0, "side": 3}, "exit": {"x": 0, "y": 5, "side": 2}, "t": [[4, 0, 2], [4, 3, 3], [3, 4, 4], [2, 3, 3], [1, 2, 2], [0, 1, 4], [5, 0, 1], [6, 0, 2], [6, 1, 4], [6, 6, 2]], "sol": [[0, 1], [1, 1], [2, 3], [3, 3], [4, 3], [5, 1]]}, {"W": 7, "H": 8, "start": 0, "entry": {"x": 0, "y": 3, "side": 2}, "exit": {"x": 6, "y": 3, "side": 0}, "t": [[0, 3, 2], [0, 0, 2], [3, 0, 4], [4, 2, 2], [5, 3, 3], [6, 1, 2], [1, 3, 1], [6, 5, 1], [4, 6, 4], [1, 5, 1], [1, 7, 1]], "sol": [[0, 3], [1, 0], [2, 1], [3, 1], [4, 3], [5, 1]]}, {"W": 7, "H": 8, "start": 0, "entry": {"x": 6, "y": 6, "side": 0}, "exit": {"x": 0, "y": 2, "side": 2}, "t": [[6, 6, 3], [5, 7, 3], [1, 7, 3], [0, 6, 2], [0, 3, 3], [1, 2, 1], [0, 0, 1], [6, 5, 2], [6, 4, 1], [3, 4, 2], [6, 3, 3], [4, 5, 3], [3, 2, 2]], "sol": [[0, 2], [1, 2], [2, 3], [3, 3], [4, 0], [5, 2]]}, {"W": 8, "H": 8, "start": 0, "entry": {"x": 7, "y": 4, "side": 0}, "exit": {"x": 0, "y": 2, "side": 2}, "t": [[7, 4, 1], [7, 6, 3], [5, 5, 2], [3, 4, 3], [0, 3, 4], [1, 2, 1], [7, 3, 2], [7, 2, 2], [5, 3, 2], [5, 1, 2], [3, 6, 3], [2, 6, 2]], "sol": [[0, 1], [1, 2], [2, 2], [3, 2], [4, 0], [5, 2]]}, {"W": 8, "H": 8, "start": 0, "entry": {"x": 1, "y": 7, "side": 1}, "exit": {"x": 7, "y": 7, "side": 1}, "t": [[1, 7, 3], [1, 3, 4], [4, 2, 4], [2, 1, 4], [7, 1, 2], [7, 4, 3], [0, 7, 2], [5, 5, 2], [2, 6, 3], [3, 5, 3], [3, 6, 1], [5, 6, 1]], "sol": [[0, 3], [1, 0], [2, 2], [3, 0], [4, 1], [5, 1]]}, {"W": 7, "H": 8, "start": 0, "entry": {"x": 6, "y": 2, "side": 0}, "exit": {"x": 1, "y": 7, "side": 1}, "t": [[6, 2, 2], [6, 5, 2], [5, 7, 4], [4, 5, 4], [3, 4, 4], [2, 3, 4], [1, 5, 2], [4, 7, 2], [6, 1, 3], [6, 0, 3], [5, 1, 3], [1, 1, 1]], "sol": [[0, 1], [1, 1], [2, 3], [3, 3], [4, 3], [5, 1], [6, 1]]}, {"W": 8, "H": 8, "start": 0, "entry": {"x": 0, "y": 2, "side": 2}, "exit": {"x": 4, "y": 7, "side": 1}, "t": [[0, 2, 3], [1, 1, 1], [0, 0, 2], [3, 0, 4], [4, 1, 3], [5, 2, 3], [4, 3, 4], [1, 3, 4], [0, 3, 3], [5, 6, 1], [2, 6, 1], [3, 5, 1]], "sol": [[0, 0], [1, 2], [2, 0], [3, 0], [4, 0], [5, 1], [6, 1]]}, {"W": 8, "H": 8, "start": 0, "entry": {"x": 3, "y": 7, "side": 1}, "exit": {"x": 1, "y": 0, "side": 3}, "t": [[3, 7, 3], [6, 6, 4], [5, 5, 2], [6, 4, 4], [5, 3, 3], [4, 1, 4], [3, 0, 2], [6, 1, 4], [2, 7, 4], [1, 5, 1], [1, 3, 1], [0, 3, 4], [0, 4, 1]], "sol": [[0, 0], [1, 2], [2, 0], [3, 2], [4, 3], [5, 2], [6, 2]]}, {"W": 8, "H": 9, "start": 0, "entry": {"x": 7, "y": 7, "side": 0}, "exit": {"x": 0, "y": 0, "side": 3}, "t": [[7, 7, 2], [4, 7, 4], [3, 3, 2], [2, 5, 2], [1, 4, 4], [0, 8, 5], [0, 2, 2], [1, 3, 5], [7, 8, 2], [7, 6, 4], [6, 5, 5], [5, 1, 5], [7, 5, 1], [5, 2, 1]], "sol": [[0, 2], [1, 3], [2, 1], [3, 3], [4, 1], [5, 3], [6, 3]]}, {"W": 8, "H": 9, "start": 0, "entry": {"x": 7, "y": 5, "side": 0}, "exit": {"x": 2, "y": 8, "side": 1}, "t": [[7, 5, 1], [7, 3, 2], [5, 2, 2], [3, 1, 3], [6, 0, 5], [1, 1, 3], [2, 3, 5], [6, 5, 2], [6, 6, 5], [6, 4, 5], [4, 5, 1], [4, 7, 1], [4, 4, 3], [1, 5, 1]], "sol": [[0, 3], [1, 2], [2, 2], [3, 0], [4, 2], [5, 1], [6, 1]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 8, "y": 2, "side": 0}, "exit": {"x": 7, "y": 8, "side": 1}, "t": [[8, 2, 5], [5, 3, 1], [5, 5, 1], [3, 5, 2], [1, 6, 5], [3, 7, 3], [5, 8, 2], [2, 2, 4], [0, 4, 1], [0, 2, 2], [8, 1, 2], [7, 3, 2], [7, 6, 3], [1, 0, 3]], "sol": [[0, 2], [1, 1], [2, 2], [3, 2], [4, 0], [5, 0], [6, 0]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 6, "y": 0, "side": 3}, "exit": {"x": 7, "y": 8, "side": 1}, "t": [[6, 0, 5], [3, 1, 3], [2, 2, 3], [1, 5, 4], [0, 1, 5], [0, 7, 4], [3, 8, 4], [7, 0, 1], [7, 1, 4], [6, 3, 4], [5, 4, 5], [8, 3, 2], [6, 4, 1], [6, 5, 1]], "sol": [[0, 2], [1, 1], [2, 1], [3, 3], [4, 1], [5, 0], [6, 0]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 6, "y": 8, "side": 1}, "exit": {"x": 0, "y": 8, "side": 2}, "t": [[6, 8, 5], [5, 6, 2], [4, 7, 5], [3, 3, 1], [2, 2, 4], [1, 5, 1], [1, 7, 3], [2, 8, 2], [0, 4, 2], [0, 1, 4], [7, 8, 5], [8, 8, 2], [3, 0, 3], [5, 1, 2], [5, 4, 4]], "sol": [[0, 3], [1, 1], [2, 3], [3, 3], [4, 1], [5, 1], [6, 0], [7, 2]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 8, "y": 3, "side": 0}, "exit": {"x": 0, "y": 2, "side": 2}, "t": [[8, 3, 5], [7, 7, 5], [5, 6, 2], [4, 4, 2], [4, 1, 3], [7, 0, 4], [2, 0, 3], [1, 2, 1], [1, 1, 2], [7, 3, 1], [5, 3, 3], [3, 2, 5], [2, 5, 4], [2, 4, 1], [6, 6, 2], [3, 1, 5], [7, 8, 1]], "sol": [[0, 1], [1, 2], [2, 3], [3, 3], [4, 0], [5, 2], [6, 1], [7, 2]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 8, "y": 1, "side": 0}, "exit": {"x": 1, "y": 0, "side": 3}, "t": [[8, 1, 1], [6, 1, 1], [6, 3, 3], [5, 5, 5], [4, 4, 1], [3, 5, 4], [2, 2, 5], [1, 4, 4], [4, 1, 4], [8, 2, 4], [3, 6, 3], [8, 0, 5], [4, 7, 1], [0, 6, 2], [3, 8, 4], [2, 0, 5]], "sol": [[0, 2], [1, 1], [2, 1], [3, 3], [4, 1], [5, 3], [6, 1], [7, 3]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 6, "y": 0, "side": 3}, "exit": {"x": 8, "y": 5, "side": 0}, "t": [[6, 0, 3], [6, 4, 4], [1, 4, 3], [0, 3, 2], [0, 6, 3], [3, 7, 3], [5, 8, 2], [8, 8, 3], [5, 0, 5], [2, 8, 5], [7, 5, 5], [8, 3, 1], [4, 1, 4], [3, 2, 1], [4, 2, 1], [4, 8, 4]], "sol": [[0, 1], [1, 2], [2, 3], [3, 1], [4, 0], [5, 0], [6, 0], [7, 3]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 0, "y": 7, "side": 2}, "exit": {"x": 8, "y": 0, "side": 0}, "t": [[0, 7, 3], [1, 4, 1], [3, 4, 1], [5, 4, 3], [7, 3, 2], [6, 2, 4], [2, 1, 5], [4, 0, 4], [1, 7, 1], [0, 3, 5], [5, 8, 5], [2, 7, 1], [6, 7, 1], [4, 6, 2], [6, 6, 2], [7, 6, 1]], "sol": [[0, 3], [1, 0], [2, 0], [3, 0], [4, 2], [5, 2], [6, 0], [7, 0]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 0, "y": 7, "side": 2}, "exit": {"x": 7, "y": 0, "side": 3}, "t": [[0, 7, 2], [1, 8, 3], [5, 8, 2], [6, 7, 5], [5, 3, 4], [4, 5, 2], [2, 4, 4], [3, 1, 3], [6, 0, 1], [4, 4, 4], [0, 2, 1], [0, 6, 2], [0, 3, 5], [7, 7, 2], [3, 7, 2], [8, 5, 1], [8, 3, 1], [8, 4, 4]], "sol": [[0, 0], [1, 0], [2, 0], [3, 3], [4, 1], [5, 2], [6, 3], [7, 0], [8, 0]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 0, "y": 1, "side": 2}, "exit": {"x": 6, "y": 0, "side": 3}, "t": [[0, 1, 1], [0, 3, 5], [1, 7, 3], [3, 8, 2], [6, 8, 2], [7, 6, 5], [6, 1, 2], [5, 2, 4], [6, 3, 3], [4, 6, 5], [3, 2, 1], [3, 5, 1], [2, 4, 3], [5, 7, 5], [3, 4, 1], [1, 3, 4], [1, 1, 3], [1, 0, 3]], "sol": [[0, 1], [1, 1], [2, 0], [3, 0], [4, 3], [5, 3], [6, 2], [7, 1], [8, 3]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 7, "y": 8, "side": 1}, "exit": {"x": 0, "y": 4, "side": 2}, "t": [[7, 8, 2], [6, 7, 3], [3, 6, 4], [5, 5, 1], [5, 3, 1], [7, 3, 2], [8, 2, 4], [7, 5, 5], [3, 4, 3], [2, 6, 4], [1, 3, 1], [8, 7, 4], [4, 2, 1], [8, 8, 4], [3, 1, 4], [3, 2, 2], [6, 0, 2], [5, 0, 3]], "sol": [[0, 2], [1, 2], [2, 0], [3, 3], [4, 0], [5, 3], [6, 1], [7, 2], [8, 2]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 4, "y": 0, "side": 3}, "exit": {"x": 2, "y": 8, "side": 1}, "t": [[4, 0, 4], [8, 1, 1], [8, 3, 4], [7, 4, 4], [6, 6, 4], [4, 5, 2], [3, 4, 5], [6, 5, 3], [5, 8, 3], [3, 3, 3], [1, 2, 1], [5, 1, 5], [2, 1, 5], [1, 1, 1], [0, 0, 4], [4, 1, 3], [0, 1, 3], [2, 0, 4]], "sol": [[0, 0], [1, 1], [2, 2], [3, 1], [4, 2], [5, 2], [6, 0], [7, 1], [8, 2]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 3, "y": 8, "side": 1}, "exit": {"x": 8, "y": 3, "side": 0}, "t": [[3, 8, 2], [2, 7, 2], [4, 6, 4], [0, 5, 1], [0, 3, 1], [0, 1, 2], [3, 1, 1], [5, 1, 2], [6, 2, 1], [5, 3, 3], [4, 4, 2], [4, 8, 4], [7, 7, 1], [4, 2, 3], [8, 6, 1], [5, 5, 3], [6, 4, 1], [7, 6, 5], [6, 0, 4], [6, 5, 1]], "sol": [[0, 2], [1, 0], [2, 2], [3, 3], [4, 3], [5, 0], [6, 0], [7, 0], [8, 2], [9, 0]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 5, "y": 0, "side": 3}, "exit": {"x": 1, "y": 0, "side": 3}, "t": [[5, 0, 1], [3, 0, 1], [3, 2, 5], [4, 5, 4], [8, 6, 2], [7, 8, 4], [2, 8, 2], [0, 7, 4], [1, 5, 2], [1, 2, 2], [5, 1, 5], [2, 4, 5], [5, 3, 2], [2, 6, 3], [6, 1, 3], [7, 0, 3], [6, 3, 1], [6, 6, 3], [8, 1, 2]], "sol": [[0, 2], [1, 1], [2, 1], [3, 0], [4, 1], [5, 2], [6, 2], [7, 3], [8, 3], [9, 3]]}, {"W": 9, "H": 9, "start": 0, "entry": {"x": 0, "y": 3, "side": 2}, "exit": {"x": 7, "y": 0, "side": 3}, "t": [[0, 3, 5], [3, 4, 1], [2, 5, 4], [6, 6, 4], [5, 7, 4], [3, 8, 5], [7, 7, 2], [8, 6, 1], [8, 4, 3], [7, 3, 3], [5, 4, 5], [3, 2, 4], [6, 1, 1], [5, 1, 3], [1, 2, 2], [6, 0, 3], [3, 0, 1], [0, 4, 1], [6, 4, 4]], "sol": [[0, 0], [1, 2], [2, 0], [3, 2], [4, 2], [5, 0], [6, 3], [7, 3], [8, 3], [9, 3]]}];
+/* ================= tower topple: puzzle logic ================= */
+/* Rules: the player can move between any orthogonally adjacent boxes (standing towers of any height, or fallen boxes).
+   They topple only the tower they stand on. They enter from a door onto the entry cell's tower and
+   leave when the exit cell (just inside the exit door) has a box they can reach. */
+const TOPPLE=(()=>{
+  const DX=[1,0,-1,0],DY=[0,1,0,-1];
+  const K=(x,y)=>x+','+y;
+  function mulberry(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};}
+  const fallCells=(t,d)=>{const out=[];for(let k=1;k<=t.h;k++)out.push([t.x+DX[d]*k,t.y+DY[d]*k]);return out;};
+  function occ(L,st){const m=new Map();L.towers.forEach((t,i)=>{if(st[i]<0)m.set(K(t.x,t.y),{up:i});else fallCells(t,st[i]).forEach(c=>m.set(K(c[0],c[1]),{fall:i}));});return m;}
+  const inG=(L,x,y)=>x>=0&&y>=0&&x<L.W&&y<L.H;
+  function canTopple(L,o,i,d){return fallCells(L.towers[i],d).every(c=>inG(L,c[0],c[1])&&!o.has(K(c[0],c[1])));}
+  /* every box the player can get to from cell key k */
+  function comp(L,o,k){const set=new Set();if(!o.has(k))return set;set.add(k);const q=[k];
+    while(q.length){const[x,y]=q.pop().split(',').map(Number);for(let d=0;d<4;d++){const nk=K(x+DX[d],y+DY[d]);if(o.has(nk)&&!set.has(nk)){set.add(nk);q.push(nk);}}}return set;}
+  const exitKey=L=>K(L.exit.x,L.exit.y),entryKey=L=>K(L.entry.x,L.entry.y);
+  function moves(L,st,pk){const o=occ(L,st);const set=comp(L,o,pk);if(set.has(exitKey(L)))return{win:true,list:[],set};
+    const list=[];set.forEach(k=>{const v=o.get(k);if(v.up!=null)for(let d=0;d<4;d++)if(canTopple(L,o,v.up,d))list.push([v.up,d]);});return{win:false,list,set};}
+  function after(L,i,d){const cs=fallCells(L.towers[i],d);const e=cs[cs.length-1];return K(e[0],e[1]);}
+  function solve(L,st0,pk0,budget=(typeof BUDGET!=='undefined'?BUDGET:150000)){const memo=new Map();let nodes=0,over=false;
+    function key(st,set){let m=null;set.forEach(k=>{if(m===null||k<m)m=k;});return st.join(',')+'|'+m;}
+    function rec(st,pk){if(++nodes>budget){over=true;return 2;}const m=moves(L,st,pk);const kk=key(st,m.set);if(memo.has(kk))return memo.get(kk);
+      if(m.win){memo.set(kk,1);return 1;}let c=0;
+      for(const[i,d]of m.list){const s2=st.slice();s2[i]=d;c+=rec(s2,after(L,i,d));if(c>=2)break;}c=Math.min(c,2);memo.set(kk,c);return c;}
+    const st=st0||L.towers.map(()=>-1);const pk=pk0||entryKey(L);if(!occ(L,st).has(pk))return{count:0,path:null};const n=rec(st,pk);
+    let path=null;if(n>=1&&!over){path=[];let s=st.slice(),p=pk;for(let g=0;g<60;g++){const m=moves(L,s,p);if(m.win)break;let found=false;
+      for(const[i,d]of m.list){const s2=s.slice();s2[i]=d;const p2=after(L,i,d);const m2=moves(L,s2,p2);if(memo.get(key(s2,m2.set))>=1){path.push([i,d]);s=s2;p=p2;found=true;break;}}if(!found){path=null;break;}}}
+    return{count:over?-1:n,path};}
+  /* how tempting the room is: explores every state and scores wrong turns, especially deep ones */
+  function explore(L,cap=6000){const seen=new Map();let deadDepth=0,states=0;const first=moves(L,L.towers.map(()=>-1),entryKey(L));
+    function key(st,set){let m=null;set.forEach(k=>{if(m===null||k<m)m=k;});return st.join(',')+'|'+m;}
+    function rec(st,pk,depth){if(states>cap)return 1;const m=moves(L,st,pk);const kk=key(st,m.set);if(seen.has(kk))return seen.get(kk);states++;
+      if(m.win){seen.set(kk,1);return 1;}let good=0;seen.set(kk,0);
+      for(const[i,d]of m.list){const s2=st.slice();s2[i]=d;good+=rec(s2,after(L,i,d),depth+1);}
+      if(!good&&m.list.length)deadDepth+=depth;seen.set(kk,good?1:0);return good?1:0;}
+    rec(L.towers.map(()=>-1),entryKey(L),1);
+    const firstOpts=first.list.length;const firstTowers=new Set(first.list.map(m=>m[0])).size;
+    return{score:Math.min(states,400)+deadDepth*2+firstOpts*15+firstTowers*25,states,firstOpts,firstTowers};}
+  /* how far the player must walk between topples on the solution (retracing) */
+  function walkStats(L){let st=L.towers.map(()=>-1),pk=entryKey(L),total=0,back=0;
+    for(const[i,d]of L.sol){const o=occ(L,st);const set=comp(L,o,pk);const tk=K(L.towers[i].x,L.towers[i].y);
+      const dist=new Map([[pk,0]]),q=[pk];while(q.length){const k=q.shift();if(k===tk)break;const[x,y]=k.split(',').map(Number);for(let e=0;e<4;e++){const nk=K(x+DX[e],y+DY[e]);if(set.has(nk)&&!dist.has(nk)){dist.set(nk,dist.get(k)+1);q.push(nk);}}}
+      const dd=dist.get(tk)||0;total+=dd;if(dd>=3)back++;st=st.slice();st[i]=d;pk=after(L,i,d);}
+    return{total,back};}
+  const NT=[0,2,2,3,3,4,4,4,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,10,10,10];
+  function params(lv){return{n:NT[lv],maxH:lv<=6?3:lv<=14?4:5,W:Math.min(5+Math.floor((lv-1)/4),9),H:Math.min(5+Math.floor((lv+1)/4),9),dec:lv<=1?0:lv<=3?2:Math.min(3+Math.floor(lv/4),9)};}
+  const onBorder=(L,c)=>c[0]===0||c[1]===0||c[0]===L.W-1||c[1]===L.H-1;
+  const sideOf=(L,c,pref)=>{const s=[];if(c[0]===L.W-1)s.push(0);if(c[1]===L.H-1)s.push(1);if(c[0]===0)s.push(2);if(c[1]===0)s.push(3);return s.includes(pref)?pref:s[0];};
+  function gen(lv,PP){const P=PP||params(lv);let best=null,found=0;
+    for(let att=0;att<(typeof ATT!=='undefined'?ATT:400);att++){const R=mulberry(lv*7919+att*131+29);const ri=(a,b)=>a+Math.floor(R()*(b-a+1));const sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+      const W=P.W,H=P.H;const L={W,H,towers:[],start:0,entry:null,exit:null,sol:[]};
+      const es=ri(0,3);const ec=es===0?[W-1,ri(1,H-2)]:es===2?[0,ri(1,H-2)]:es===1?[ri(1,W-2),H-1]:[ri(1,W-2),0];L.entry={x:ec[0],y:ec[1],side:es};
+      const st=[];const reserved=new Set([K(ec[0],ec[1])]);L.towers.push({x:ec[0],y:ec[1],h:ri(1,P.maxH)});st.push(-1);
+      let ok=true;
+      for(let k=0;k<P.n;k++){const t=L.towers[k];const o=occ(L,st);const last=k===P.n-1;
+        let dirs=sh([0,1,2,3]).filter(d=>canTopple(L,o,k,d));let chosen=null;
+        if(last){for(const d of dirs){const cs=fallCells(t,d);const e=cs[cs.length-1];if(onBorder(L,e)&&K(e[0],e[1])!==K(ec[0],ec[1])){const sd=sideOf(L,e,d);if(sd!==es||Math.abs(e[0]-ec[0])+Math.abs(e[1]-ec[1])>3){chosen=d;break;}}}}
+        else chosen=dirs.length?dirs[0]:null;
+        if(chosen==null){ok=false;break;}
+        st[k]=chosen;L.sol.push([k,chosen]);const fc=fallCells(t,chosen);fc.forEach(c=>reserved.add(K(c[0],c[1])));
+        if(last){const e=fc[fc.length-1];L.exit={x:e[0],y:e[1],side:sideOf(L,e,chosen)};break;}
+        let cand=[];
+        if(P.retrace&&k>=1){const o2=occ(L,st);const land=fc[fc.length-1];const lk=K(land[0],land[1]);const set=comp(L,o2,lk);const dist=new Map([[lk,0]]),q=[lk];
+          while(q.length){const kk=q.shift();const[x,y]=kk.split(',').map(Number);for(let e=0;e<4;e++){const nk=K(x+DX[e],y+DY[e]);if(set.has(nk)&&!dist.has(nk)){dist.set(nk,dist.get(kk)+1);q.push(nk);}}}
+          const sc=[];set.forEach(kk=>{const[x,y]=kk.split(',').map(Number);const dd=dist.get(kk);for(let e=0;e<4;e++){const nx=x+DX[e],ny=y+DY[e];if(inG(L,nx,ny)&&!o2.has(K(nx,ny))&&!reserved.has(K(nx,ny)))sc.push([nx,ny,dd+R()*1.5]);}});
+          sc.sort((a,b)=>b[2]-a[2]);cand=sc.filter(c=>c[2]>=2).slice(0,4).map(c=>[c[0],c[1]]);}
+        if(!cand.length)fc.forEach(([x,y])=>{for(let d=0;d<4;d++){const nx=x+DX[d],ny=y+DY[d];if(inG(L,nx,ny)&&!o.has(K(nx,ny))&&!reserved.has(K(nx,ny)))cand.push([nx,ny]);}});
+        if(!cand.length){ok=false;break;}
+        let placed=false;for(const c of sh(cand)){const h=ri(1,P.maxH);L.towers.push({x:c[0],y:c[1],h});st.push(-1);const o3=occ(L,st);
+          const fin=k+2===P.n;const good=[0,1,2,3].some(d=>{if(!canTopple(L,o3,k+1,d))return false;if(!fin)return true;const cs=fallCells(L.towers[k+1],d);return onBorder(L,cs[cs.length-1]);});
+          if(good){placed=true;reserved.add(K(c[0],c[1]));break;}L.towers.pop();st.pop();}
+        if(!placed){ok=false;break;}}
+      if(!ok||!L.exit)continue;
+      if(L.exit.x===L.entry.x&&L.exit.y===L.entry.y)continue;
+      let r=solve(L);if(r.count<1)continue;
+      const free=()=>{const occd=new Set(L.towers.map(t=>K(t.x,t.y)));const c=[];for(let x=0;x<W;x++)for(let y=0;y<H;y++){const k=K(x,y);if(!reserved.has(k)&&!occd.has(k))c.push([x,y]);}return c;};
+      /* first make the solution unique */
+      for(let g=0;g<60&&r.count>1;g++){const c=sh(free())[0];if(!c)break;L.towers.push({x:c[0],y:c[1],h:ri(1,P.maxH)});const r2=solve(L);if(r2.count===1||(r2.count>=1&&r2.count<r.count))r=r2;else L.towers.pop();}
+      if(r.count!==1)continue;
+      /* then add the most tempting decoys */
+      let cur=explore(L).score;
+      for(let dec=0;dec<P.dec;dec++){let best=null;
+        for(const c of sh(free()).slice(0,26)){const h=ri(1,P.maxH);L.towers.push({x:c[0],y:c[1],h});const r2=solve(L);
+          if(r2.count===1&&r2.path.length>=P.n){const sc=explore(L).score;if(!best||sc>best.sc)best={c,h,sc,r2};}L.towers.pop();}
+        if(!best||best.sc<=cur)break;L.towers.push({x:best.c[0],y:best.c[1],h:best.h});r=best.r2;cur=best.sc;}
+      const ex=explore(L);if(lv>=3&&(ex.firstTowers<2||ex.firstOpts<3))continue;
+      if(r.count!==1||r.path.length<P.n)continue;
+      L.sol=r.path;const ws=walkStats(L);if(P.retrace&&ws.back<P.minBack)continue;L.score=ex.score+(P.retrace?ws.total*40+ws.back*120:0);if(!best||ex.score>best.score)best=JSON.parse(JSON.stringify(L));if(++found>=(typeof KEEP!=='undefined'?KEEP:1))return best;}
+    return best;}
+  return{walkStats,explore,DX,DY,K,fallCells,occ,canTopple,comp,moves,solve,gen,params,inG,exitKey,entryKey,after};
+})();
+
+
+/* ================= tower topple: game ================= */
+function makeTopple(){
+  const T=TOPPLE,root=document.getElementById('appTopple');const DX=T.DX,DY=T.DY,K=T.K;
+  root.innerHTML=`
+  <main class="work">
+    <section class="task" aria-label="Room">
+      <div class="qbar"><span class="qlabel" data-r="title">Room 1</span><span class="worth" data-r="stars"></span></div>
+      <p class="prompt" data-r="msg"></p>
+      <div class="desc tt-help">
+        <span class="dlab">How to play</span>
+        <ul>
+          <li>The floor is electric. You can only stand on boxes.</li>
+          <li>You can step, climb up or drop down onto any box right next to you (not diagonally).</li>
+          <li>On top of a tower, choose a direction. It topples and you ride it down, landing on its long side.</li>
+          <li>A tower of height 3 lands across the 3 squares next to it. It cannot land on another box or go through a wall.</li>
+          <li>Reach the box by the exit door and walk out. Every room has exactly one way out.</li>
+        </ul>
+        <span class="dlab">Controls</span>
+        <ul>
+          <li><b>Tap any box you can reach</b> to walk, climb or jump there.</li>
+          <li><b>On a tower:</b> tap a green landing shape, or use the arrow keys.</li>
+          <li><b>Drag</b> to look around, or use ⟲ ⟳ to turn the room.</li>
+          <li><b>Double-tap</b> (or press Space) to skip to the end of a move.</li>
+        </ul>
+      </div>
+      <span class="dlab">Rooms</span>
+      <div class="tt-levels" data-r="levels"></div>
+      <p class="small">Finish a room to unlock the next. ★★★ means no undo, restart or hint.</p>
+    </section>
+    <section class="board" aria-label="Game">
+      <div class="toolbar"><button class="btn" data-r="rl" aria-label="Turn room left">⟲</button><button class="btn" data-r="rr" aria-label="Turn room right">⟳</button>
+        <span class="spacer"></span><button class="btn" data-r="undo">Undo</button><button class="btn" data-r="restart">Restart</button><button class="btn" data-r="hint">Hint</button></div>
+      <div class="canvas-wrap tt-wrap" data-r="wrap"><canvas data-r="gl" aria-label="Tower Topple room. Tap towers to move, drag to turn."></canvas><canvas data-r="ov" class="tt-ov" aria-hidden="true"></canvas>
+        <div class="tt-done" data-r="done" hidden><div class="tt-card"><div class="tt-big" data-r="dstars">★★★</div><div data-r="dtext">Room escaped!</div><button class="btn primary" data-r="next">Next room →</button></div></div></div>
+      <div class="feedback" data-r="fb" aria-live="polite"></div>
+    </section>
+  </main>`;
+  const r=n=>root.querySelector(`[data-r="${n}"]`);
+  const cv=r('gl'),ov=r('ov'),octx=ov.getContext('2d');
+  const gl=cv.getContext('webgl',{antialias:true,alpha:false})||cv.getContext('experimental-webgl');
+  if(!gl){r('msg').textContent='Tower Topple needs WebGL, which this browser has turned off.';return{show(){},redraw(){}};}
+  /* ---------- progress ---------- */
+  let prog={stars:{}};try{prog=JSON.parse(localStorage.getItem('tt-progress-v2'))||prog;}catch(e){}
+  const saveProg=()=>{try{localStorage.setItem('tt-progress-v2',JSON.stringify(prog));}catch(e){}};
+  const pack='main';const LV=()=>TT_LEVELS;const sk=n=>n;
+  const unlocked=()=>{let u=1;while(prog.stars[sk(u)])u++;return Math.min(u,LV().length);};
+  /* ---------- maths ---------- */
+  const V={add:(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]],sub:(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],mul:(a,k)=>[a[0]*k,a[1]*k,a[2]*k],
+    dot:(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],cross:(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],norm:a=>{const l=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/l,a[1]/l,a[2]/l];},lerp:(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]};
+  const M3={id:()=>[1,0,0,0,1,0,0,0,1],mul:(A,B)=>{const C=new Array(9);for(let i=0;i<3;i++)for(let j=0;j<3;j++)C[i*3+j]=A[i*3]*B[j]+A[i*3+1]*B[3+j]+A[i*3+2]*B[6+j];return C;},
+    ap:(A,v)=>[A[0]*v[0]+A[1]*v[1]+A[2]*v[2],A[3]*v[0]+A[4]*v[1]+A[5]*v[2],A[6]*v[0]+A[7]*v[1]+A[8]*v[2]],
+    rx:a=>{const c=Math.cos(a),s=Math.sin(a);return[1,0,0,0,c,-s,0,s,c];},ry:a=>{const c=Math.cos(a),s=Math.sin(a);return[c,0,s,0,1,0,-s,0,c];},rz:a=>{const c=Math.cos(a),s=Math.sin(a);return[c,-s,0,s,c,0,0,0,1];}};
+  function persp(f,a,n,fa){const t=1/Math.tan(f/2);return[t/a,0,0,0,0,t,0,0,0,0,(fa+n)/(n-fa),-1,0,0,2*fa*n/(n-fa),0];}
+  function look(e,c,u){const z=V.norm(V.sub(e,c)),x=V.norm(V.cross(u,z)),y=V.cross(z,x);return[x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-V.dot(x,e),-V.dot(y,e),-V.dot(z,e),1];}
+  function m4mul(a,b){const o=new Array(16);for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s;}return o;}
+  const hex=h=>{h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return[(n>>16&255)/255,(n>>8&255)/255,(n&255)/255];};
+  const mix=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+  /* ---------- GL setup ---------- */
+  const VS=`attribute vec3 aP;attribute vec3 aN;attribute vec4 aC;attribute vec2 aUV;attribute vec2 aS;attribute float aM;
+uniform mat4 uVP;varying vec3 vP;varying vec3 vN;varying vec4 vC;varying vec2 vUV;varying vec2 vS;varying float vM;
+void main(){vP=aP;vN=aN;vC=aC;vUV=aUV;vS=aS;vM=aM;gl_Position=uVP*vec4(aP,1.0);}`;
+  const FS=`precision mediump float;varying vec3 vP;varying vec3 vN;varying vec4 vC;varying vec2 vUV;varying vec2 vS;varying float vM;
+uniform vec3 uL;uniform float uT;uniform vec3 uEdge;uniform vec2 uOff;
+void main(){
+ if(vM>0.5&&vM<1.5){vec2 p=vP.xz;vec2 f=fract(p+uOff);float e=min(min(f.x,1.0-f.x),min(f.y,1.0-f.y));
+  float grid=1.0-smoothstep(0.0,0.07,e);
+  float a=sin(p.x*2.6+uT*2.3+sin(p.y*3.1-uT*1.9)*2.2)*sin(p.y*2.2-uT*1.4+sin(p.x*1.7+uT*1.1)*2.4);
+  float arc=(1.0-smoothstep(0.0,0.06,abs(a)))*(0.55+0.45*sin(uT*31.0+p.x*7.0+p.y*3.0));
+  float pulse=0.5+0.5*sin(uT*2.0+p.x*0.9-p.y*0.7);
+  vec3 c=vec3(0.03,0.06,0.15)+vec3(0.05,0.35,0.75)*grid*(0.5+0.4*pulse)+vec3(0.55,0.9,1.0)*arc*0.85+vec3(0.0,0.06,0.12)*pulse;
+  gl_FragColor=vec4(c,1.0);return;}
+ vec3 n=normalize(vN);float d=max(dot(n,normalize(uL)),0.0);float up=max(n.y,0.0);
+ vec3 c=vC.rgb*(0.52+0.42*d+0.12*up);
+ if(vM>2.5)c=vC.rgb;
+ if(vS.x>0.0){vec2 q=min(vUV,1.0-vUV)*vS;float e=min(q.x,q.y);float line=1.0-smoothstep(0.016,0.032,e);c=mix(c,uEdge,line*(vM>2.5?0.5:0.8));}
+ gl_FragColor=vec4(c,vC.a);}`;
+  function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(o));return o;}
+  const prog_=gl.createProgram();gl.attachShader(prog_,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog_,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(prog_);gl.useProgram(prog_);
+  const A={};['aP','aN','aC','aUV','aS','aM'].forEach(n=>{A[n]=gl.getAttribLocation(prog_,n);});const U={};['uVP','uL','uT','uEdge','uOff'].forEach(n=>{U[n]=gl.getUniformLocation(prog_,n);});
+  const buf=gl.createBuffer();const STRIDE=15;
+  class Mesh{constructor(){this.a=[];}quad(p,n,col,size,mat){const uv=[[0,0],[1,0],[1,1],[0,1]];for(const i of[0,1,2,0,2,3]){const q=p[i];this.a.push(q[0],q[1],q[2],n[0],n[1],n[2],col[0],col[1],col[2],col[3],uv[i][0],uv[i][1],size[0],size[1],mat);}}
+    box(h,R,t,col,mat=0,edges=true){for(let ax=0;ax<3;ax++)for(const s of[-1,1]){const b=(ax+1)%3,c=(ax+2)%3;const pts=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([u,v])=>{const p=[0,0,0];p[ax]=s*h[ax];p[b]=u*h[b];p[c]=v*h[c];return V.add(M3.ap(R,p),t);});
+      const n=[0,0,0];n[ax]=s;this.quad(pts,M3.ap(R,n),col,edges?[2*h[b],2*h[c]]:[0,0],mat);}}}
+  /* ---------- game state ---------- */
+  let L=null,lvNum=1,st=[],on=-1,cell=null,pad=true,hist=[],moves=[],assists=0,doorOpen=false,escaped=false,hintMark=null;
+  const P={pos:[0,0,0],face:0,walk:0,ride:null,gy:0,vis:1};
+  let anim=[],parts=[],shake=0;
+  const cam={yaw:Math.PI/4,pitch:0.92,tyaw:Math.PI/4,dist:14,tgt:[0,0,0]};
+  const wpos=(x,y)=>[x-(L.W-1)/2,0,y-(L.H-1)/2];
+  const PAL=['#8FB6E8','#78C4B0','#F2B26B','#B69DE8','#EE8DAA','#9FD37A'];
+  const colH=h=>hex(PAL[(h-1)%PAL.length]);
+  function loadLevel(n){lvNum=n;const d=LV()[n-1];L={W:d.W,H:d.H,start:d.start,entry:d.entry,exit:d.exit,towers:d.t.map(([x,y,h])=>({x,y,h})),sol:d.sol};
+    st=L.towers.map(()=>-1);on=-1;cell=null;pad=true;hist=[];moves=[];assists=0;doorOpen=false;escaped=false;hintMark=null;anim=[];parts=[];P.vis=1;P.ride=null;
+    const pin=padTop('entry'),outside=V.add(pin,V.mul(sideV(L.entry.side),1.6));P.pos=outside.slice();P.face=faceTo(outside,pin);P.gy=1;
+    cam.dist=Math.hypot(L.W+3.5,L.H+3.5)/2/Math.tan(0.31)*0.98+1.5;r('done').hidden=true;
+    queue({dur:0.6,f:k=>{P.pos=V.lerp(outside,pin,k);P.face=faceTo(outside,pin);P.walk+=0.35;}},
+      {dur:0,f:()=>{},end:()=>{doorCheck();queue(...stepsTo(T.entryKey(L)),{dur:0,f:()=>{},end:()=>{msg(lvNum===1?'You are on your first tower. Tap a green landing shape to topple it.':'Choose a tower to topple. Look around first: drag to turn the room.');}});}});
+    r('title').textContent=pack==='main'?`Room ${n}`:`Backtrack ${n}`;msg('Entering the room…');setFb('','');levelsUI();hdr();}
+  const sideV=s=>[DX[s],0,DY[s]];
+  function padCellOf(w){const D=w==='entry'?L.entry:L.exit;return[D.x+DX[D.side],D.y+DY[D.side]];}
+  function padTop(w){const c=padCellOf(w);return V.add(wpos(c[0],c[1]),[0,1,0]);}
+  const occ=()=>T.occ(L,st);
+  const playerKey=()=>on>=0?K(L.towers[on].x,L.towers[on].y):cell?K(cell[0],cell[1]):T.entryKey(L);
+  const comp=()=>T.comp(L,occ(),playerKey());
+  function reachable(){const o=occ(),out=[];comp().forEach(k=>{const v=o.get(k);if(v.up!=null)out.push(v.up);});return out;}
+  const validDirs=i=>{const o=occ();return[0,1,2,3].filter(d=>T.canTopple(L,o,i,d));};
+  function nodeTop(k){const v=occ().get(k);const[x,y]=k.split(',').map(Number);return V.add(wpos(x,y),[0,v&&v.up!=null?L.towers[v.up].h:1,0]);}
+  const cellTop=c=>V.add(wpos(c[0],c[1]),[0,1,0]);
+  function doorCheck(){doorOpen=comp().has(T.exitKey(L));}
+  /* ---------- animation queue ---------- */
+  function queue(...steps){anim.push(...steps.map(s=>({...s,t:0})));}
+  const busy=()=>anim.length>0;
+  function burst(p,col,n=14){const c=hex(col);for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=0.6+Math.random()*1.6;parts.push({p:p.slice(),v:[Math.cos(a)*s,1+Math.random()*2,Math.sin(a)*s],life:0.5+Math.random()*0.4,c});}}
+  /* ---------- actions ---------- */
+  function pathFrom(start,targetKey){const cset=T.comp(L,occ(),start);if(!cset.has(targetKey))return null;const prev=new Map([[start,null]]);const q=[start];
+    while(q.length){const k=q.shift();if(k===targetKey){const out=[];let c=k;while(c){out.unshift(c);c=prev.get(c);}return out;}
+      const[x,y]=k.split(',').map(Number);for(let d=0;d<4;d++){const nk=K(x+DX[d],y+DY[d]);if(cset.has(nk)&&!prev.has(nk)){prev.set(nk,k);q.push(nk);}}}return null;}
+  const faceTo=(a,b)=>Math.atan2(b[0]-a[0],b[2]-a[2]);
+  function setAt(k){const v=occ().get(k);const[x,y]=k.split(',').map(Number);pad=false;if(v&&v.up!=null){on=v.up;cell=null;}else{on=-1;cell=[x,y];}}
+  function moveStep(a,b,after){const dh=b[1]-a[1];if(Math.abs(dh)<0.01)return{dur:0.17,f:k=>{P.pos=V.lerp(a,b,k);P.pos[1]+=Math.abs(Math.sin(Math.PI*k))*0.05;P.face=faceTo(a,b);P.walk+=0.35;},end:()=>{P.pos=b.slice();after&&after();}};
+    const hgt=Math.max(0,dh)+0.45;return{dur:0.26+Math.abs(dh)*0.06,f:k=>{const p=V.lerp(a,b,k);p[1]=a[1]+dh*k+Math.sin(Math.PI*k)*hgt;P.pos=p;P.face=faceTo(a,b);},end:()=>{P.pos=b.slice();after&&after();}};}
+  function stepsTo(targetKey){const out=[];let from=P.pos.slice();let start=playerKey();
+    if(pad){const ek=T.entryKey(L);const b=nodeTop(ek);out.push(moveStep(from,b,()=>setAt(ek)));from=b;start=ek;}
+    const p=pathFrom(start,targetKey);if(!p)return out;for(let i=1;i<p.length;i++){const b=nodeTop(p[i]);const k=p[i];out.push(moveStep(from,b,()=>setAt(k)));from=b;}return out;}
+  function goTo(k){if(busy()||escaped)return;if(k===playerKey()&&!pad)return;const steps=stepsTo(k);if(!steps.length)return;
+    queue(...steps,{dur:0,f:()=>{},end:()=>{if(on>=0){const h=L.towers[on].h;msg(`On a tower of height ${h}. Topple it, or move to another box.`);}else msg('');}});}
+  function topple(d){if(busy()||on<0||escaped)return;if(!validDirs(on).includes(d)){msg('That way is blocked: the tower would land on another box or hit the wall.');return;}
+    const i=on,t=L.towers[i];hist.push({st:st.slice(),on,cell,pad,moves:moves.slice(),doorOpen});
+    const base=wpos(t.x,t.y),dir=[DX[d],0,DY[d]],pivot=V.add(base,V.mul(dir,0.5));const axis=d===0?'z-':d===2?'z+':d===1?'x+':'x-';
+    const rot=a=>axis==='z-'?M3.rz(-a):axis==='z+'?M3.rz(a):axis==='x+'?M3.rx(a):M3.rx(-a);
+    const topRel=[-dir[0]*0.5,t.h,-dir[2]*0.5];const fall=T.fallCells(t,d);const end=fall[fall.length-1];const final=cellTop(end);
+    on=-1;hintMark=null;P.face=Math.atan2(dir[0],dir[2]);
+    queue({dur:0.32,f:k=>{P.ride={i,pivot,R:rot(Math.sin(k*Math.PI)*0.06),d};},end:()=>{}},
+      {dur:0.62,f:k=>{const a=Math.min(1,k*k*1.05)*Math.PI/2;const R=rot(a);P.ride={i,pivot,R,d};const tp=V.add(pivot,M3.ap(R,topRel));
+        const lift=V.add(tp,[0,0.05,0]);P.pos=V.lerp(lift,final,Math.max(0,(k-0.55)/0.45)**2);P.pos[1]=Math.max(P.pos[1],0.95+0.6*Math.sin(Math.min(1,k)*Math.PI)*(k>0.5?1:0));},
+        end:()=>{P.ride=null;st[i]=d;cell=end;moves.push([i,d]);shake=0.35;fall.forEach(c=>burst(V.add(wpos(c[0],c[1]),[0,0.2,0]),'#7FE3FF',5));}},
+      {dur:0.22,f:k=>{P.pos=final.slice();P.pos[1]+=Math.sin(Math.PI*k)*0.25;},end:()=>{P.pos=final;P.gy=1;afterTopple();}});}
+  function afterTopple(){doorCheck();
+    if(doorOpen){msg('The exit is open! Tap the door to escape.');burst(V.add(padPos(),[0,1.2,0]),'#5BE39A',20);return;}
+    const rt=reachable().filter(i=>validDirs(i).length);
+    if(!rt.length)msg('No way forward from here. Press Undo to try a different topple.');else msg('Move to a tower and topple it.');}
+  function padPos(w='exit'){const c=padCellOf(w);return wpos(c[0],c[1]);}
+  function exitRoom(){if(busy()||!doorOpen||escaped)return;const xk=T.exitKey(L);const steps=(xk===playerKey()&&!pad)?[]:stepsTo(xk);const pd=padTop('exit');const out=V.add(pd,V.mul(sideV(L.exit.side),1.2));
+    queue(...steps,{dur:0,f:()=>{},end:()=>{queue(moveStep(P.pos.slice(),pd),{dur:0.5,f:k=>{P.pos=V.lerp(pd,out,k);P.face=faceTo(pd,out);P.walk+=0.35;P.vis=1-k;},end:()=>{escaped=true;complete();}});}});}
+  function complete(){const stars=assists===0?3:assists<=2?2:1;prog.stars[sk(lvNum)]=Math.max(prog.stars[sk(lvNum)]||0,stars);saveProg();
+    r('dstars').textContent='★'.repeat(stars)+'☆'.repeat(3-stars);r('dtext').textContent=lvNum<LV().length?`Room ${lvNum} escaped in ${moves.length} topples!`:'You escaped every room. Brilliant stunt work!';
+    r('next').hidden=lvNum>=LV().length;r('done').hidden=false;msg('Escaped!');levelsUI();hdr();}
+  function undo(){if(busy()||!hist.length||escaped)return;const h=hist.pop();st=h.st;on=h.on;cell=h.cell;pad=h.pad;moves=h.moves;doorOpen=h.doorOpen;assists++;hintMark=null;
+    P.pos=pad?padTop('entry'):nodeTop(playerKey());P.gy=P.pos[1];msg('Undone. Try another way.');setFb('','');hdr();}
+  function restart(){if(busy())return;if(moves.length)assists++;const a=assists;loadLevel(lvNum);assists=a;hdr();}
+  function hint(){if(busy()||escaped)return;assists++;hdr();const k=moves.length;let ok=true;for(let j=0;j<k;j++)if(moves[j][0]!==L.sol[j][0]||moves[j][1]!==L.sol[j][1]){ok=false;
+      setFb('bad',`<span><b>Dead end</b> · Topple ${j+1} went the wrong way, so there is no way out from here. Undo ${k-j} topple${k-j===1?'':'s'} and try again.</span>`);return;}
+    if(doorOpen){setFb('ok','<span><b>Hint</b> · The exit is open. Tap the door.</span>');return;}
+    const[i,d]=L.sol[k];hintMark={i,d};const w=['east','south','west','north'];
+    setFb('ok',on===i?'<span><b>Hint</b> · Topple this tower the way the gold shape shows.</span>':`<span><b>Hint</b> · Go to the tower with the gold ring (height ${L.towers[i].h}) and topple it.</span>`);}
+  /* ---------- camera & picking ---------- */
+  let VP=null,eye=[0,0,0],CW=0,CH=0,dpr=1;
+  function camUpdate(){const c=Math.cos(cam.pitch),e=[Math.sin(cam.yaw)*c,Math.sin(cam.pitch),Math.cos(cam.yaw)*c];const sx=(Math.random()-0.5)*shake*0.25,sy=(Math.random()-0.5)*shake*0.25;
+    const tg=[cam.tgt[0]+sx,cam.tgt[1]+0.6+sy,cam.tgt[2]];const asp=CW/CH;const d=cam.dist*(asp<1?1/asp*0.85:1);eye=V.add(tg,V.mul(e,d));
+    VP=m4mul(persp(0.62,asp,0.1,300),look(eye,tg,[0,1,0]));return tg;}
+  function ray(mx,my){const tg=camUpdate();const f=V.norm(V.sub(tg,eye)),rr=V.norm(V.cross(f,[0,1,0])),u=V.cross(rr,f);const th=Math.tan(0.31);
+    const nx=(mx/CW)*2-1,ny=1-(my/CH)*2;return{o:eye,d:V.norm(V.add(f,V.add(V.mul(rr,nx*th*CW/CH),V.mul(u,ny*th))))};}
+  function hitBox(R,mn,mx){let t0=-1e9,t1=1e9;for(let a=0;a<3;a++){if(Math.abs(R.d[a])<1e-9){if(R.o[a]<mn[a]||R.o[a]>mx[a])return null;continue;}let u=(mn[a]-R.o[a])/R.d[a],v=(mx[a]-R.o[a])/R.d[a];if(u>v)[u,v]=[v,u];t0=Math.max(t0,u);t1=Math.min(t1,v);if(t0>t1)return null;}return t0>0?t0:null;}
+  function targets(){const out=[];if(!L)return out;const o=occ();
+    L.towers.forEach((t,i)=>{const b=wpos(t.x,t.y);if(st[i]<0)out.push({k:'tower',i,mn:[b[0]-0.5,0,b[2]-0.5],mx:[b[0]+0.5,t.h,b[2]+0.5]});
+      else T.fallCells(t,st[i]).forEach(c=>{const p=wpos(c[0],c[1]);out.push({k:'cell',c,mn:[p[0]-0.5,0,p[2]-0.5],mx:[p[0]+0.5,1,p[2]+0.5]});});});
+    if(on>=0&&!busy())validDirs(on).forEach(d=>{const cs=T.fallCells(L.towers[on],d);cs.forEach(c=>{const p=wpos(c[0],c[1]);out.push({k:'ghost',d,mn:[p[0]-0.5,0,p[2]-0.5],mx:[p[0]+0.5,1,p[2]+0.5]});});});
+    const pp=padPos('exit');out.push({k:'door',mn:[pp[0]-0.6,0,pp[2]-0.6],mx:[pp[0]+0.6,2.4,pp[2]+0.6]});return out;}
+  function pick(mx,my){const R=ray(mx,my);let best=null;for(const tg of targets()){const tt=hitBox(R,tg.mn,tg.mx);if(tt!=null&&(!best||tt<best.t-1e-6||(Math.abs(tt-best.t)<0.02&&tg.k==='ghost')))best={...tg,t:tt};}return best;}
+  function act(p){if(!p||escaped)return;if(p.k==='ghost'){topple(p.d);return;}
+    if(p.k==='door'){if(doorOpen)exitRoom();else msg('The door only opens when a fallen box reaches it.');return;}
+    if(p.k==='tower'&&p.i===on)return;const k=p.k==='tower'?K(L.towers[p.i].x,L.towers[p.i].y):K(p.c[0],p.c[1]);
+    if(!comp().has(k)&&!(pad&&T.comp(L,occ(),T.entryKey(L)).has(k))){msg('You cannot reach that box from here: there is no chain of neighbouring boxes leading to it.');return;}goTo(k);}
+  let drag=null,hover=null;
+  const evp=e=>{const b=cv.getBoundingClientRect();return[e.clientX-b.left,e.clientY-b.top];};
+  cv.addEventListener('pointerdown',e=>{const[x,y]=evp(e);drag={x,y,sx:x,sy:y,moved:false,yaw:cam.yaw,pitch:cam.pitch};cv.setPointerCapture(e.pointerId);});
+  cv.addEventListener('pointermove',e=>{const[x,y]=evp(e);if(drag){if(Math.hypot(x-drag.sx,y-drag.sy)>6)drag.moved=true;if(drag.moved){cam.yaw=drag.yaw-(x-drag.sx)*0.008;cam.tyaw=cam.yaw;cam.pitch=Math.max(0.35,Math.min(1.45,drag.pitch+(y-drag.sy)*0.006));}return;}
+    hover=pick(x,y);cv.style.cursor=hover&&(hover.k==='ghost'||(hover.k==='tower'&&reachable().includes(hover.i))||(hover.k==='door'&&doorOpen)||(hover.k==='cell'&&comp().has(K(hover.c[0],hover.c[1]))))?'pointer':'grab';});
+  let lastTap=0;
+  function skipAnim(){let g=0;while(anim.length&&g<800){const a=anim.shift();a.t=a.dur;a.f&&a.f(1);a.end&&a.end();g++;}shake=0;}
+  cv.addEventListener('pointerup',e=>{if(drag&&!drag.moved){const now=performance.now();const dbl=now-lastTap<380;lastTap=now;
+      if(busy()){if(dbl)skipAnim();}else{const[x,y]=evp(e);act(pick(x,y));}}drag=null;});
+  cv.addEventListener('dblclick',e=>e.preventDefault());
+  cv.addEventListener('pointercancel',()=>{drag=null;});cv.addEventListener('pointerleave',()=>{hover=null;});
+  function screenDir(sx,sz){/* screen up = away from camera */const f=[-Math.sin(cam.yaw),-Math.cos(cam.yaw)],rgt=[Math.cos(cam.yaw),-Math.sin(cam.yaw)];
+    const v=[f[0]*sz+rgt[0]*sx,f[1]*sz+rgt[1]*sx];let best=0,bv=-9;for(let d=0;d<4;d++){const s=DX[d]*v[0]+DY[d]*v[1];if(s>bv){bv=s;best=d;}}return best;}
+  document.addEventListener('keydown',e=>{if(document.body.dataset.app!=='topple'||e.target.closest('input,textarea'))return;const map={ArrowUp:[0,1],ArrowDown:[0,-1],ArrowLeft:[-1,0],ArrowRight:[1,0]};
+    if(map[e.key]&&on>=0){e.preventDefault();topple(screenDir(...map[e.key]));}else if(e.key===' '&&busy()){e.preventDefault();skipAnim();}else if(e.key==='u'||e.key==='U')undo();else if(e.key==='q'||e.key==='Q')rot(-1);else if(e.key==='e'||e.key==='E')rot(1);});
+  function rot(s){cam.tyaw=Math.round((cam.tyaw+s*Math.PI/2)/(Math.PI/4))*(Math.PI/4);}
+  r('rl').onclick=()=>rot(-1);r('rr').onclick=()=>rot(1);r('undo').onclick=undo;r('restart').onclick=restart;r('hint').onclick=hint;r('next').onclick=()=>loadLevel(Math.min(lvNum+1,LV().length));
+  /* ---------- UI ---------- */
+  function msg(t){r('msg').textContent=t;}
+  function setFb(cls,html){const f=r('fb');f.className='feedback'+(cls?' '+cls:'');f.innerHTML=html;}
+  function levelsUI(){const u=unlocked();r('levels').innerHTML=LV().map((_,j)=>{const n=j+1,s=prog.stars[sk(n)]||0;const lock=n>u;
+      return`<button class="tt-lv${n===lvNum?' on':''}${s?' done':''}" data-n="${n}" ${lock?'disabled aria-label="Room '+n+', locked"':'aria-label="Room '+n+(s?', '+s+' stars':'')+'"'}><b>${lock?'🔒':n}</b><i>${s?'★'.repeat(s):''}</i></button>`;}).join('');
+    r('levels').querySelectorAll('button:not([disabled])').forEach(b=>b.onclick=()=>{if(!busy()||escaped){anim=[];loadLevel(+b.dataset.n);}});}
+  function hdr(){const tot=Object.entries(prog.stars).filter(([k])=>pack==='main'?!String(k).startsWith('b'):String(k).startsWith('b')).reduce((a,[,b])=>a+b,0);r('stars').textContent=`Topples ${moves.length} · par ${L?L.sol.length:0}`;
+    if(document.body.dataset.app==='topple')setHeader(pack==='main'?'Room':'Backtrack',`${lvNum} / ${LV().length}`,'Stars',`${tot} / ${LV().length*3}`);}
+  /* ---------- rendering ---------- */
+  function size(){const w=r('wrap').clientWidth;if(!w)return;const h=Math.round(Math.min(fitH()+30,Math.max(340,w*0.78),720));dpr=Math.min(2,window.devicePixelRatio||1);
+    for(const c of[cv,ov]){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);c.style.width=w+'px';c.style.height=h+'px';}CW=w;CH=h;}
+  function buildScene(time){const tk=readTok();const m=new Mesh(),tr=new Mesh();const I=M3.id();const W=L.W,H=L.H;
+    for(let x=0;x<W;x++)for(let y=0;y<H;y++){const p=wpos(x,y);m.quad([[p[0]-0.5,0,p[2]-0.5],[p[0]+0.5,0,p[2]-0.5],[p[0]+0.5,0,p[2]+0.5],[p[0]-0.5,0,p[2]+0.5]],[0,1,0],[0,0,0,1],[0,0],1);}
+    const rim=hex('#2E3A4E'),pIn=padCellOf('entry'),pOut=padCellOf('exit');
+    for(let x=-1;x<=W;x++)for(let y=-1;y<=H;y++){if(x>=0&&y>=0&&x<W&&y<H)continue;if((x===pIn[0]&&y===pIn[1])||(x===pOut[0]&&y===pOut[1]))continue;const p=wpos(x,y);m.box([0.5,0.22,0.5],I,[p[0],0.22,p[2]],[...rim,1]);}
+    const glow=0.5+0.5*Math.sin(time*4);
+    const door=(c,side,padCol,lamp)=>{const pp=wpos(c[0],c[1]);m.box([0.48,0.5,0.48],I,[pp[0],0.5,pp[2]],[...padCol,1]);const perp=side%2===0?[0,0,1]:[1,0,0];const post=hex('#3B4659');
+      for(const s2 of[-1,1]){const q=V.add(pp,V.mul(perp,s2*0.5));m.box([0.12,1.3,0.12],I,[q[0],1.3,q[2]],[...post,1]);}
+      m.box(side%2===0?[0.14,0.12,0.62]:[0.62,0.12,0.14],I,[pp[0],2.6,pp[2]],[...post,1]);m.box(side%2===0?[0.16,0.07,0.3]:[0.3,0.07,0.16],I,[pp[0],2.42,pp[2]],[...lamp,1],3,false);};
+    door(pIn,L.entry.side,hex('#6B7A90'),hex('#7FB4FF'));
+    const open=doorOpen;door(pOut,L.exit.side,open?mix(hex('#3FBF7F'),[1,1,1],0.15*glow):hex('#5C6B7E'),open?mix(hex('#3FE08A'),[1,1,1],0.3*glow):hex('#E5484D'));
+    if(open){const pp=wpos(pOut[0],pOut[1]),sd=L.exit.side;tr.box(sd%2===0?[0.04,1.15,0.44]:[0.44,1.15,0.04],I,[pp[0],2.15,pp[2]],[0.35,1,0.6,0.25+0.15*glow],3,false);}
+    /* towers */
+    const reach=busy()?[]:reachable();
+    L.towers.forEach((t,i)=>{let col=colH(t.h);const b=wpos(t.x,t.y);
+      if(st[i]>=0){const cs=T.fallCells(t,st[i]);const a=wpos(cs[0][0],cs[0][1]),z=wpos(cs[cs.length-1][0],cs[cs.length-1][1]);const c=V.lerp(a,z,0.5);
+        const hx=st[i]%2===0?t.h/2-0.03:0.47,hz=st[i]%2===0?0.47:t.h/2-0.03;m.box([hx,0.49,hz],I,[c[0],0.49,c[2]],[...mix(col,[0.15,0.2,0.3],0.18),1]);return;}
+      if(P.ride&&P.ride.i===i){const pv=P.ride.pivot,dd=P.ride.d;const off=[b[0]-pv[0],t.h/2,b[2]-pv[2]];m.box([0.47,t.h/2,0.47],P.ride.R,V.add(pv,M3.ap(P.ride.R,off)),[...col,1]);return;}
+      if(hover&&hover.k==='tower'&&hover.i===i&&reach.includes(i)&&i!==on)col=mix(col,[1,1,1],0.35);
+      m.box([0.47,t.h/2,0.47],I,[b[0],t.h/2,b[2]],[...col,1]);
+      if(hintMark&&hintMark.i===i&&on!==i){for(const s of[-1,1])for(const ax of[0,2]){const o=[0,0,0];o[ax]=s*0.56;tr.box(ax===0?[0.04,0.06,0.6]:[0.6,0.06,0.04],I,[b[0]+o[0],t.h+0.08,b[2]+o[2]],[1,0.8,0.2,0.9],3,false);}}});
+    /* landing previews */
+    if(on>=0&&!busy()){const t=L.towers[on];const o=occ();for(let d=0;d<4;d++){const cs=T.fallCells(t,d);const ok=T.canTopple(L,o,on,d);
+        const isH=hintMark&&hintMark.i===on&&hintMark.d===d;const hv=hover&&hover.k==='ghost'&&hover.d===d;
+        if(ok){const a=wpos(cs[0][0],cs[0][1]),z=wpos(cs[cs.length-1][0],cs[cs.length-1][1]);const c=V.lerp(a,z,0.5);const hx=d%2===0?t.h/2-0.03:0.47,hz=d%2===0?0.47:t.h/2-0.03;
+          const col=isH?[1,0.82,0.25]:[0.35,0.95,0.55];tr.box([hx,0.49,hz],I,[c[0],0.49,c[2]],[...col,hv?0.55:0.28+0.08*Math.sin(time*4)],3,true);}
+        else cs.forEach(c=>{if(!T.inG(L,c[0],c[1]))return;const p=wpos(c[0],c[1]);tr.quad([[p[0]-0.35,0.02,p[2]-0.35],[p[0]+0.35,0.02,p[2]-0.35],[p[0]+0.35,0.02,p[2]+0.35],[p[0]-0.35,0.02,p[2]+0.35]],[0,1,0],[1,0.3,0.3,0.18],[0,0],3);});}}
+    /* player */
+    if(P.vis>0.02){const R=M3.ry(P.face),p=P.pos,sw=Math.sin(P.walk)*0.5;const part=(h,off,col,pivot,rx)=>{const Rp=rx?M3.rx(rx):I;const loc=V.add(pivot||[0,0,0],M3.ap(Rp,off));m.box(h,M3.mul(R,Rp),V.add(p,M3.ap(R,loc)),[...hex(col),P.vis],0,true);};
+      part([0.06,0.14,0.06],[0,-0.14,0],'#2B2F3A',[-0.08,0.3,0],sw);part([0.06,0.14,0.06],[0,-0.14,0],'#2B2F3A',[0.08,0.3,0],-sw);
+      part([0.15,0.15,0.1],[0,0.45,0],'#E5484D');part([0.155,0.03,0.105],[0,0.5,0],'#FFFFFF');
+      part([0.045,0.13,0.045],[0,-0.12,0],'#E5484D',[-0.2,0.58,0],-sw*0.8);part([0.045,0.13,0.045],[0,-0.12,0],'#E5484D',[0.2,0.58,0],sw*0.8);
+      part([0.12,0.12,0.12],[0,0.73,0],'#F4F4F4');part([0.09,0.045,0.02],[0,0.74,0.115],'#1E2B3F');part([0.125,0.02,0.125],[0,0.86,0],'#E5484D');
+      const gy=Math.max(1,Math.floor(P.pos[1]+0.05));tr.quad([[p[0]-0.22,gy+0.01,p[2]-0.22],[p[0]+0.22,gy+0.01,p[2]-0.22],[p[0]+0.22,gy+0.01,p[2]+0.22],[p[0]-0.22,gy+0.01,p[2]+0.22]],[0,1,0],[0,0,0,0.22*P.vis],[0,0],3);}
+    parts.forEach(q=>m.box([0.035,0.035,0.035],I,q.p,[...q.c,1],3,false));
+    return{m,tr,tk};}
+  function drawArr(arr,mode){if(!arr.length)return;gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(arr),gl.DYNAMIC_DRAW);const F=4;
+    const at=(n,sz,off)=>{gl.enableVertexAttribArray(A[n]);gl.vertexAttribPointer(A[n],sz,gl.FLOAT,false,STRIDE*F,off*F);};
+    at('aP',3,0);at('aN',3,3);at('aC',4,6);at('aUV',2,10);at('aS',2,12);at('aM',1,14);gl.drawArrays(gl.TRIANGLES,0,arr.length/STRIDE);}
+  function render(time){if(!L||!CW)return;const{m,tr,tk}=buildScene(time);const tg=camUpdate();
+    gl.viewport(0,0,cv.width,cv.height);const bg=hex(tk.paper||'#eef1ee');gl.clearColor(bg[0],bg[1],bg[2],1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);
+    gl.uniformMatrix4fv(U.uVP,false,new Float32Array(VP));gl.uniform3f(U.uL,-0.45,0.85,0.35);gl.uniform1f(U.uT,time);gl.uniform3f(U.uEdge,0.09,0.12,0.18);gl.uniform2f(U.uOff,(L.W/2)%1,(L.H/2)%1);
+    gl.disable(gl.BLEND);gl.depthMask(true);drawArr(m.a);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);drawArr(tr.a);gl.depthMask(true);
+    labels(tk);}
+  function proj(p){const x=VP[0]*p[0]+VP[4]*p[1]+VP[8]*p[2]+VP[12],y=VP[1]*p[0]+VP[5]*p[1]+VP[9]*p[2]+VP[13],w=VP[3]*p[0]+VP[7]*p[1]+VP[11]*p[2]+VP[15];return[(x/w*0.5+0.5)*CW,(1-(y/w*0.5+0.5))*CH,w];}
+  function labels(tk){octx.setTransform(dpr,0,0,dpr,0,0);octx.clearRect(0,0,CW,CH);const boxes=targets().filter(t=>t.k!=='ghost'&&t.k!=='door');
+    L.towers.forEach((t,i)=>{if(st[i]>=0||(P.ride&&P.ride.i===i)||on===i)return;const b=wpos(t.x,t.y);const p=[b[0],t.h+0.02,b[2]];const R={o:eye,d:V.norm(V.sub(p,eye))};const dist=Math.hypot(...V.sub(p,eye));
+      if(boxes.some(bx=>{if(bx.k==='tower'&&bx.i===i)return false;const tt=hitBox(R,bx.mn,bx.mx);return tt!=null&&tt<dist-0.05;}))return;
+      const s=proj(p);if(s[2]<=0)return;octx.font='700 15px "JetBrains Mono",ui-monospace,monospace';octx.textAlign='center';octx.textBaseline='middle';
+      octx.fillStyle='rgba(20,28,40,0.78)';octx.beginPath();octx.arc(s[0],s[1],11,0,7);octx.fill();octx.fillStyle='#fff';octx.fillText(String(t.h),s[0],s[1]+1);});
+    const pp=padPos('exit');const s=proj([pp[0],2.95,pp[2]]);octx.font='700 13px "Barlow Condensed",sans-serif';octx.textAlign='center';octx.fillStyle=doorOpen?'#1D7A4A':'#8A2E2E';octx.fillText(doorOpen?'EXIT · OPEN':'EXIT',s[0],s[1]);}
+  let lastT=performance.now();
+  function frame(now){const dt=Math.min(0.05,(now-lastT)/1000);lastT=now;
+    if(anim.length){const a=anim[0];a.t+=dt;const k=a.dur?Math.min(1,a.t/a.dur):1;a.f&&a.f(k);if(k>=1){anim.shift();a.end&&a.end();}}
+    const dy=cam.tyaw-cam.yaw;if(!drag)cam.yaw+=dy*Math.min(1,dt*9);shake=Math.max(0,shake-dt*1.6);
+    parts.forEach(q=>{q.v[1]-=6*dt;q.p=V.add(q.p,V.mul(q.v,dt));q.life-=dt;});parts=parts.filter(q=>q.life>0&&q.p[1]>-0.2);
+    if(Math.random()<dt*2.5&&L){const x=Math.floor(Math.random()*L.W),y=Math.floor(Math.random()*L.H);if(!occ().has(K(x,y)))burst(V.add(wpos(x,y),[0,0.05,0]),'#9BE8FF',3);}
+    if(document.body.dataset.app==='topple')render(now/1000);requestAnimationFrame(frame);}
+  new ResizeObserver(size).observe(r('wrap'));
+  const first=Math.min(unlocked(),LV().length);loadLevel(first);size();requestAnimationFrame(frame);
+  return{show(){size();hdr();},redraw(){},_test:{get L(){return L;},topple,goTo,exitRoom,act,pick,targets,state:()=>({st,on,cell,pad,doorOpen,escaped,busy:busy(),moves}),loadLevel,hint,undo,K}};
+}
+
 /* ---------- question strip for small screens ---------- */
 (()=>{let pending=false;
   function sync(){pending=false;document.querySelectorAll('.work').forEach(w=>{const task=w.querySelector('.task'),board=w.querySelector('.board');if(!task||!board)return;
@@ -3007,14 +3383,15 @@ const APPS={
   trans:{tab:'tabTrans',el:'appTrans',hash:'transformations'},
   nets:{tab:'tabNets',el:'appNets',hash:'nets'},
   coords:{tab:'tabCoords',el:'appCoords',hash:'coordinates'},
-  graphs:{tab:'tabGraphs',el:'appGraphs',hash:'graphs'}};
+  graphs:{tab:'tabGraphs',el:'appGraphs',hash:'graphs'},
+  topple:{tab:'tabTopple',el:'appTopple',hash:'topple'}};
 const ctl={};
 function show(which){
   document.body.dataset.app=which;
   for(const k in APPS){document.getElementById(APPS[k].tab).setAttribute('aria-selected',k===which);document.getElementById(APPS[k].el).hidden=k!==which;}
   if(which==='iso'){setHeader('Points','','Solved','');window.isoMeta&&window.isoMeta();}
   else if(which==='pe'){setHeader('Points','','Solved','');window.peShow&&window.peShow();}
-  else{if(!ctl[which])ctl[which]=which==='angles'?makeAngles():which==='trans'?makeTransform():which==='nets'?makeNets():which==='coords'?makeCoords():which==='graphs'?makeGraphs():makeBoard({id:APPS[which].el,key:which,gen:QB[which],grid:which==='scale'});ctl[which].show();}
+  else{if(!ctl[which])ctl[which]=which==='angles'?makeAngles():which==='trans'?makeTransform():which==='nets'?makeNets():which==='coords'?makeCoords():which==='graphs'?makeGraphs():which==='topple'?makeTopple():makeBoard({id:APPS[which].el,key:which,gen:QB[which],grid:which==='scale'});ctl[which].show();}
 }
 for(const k in APPS)document.getElementById(APPS[k].tab).onclick=()=>show(k);window.__ctl=ctl;
 const h=location.hash.replace('#','');const start=Object.keys(APPS).find(k=>APPS[k].hash===h)||'iso';

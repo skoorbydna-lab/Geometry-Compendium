@@ -162,6 +162,8 @@ body{transition:background-color .25s}
 .dual .canvas-wrap{flex:none;max-width:100%}
 .dual canvas{max-width:100%}
 
+.nqbar{display:flex;justify-content:flex-start;gap:10px}
+.trow{align-items:center}
 .mcopts{display:flex;flex-wrap:wrap;gap:8px}
 .ttbadge{font-family:var(--body);font-size:10px;font-weight:700;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:var(--tc);color:var(--on-tab);margin-left:4px}
 #tabTopple[aria-selected="true"] .ttbadge{background:var(--on-tab);color:var(--tc)}
@@ -3360,6 +3362,19 @@ void main(){
   return{show(){size();hdr();},redraw(){},_test:{get L(){return L;},topple,goTo,exitRoom,act,pick,targets,state:()=>({st,on,cell,pad,doorOpen,escaped,busy:busy(),moves}),loadLevel,hint,undo,K}};
 }
 
+/* ---------- New questions above the game, Next question in the card ---------- */
+(()=>{function fix(work){if(work.dataset.nq)return;const nb=work.querySelector('[data-r="newset"],#newSet');if(!nb)return;
+    const next=work.querySelector('.board [data-r="next"]')||work.querySelector('#next');work.dataset.nq='1';
+    const nx=document.createElement('button');nx.className='btn primary';nx.type='button';nx.textContent='Next question →';nx.onclick=()=>{if(next&&!next.disabled)next.click();};
+    nb.replaceWith(nx);
+    const prev=work.previousElementSibling;let bar;
+    if(prev&&prev.classList.contains('trow')){bar=prev;const sp=bar.firstElementChild;if(sp&&sp.tagName==='SPAN'&&!sp.textContent.trim())sp.replaceWith(nb);else bar.insertBefore(nb,bar.firstChild);}
+    else{bar=document.createElement('div');bar.className='nqbar';work.parentNode.insertBefore(bar,work);bar.appendChild(nb);}
+    nb.title='Make a fresh set of questions for this section';
+    if(next){const sync=()=>{nx.disabled=next.disabled;nx.hidden=next.hidden;};sync();new MutationObserver(sync).observe(next,{attributes:true,attributeFilter:['disabled','hidden']});}}
+  const scan=()=>document.querySelectorAll('.work').forEach(fix);
+  new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});scan();
+})();
 /* ---------- question strip for small screens ---------- */
 (()=>{let pending=false;
   function sync(){pending=false;document.querySelectorAll('.work').forEach(w=>{const task=w.querySelector('.task'),board=w.querySelector('.board');if(!task||!board)return;

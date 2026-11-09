@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mr B's Geometry Compendium</title>
+<title>Mr B's Maths Compendium</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap">
@@ -237,6 +237,30 @@ input.pok,input.pbad{outline-offset:1px}
 .pe-grid.bad{border-color:var(--bad);box-shadow:0 0 0 2px var(--bad)}.pe-grid.good{border-color:var(--ok);box-shadow:0 0 0 2px var(--ok)}
 #peCv{width:100%;height:min(62vw,420px,calc(100vh - 300px));min-height:240px;display:block;touch-action:none;border:1.5px solid var(--line);border-radius:6px;cursor:grab}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Maths Compendium: sections ---- */
+:root{--c-horse:#2E7D32;--t-horse:#EEF6EE;--c-spin:#6A3FB5;--t-spin:#F3EFFA;--c-galton:#00838F;--t-galton:#E9F6F7}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--c-horse:#6CC070;--t-horse:#111C12;--c-spin:#B195F0;--t-spin:#18142A;--c-galton:#4FC6D2;--t-galton:#0E1D1F}}
+:root[data-theme="dark"]{--c-horse:#6CC070;--t-horse:#111C12;--c-spin:#B195F0;--t-spin:#18142A;--c-galton:#4FC6D2;--t-galton:#0E1D1F}
+.secwrap{display:grid;gap:16px;min-width:0}
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:2px solid var(--ink);background:var(--ink)}
+.sections button{border:0;background:var(--sheet);padding:12px 18px;text-align:left;display:flex;align-items:center;gap:14px;min-width:0}
+.sections .sico{font-size:30px;line-height:1;width:40px;text-align:center;flex:none;color:var(--muted)}
+.sections .stx{display:grid;gap:1px;min-width:0}
+.sections .n{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sections .t{font-family:var(--display);font-weight:700;font-size:28px;line-height:1;letter-spacing:.02em;text-transform:uppercase}
+.sections .m{font-size:14px;color:var(--muted)}
+.sections button:hover{filter:brightness(0.97)}
+.sections button[aria-selected="true"]{background:var(--ink);color:var(--sheet)}
+.sections button[aria-selected="true"] .n,.sections button[aria-selected="true"] .m,.sections button[aria-selected="true"] .sico{color:var(--sheet);opacity:.85}
+@media (max-width:520px){.sections .m{display:none}.sections .t{font-size:22px}.sections .sico{display:none}}
+.apptabs.statstabs{grid-template-columns:repeat(3,1fr)}
+@media (max-width:520px){.apptabs.statstabs{grid-template-columns:1fr}}
+#tabHorse{--tc:var(--c-horse);--tt:var(--t-horse)}#tabSpin{--tc:var(--c-spin);--tt:var(--t-spin)}#tabGalton{--tc:var(--c-galton);--tt:var(--t-galton)}
+body[data-app="horse"]{--paper:var(--t-horse);--app:var(--c-horse)}body[data-app="spinner"]{--paper:var(--t-spin);--app:var(--c-spin)}body[data-app="galton"]{--paper:var(--t-galton);--app:var(--c-galton)}
+body[data-section="stats"] .tb-cells{display:none}
+body[data-section="stats"] .titleblock{grid-template-columns:1fr}
+#statsFrame{display:block;width:100%;min-height:700px;border:0;background:transparent;color-scheme:light}
 </style>
 
 <style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -245,8 +269,8 @@ input.pok,input.pbad{outline-offset:1px}
 <div class="page">
   <header class="titleblock">
     <div class="tb-name">
-      <span class="eyebrow">Mr B’s Geometry Compendium</span>
-      <h1>Shape and Construction interactives</h1>
+      <span class="eyebrow">Mr B’s Maths Compendium</span>
+      <h1 id="mainTitle">Shape and Construction interactives</h1>
     </div>
     <div class="tb-cells">
       <div><span class="lbl" id="hl1">Points</span><span class="val" id="points">0 / 60</span></div>
@@ -254,6 +278,12 @@ input.pok,input.pbad{outline-offset:1px}
     </div>
   </header>
 
+  <nav class="sections" role="tablist" aria-label="Sections">
+    <button role="tab" id="secGeo" aria-selected="true"><span class="sico" aria-hidden="true">△</span><span class="stx"><span class="n">Section 1</span><span class="t">Geometry</span><span class="m">Shape and construction · 11 activities</span></span></button>
+    <button role="tab" id="secStats" aria-selected="false"><span class="sico" aria-hidden="true">▥</span><span class="stx"><span class="n">Section 2</span><span class="t">Statistics</span><span class="m">Probability and statistics · 3 activities</span></span></button>
+  </nav>
+
+  <div id="secGeoWrap" class="secwrap">
   <nav class="apptabs" role="tablist" aria-label="Activities">
     <button role="tab" id="tabIso" aria-selected="true"><span class="ico" aria-hidden="true">◇</span>Isometric drawing</button>
     <button role="tab" id="tabPE" aria-selected="false"><span class="ico" aria-hidden="true">▦</span>Plans and elevations</button>
@@ -342,6 +372,16 @@ input.pok,input.pbad{outline-offset:1px}
   <div id="appCoords" class="app" hidden></div>
   <div id="appGraphs" class="app" hidden></div>
   <div id="appTopple" class="app" hidden></div>
+  </div>
+
+  <div id="secStatsWrap" class="secwrap" hidden>
+    <nav class="apptabs statstabs" role="tablist" aria-label="Statistics activities">
+      <button role="tab" id="tabHorse" data-st="horse" aria-selected="true"><span class="ico" aria-hidden="true">⚄</span>Horse race</button>
+      <button role="tab" id="tabSpin" data-st="spinner" aria-selected="false"><span class="ico" aria-hidden="true">⊕</span>Spinner showdown</button>
+      <button role="tab" id="tabGalton" data-st="galton" aria-selected="false"><span class="ico" aria-hidden="true">⁂</span>Galton board</button>
+    </nav>
+    <iframe id="statsFrame" title="Statistics interactives"></iframe>
+  </div>
 </div>
 
 <script>
@@ -3414,6 +3454,1558 @@ show(start);
 const redraw=()=>{window.peRedraw&&window.peRedraw();for(const k in ctl)ctl[k].redraw();};
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',redraw);
 new MutationObserver(redraw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+<script type="text/html" id="statsSrc"><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mr B's Statistics Compendium</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ink:#1d2433;--muted:#5b6475;--line:#d9dee7;--card:#fff;
+  --tab:#2e7d32;--tint:#eef6ee;
+  --a:#1e63d6;--aSoft:#e3edfc;--b:#e0731b;--bSoft:#fdeedf;
+  --good:#2e9e4f;--goodSoft:#e2f5e8;--bad:#d64545;--badSoft:#fbe5e5;--warn:#e8a317;--warnSoft:#fdf3dc;
+  --turf:#4f9a4a;--turf2:#5aa654;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--tint);transition:background .3s}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 20px 0}
+h1{margin:0;font-size:1.55rem;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:2px 0 12px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);border-bottom:none;background:#f4f6f9;padding:9px 16px;border-radius:10px 10px 0 0;cursor:pointer;font-weight:650;color:var(--muted);font-size:.95rem}
+.tab.active{background:var(--tab);color:#fff;border-color:var(--tab)}
+main{max-width:1200px;margin:0 auto;padding:18px}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:#fff;padding:7px 14px;font-weight:600;color:var(--ink)}
+button.primary{background:var(--tab);border-color:var(--tab);color:#fff}
+button.primary:hover{filter:brightness(1.08)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:14px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+.seg button{border:none;border-radius:0;padding:8px 16px;color:var(--muted)}
+.seg button.on{background:var(--tab);color:#fff}
+.bubbles{display:flex;gap:6px;flex-wrap:wrap}
+.bub{width:32px;height:32px;border-radius:50%;border:2px solid var(--line);background:#fff;font-weight:700;color:var(--muted);padding:0}
+.bub.cur{border-color:var(--tab);color:var(--tab)}
+.bub.ok{background:var(--good);border-color:var(--good);color:#fff}
+.bub.part{background:var(--warn);border-color:var(--warn);color:#fff}
+.score{margin-left:auto;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.card h3{margin:0 0 10px;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--tab);color:#fff;font-size:.85rem}
+.locked{opacity:.42;pointer-events:none;filter:grayscale(.4)}
+.intro{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+.intro p{margin:0;color:var(--muted);max-width:430px}
+.dicebox{display:flex;flex-direction:column;gap:6px}
+.dline{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dlabel{font-weight:800;width:74px;font-size:1rem;line-height:1.1}
+.dlabel small{font-weight:600;color:var(--muted);font-size:.78rem}
+.pdie{flex:none;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18))}
+.dline{gap:8px!important}
+.rollbox .pdie{animation:shake .25s ease-out}
+@keyframes shake{0%{transform:rotate(-14deg) scale(.85)}60%{transform:rotate(6deg) scale(1.05)}100%{transform:none}}
+.chip{min-width:30px;height:30px;padding:0 5px;border-radius:7px;display:inline-grid;place-items:center;font-weight:700;border:2px solid}
+.chip.A{border-color:var(--a);color:var(--a);background:var(--aSoft)}
+.chip.B{border-color:var(--b);color:var(--b);background:var(--bSoft)}
+.layout{display:grid;grid-template-columns:minmax(300px,1.1fr) 1fr;gap:14px;align-items:start}
+.racehead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.racehead h3{margin:0}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.gridwrap{overflow-x:auto}
+table.ss{border-collapse:collapse;margin:0 auto}
+table.ss th,table.ss td{border:1px solid #c9d0db;width:40px;height:36px;text-align:center;padding:0}
+table.ss th{font-weight:800}
+table.ss th.A{background:var(--aSoft);color:var(--a)}
+table.ss th.B{background:var(--bSoft);color:var(--b)}
+table.ss th.corner{background:#f4f6f9;color:var(--muted);font-size:1.1rem}
+table.ss input{width:100%;height:100%;border:none;text-align:center;font:inherit;font-weight:650;background:transparent;color:var(--ink);outline:none}
+table.ss td:focus-within{outline:2px solid var(--tab);outline-offset:-2px}
+table.ss td.given{background:#f6f7f9}
+table.ss td.given input{color:#4a5262;font-weight:500;cursor:default}
+table.ss td.blank{background:#fff;box-shadow:inset 0 0 0 2px #b9c6d8}
+table.ss td.right{background:var(--goodSoft)}
+table.ss td.wrong{background:var(--badSoft)}
+table.ss td.revealed{background:var(--warnSoft)}
+table.ss td.hl{background:#ffe27a!important;box-shadow:inset 0 0 0 2px #c79a00}
+.axis{font-size:.8rem;color:var(--muted);text-align:center;margin-top:6px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.msg{font-weight:600;font-size:.93rem}
+.msg.good{color:var(--good)}.msg.bad{color:var(--bad)}.msg.warn{color:#a87300}
+.hint{color:var(--muted);font-size:.9rem;margin:0}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px}
+.frac input{width:56px;text-align:center;font:inherit;font-weight:700;padding:4px;border:1px solid var(--line);border-radius:6px}
+.frac .bar{width:62px;height:2px;background:var(--ink);margin:3px 0}
+/* track */
+.track{background:linear-gradient(var(--turf),var(--turf2));border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:3px}
+.lane{display:flex;align-items:center;gap:6px;border-radius:7px;padding:1px 2px;cursor:default}
+.lane.pickable{cursor:pointer}
+.lane.pickable:hover{background:rgba(255,255,255,.22)}
+.lane.picked{background:rgba(255,236,120,.55);box-shadow:0 0 0 2px #ffe066}
+.lname{width:38px;height:36px;border-radius:6px;display:grid;place-items:center;color:#fff;font-weight:800;flex:none;text-shadow:0 1px 1px rgba(0,0,0,.35);font-size:1.05rem}
+.ltrack{position:relative;flex:1;height:46px}
+.cells{position:absolute;inset:0;display:grid}
+.cells div{border-left:1px dashed rgba(255,255,255,.35)}
+.cells div.gate{background:rgba(0,0,0,.12);border-left:none;border-radius:5px 0 0 5px}
+.cells div.fin{position:relative;background:rgba(255,255,255,.08)}
+.cells div.fin::after{content:'';position:absolute;right:0;top:0;bottom:0;width:12px;background:repeating-conic-gradient(#fff 0 25%,#222 0 50%) 0 0/8px 8px;opacity:.75}
+.horse{position:absolute;top:0;height:46px;display:flex;align-items:center;justify-content:center;transition:left .22s ease-out;pointer-events:none}
+.horse svg{width:100%;max-width:72px;height:46px;overflow:visible;filter:drop-shadow(0 2px 1px rgba(0,0,0,.25))}
+.horse .legsB{display:none}
+.horse.run svg{animation:bob .24s ease-in-out}
+.horse .legsB{display:none}
+.horse .legsB{display:inline;opacity:0}
+.horse.run .legsA{animation:legA .26s steps(1)}
+.horse.run .legsB{animation:legB .26s steps(1)}
+@keyframes bob{50%{transform:translateY(-3px)}}
+@keyframes legA{0%{opacity:0}50%{opacity:1}100%{opacity:1}}
+@keyframes legB{0%{opacity:1}50%{opacity:0}100%{opacity:0}}
+.lane.win .horse svg{filter:drop-shadow(0 0 5px #ffd700)}
+.lwins{display:flex;gap:3px;flex:none}
+.lwins i{width:14px;height:14px;border-radius:50%;background:rgba(0,0,0,.18);border:1.5px solid rgba(255,255,255,.45)}
+.lwins i.on{background:radial-gradient(circle at 35% 35%,#fff3a8,#f2b705 60%,#b07d00);border-color:#fff}
+.lane.champ{background:rgba(255,215,0,.35)}
+.lprob{width:44px;text-align:right;color:#fff;font-weight:700;font-size:.82rem;flex:none;text-shadow:0 1px 1px rgba(0,0,0,.4)}
+.lane.win .lname{box-shadow:0 0 0 3px #ffd700}
+.racebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 12px;min-height:66px}
+.rollbox{background:#f4f6f9;border-radius:12px;padding:4px 12px}
+.rollbox:empty{display:none}
+.rollbox{display:flex;align-items:center;gap:6px;font-weight:700;min-height:40px;font-size:1.05rem}
+.die{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:1.1rem;border:2px solid}
+.die.A{border-color:var(--a);background:var(--aSoft);color:var(--a)}
+.die.B{border-color:var(--b);background:var(--bSoft);color:var(--b)}
+.rollcount{color:var(--muted);font-size:.9rem;font-weight:600}
+select{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.banner{padding:10px 14px;border-radius:10px;font-weight:700;margin-bottom:10px}
+.banner.good{background:var(--goodSoft);color:#1d6b35}
+.banner.bad{background:var(--badSoft);color:#9a2e2e}
+.banner.neutral{background:#eef1f6;color:var(--ink)}
+.pts{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.pt{background:#f4f6f9;border-radius:8px;padding:6px 10px;font-size:.9rem}
+.pt b{font-size:1rem}
+.dist{display:grid;grid-template-columns:42px 1fr 1fr;gap:4px 10px;align-items:center;font-size:.86rem}
+.dist .hd{font-weight:700;color:var(--muted);font-size:.8rem}
+.barwrap{background:#f0f2f6;border-radius:5px;height:18px;position:relative;overflow:hidden}
+.barfill{height:100%;border-radius:5px}
+.barfill.th{background:#7fb07a}
+.barfill.sim{background:#6b8fd6}
+.barlab{position:absolute;left:6px;top:0;line-height:18px;font-weight:700;font-size:.78rem;color:#1d2433}
+.lnum{font-weight:800;text-align:center;border-radius:5px;color:#fff;padding:1px 0}
+.bestpick{display:flex;flex-wrap:wrap;gap:6px}
+.bp{min-width:42px;height:38px;border:2px solid var(--c);color:var(--c);background:#fff;font-weight:800;border-radius:8px;padding:0 8px}
+.bp.sel{background:var(--c);color:#fff}
+.bp.right{box-shadow:0 0 0 3px var(--good)}.bp.miss{box-shadow:0 0 0 3px var(--warn)}
+.splayout{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:14px;align-items:start}
+@media (max-width:900px){.splayout{grid-template-columns:1fr}}
+.spcard{display:flex;flex-direction:column;align-items:center}
+.spinwrap{position:relative;width:300px;height:300px;margin:18px auto 6px}
+.spdisc{position:absolute;inset:0;will-change:transform}
+.spface{position:absolute;inset:0;filter:drop-shadow(0 3px 4px rgba(0,0,0,.2))}
+.sphub{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:#222;border:3px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.sppointer{position:absolute;left:50%;top:-20px;width:30px;height:34px;margin-left:-15px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+.spq-mark{position:absolute;inset:0;display:grid;place-items:center;font-size:110px;font-weight:900;color:#fff;text-shadow:0 3px 8px rgba(0,0,0,.35);pointer-events:none}
+.landed{min-height:40px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.05rem}
+.lchip{padding:4px 12px;border-radius:999px;font-weight:800}
+.spbtns{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.spstep{border-top:1px solid var(--line);padding:12px 0}
+.spstep:first-child{border-top:none;padding-top:0}
+.spstep.locked{opacity:.4;pointer-events:none}
+.spstep.done .spq{opacity:.75}
+.spq{display:flex;gap:10px;align-items:flex-start;line-height:1.4}
+.spq .num{flex:none}
+.spnum{width:110px;font:inherit;font-weight:700;padding:6px 8px;border:1px solid var(--line);border-radius:7px;text-align:center}
+.cands{display:flex;gap:10px;flex-wrap:wrap}
+.cand{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px;border:2px solid var(--line);border-radius:12px;font-weight:800;font-size:1rem}
+.cand.sel{border-color:var(--tab);background:#f3effa;box-shadow:0 0 0 3px rgba(106,63,181,.25)}
+.cmini{width:86px;height:86px;display:block}
+.counts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.counts label{display:flex;align-items:center;gap:6px;font-weight:700;background:#f4f6f9;border-radius:8px;padding:5px 8px}
+.counts input{width:54px;font:inherit;font-weight:700;padding:4px;border:1px solid var(--line);border-radius:6px;text-align:center}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15)}
+.fairseg button{padding:8px 22px}
+.spdone{border-top:1px solid var(--line);padding-top:12px}
+table.ftab,table.ptab{border-collapse:collapse;font-size:.92rem}
+table.ftab th,table.ftab td,table.ptab th,table.ptab td{border:1px solid #d5dbe5;padding:6px 10px;text-align:center;white-space:nowrap}
+table.ftab th,table.ptab th{background:#f4f6f9;text-align:left;font-weight:700}
+table.ptab{margin-top:10px;font-size:1rem}
+table.ftab td.tg{background:#f3effa;font-weight:700}
+table.ftab td.tsum{background:#e6dcf7;font-weight:800}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem;font-weight:600;color:var(--muted)}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg i{display:inline-block;width:18px;height:4px;border-radius:2px}
+.lg i.dash{background:repeating-linear-gradient(90deg,#888 0 6px,transparent 6px 10px)}
+.gbboard{background:#f7f2ea;border-radius:14px;padding:8px}
+.gbbin{cursor:pointer}
+.gbbin:hover{fill:rgba(255,255,255,.18)}
+.gbbin.picked{fill:rgba(255,236,120,.55)}
+.gbtri{display:flex;flex-direction:column;align-items:center;gap:5px;margin:8px 0;overflow-x:auto}
+.gbrow{display:flex;gap:5px}
+.gbcell{min-width:50px;height:34px;display:grid;place-items:center;border-radius:7px;font-weight:700;font-size:.92rem;padding:0 4px}
+.gbcell.given{background:#f1f3f6;color:#4a5262}
+.gbcell.blank{background:#fff;box-shadow:inset 0 0 0 2px #b9c6d8}
+.gbcell.blank input{width:56px;border:none;background:transparent;text-align:center;font:inherit;font-weight:700;outline:none}
+.gbcell.right{background:var(--goodSoft);box-shadow:inset 0 0 0 2px var(--good)}
+.gbcell.wrong{background:var(--badSoft);box-shadow:inset 0 0 0 2px var(--bad)}
+.gbcell.revealed{background:var(--warnSoft);box-shadow:inset 0 0 0 2px var(--warn)}
+.gbcell.lab{background:none;color:var(--tab);font-weight:800}
+.gbfree{gap:16px}
+.gbfree label{display:flex;align-items:center;gap:8px;font-weight:600}
+.gbfree input[type=number]{width:60px;font:inherit;padding:4px;border:1px solid var(--line);border-radius:6px}
+.gbdrop{display:flex;gap:6px;flex-wrap:wrap}
+.custom label{font-weight:600;font-size:.92rem;display:flex;flex-direction:column;gap:4px}
+.custom input{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:7px;min-width:220px}
+.custom .crow{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.small{font-size:.85rem;color:var(--muted)}
+/* ---- Match the Maths Compendium (drafting-sheet) look ---- */
+:root{--ink:#1E2B3F;--muted:#5B6874;--line:#D3DAD6;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+body{font-family:var(--body);font-size:16px;line-height:1.45}
+h1{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;font-size:2.1rem}
+.card h3,.racehead h3,.racebar h3{font-family:var(--display);text-transform:uppercase;letter-spacing:.03em;font-size:1.3rem;font-weight:700}
+.card{border:1.5px solid var(--line);border-top:4px solid var(--tab);border-radius:8px;box-shadow:none}
+button{border:1.5px solid var(--line);border-radius:6px;min-height:38px}
+button:hover:not(:disabled){border-color:var(--ink)}
+button.primary:hover:not(:disabled){border-color:var(--tab)}
+.seg{border:1.5px solid var(--line);border-radius:6px}
+.seg button{min-height:36px;border:0}
+.seg button.on{background:var(--ink);color:#fff;font-weight:700}
+.bub{font-family:var(--mono);font-size:13px;font-weight:500;border-width:1.5px;min-height:0}
+.score{font-family:var(--mono);font-weight:500;border-radius:6px;border-width:1.5px}
+.tab{font-family:var(--display);text-transform:uppercase;letter-spacing:.03em;font-size:1rem;border-radius:6px 6px 0 0}
+.num{font-family:var(--body)}
+.cand,.bp{min-height:0}
+/* embedded: the parent page draws the title and tabs */
+.embed body{background:transparent}
+.embed header{display:none}
+.embed main{max-width:none;padding:0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Mr B's Statistics Compendium</h1>
+  <div class="sub">Probability and Statistics interactives</div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="dshade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#c9d0db" stop-opacity=".55"/></linearGradient></defs></svg>
+<main id="app"></main>
+
+<script>
+/* ---------- Tabs (add more activities here later) ---------- */
+const TABS=[{id:'horse',label:'🏇 Horse Race',colour:'#2e7d32',tint:'#eef6ee',render:renderHorseTab},{id:'spinner',label:'🎯 Spinner Showdown',colour:'#6a3fb5',tint:'#f3effa',render:renderSpinnerTab},{id:'galton',label:'⚪ Galton Board',colour:'#00838f',tint:'#e9f6f7',render:renderGaltonTab}];
+let activeTab='horse';
+/* Embedded inside the Maths Compendium: the parent page supplies the tabs and scrolling. */
+const EMBED=window.EMBED||null;
+if(EMBED){activeTab=EMBED.tab||'horse';document.documentElement.classList.add('embed');
+  window.addEventListener('message',e=>{if(e.data&&e.data.statsTab&&e.data.statsTab!==activeTab){activeTab=e.data.statsTab;showTab()}});
+  const post=()=>parent.postMessage({statsHeight:Math.ceil(document.documentElement.getBoundingClientRect().height)},'*');
+  window.addEventListener('load',post);
+  addEventListener('DOMContentLoaded',()=>{try{new ResizeObserver(post).observe(document.body)}catch(e){setInterval(post,500)}post()});
+}
+function scrollToEl(el,block){
+  if(!el)return;
+  if(EMBED){const r=el.getBoundingClientRect();parent.postMessage({statsScroll:r.top+window.scrollY,h:r.height,block},'*');return}
+  el.scrollIntoView({behavior:'smooth',block});
+}
+function scrollTopPage(){if(EMBED)parent.postMessage({statsScroll:0,h:0,block:'start'},'*');else window.scrollTo({top:0})}
+function renderTabs(){
+  const nav=document.getElementById('tabs');
+  nav.innerHTML=TABS.map(t=>`<button class="tab ${t.id===activeTab?'active':''}" data-t="${t.id}">${t.label}</button>`).join('');
+  nav.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{activeTab=b.dataset.t;showTab()});
+}
+function showTab(){
+  if(typeof stopRace==='function') stopRace();
+  if(typeof gbStop==='function') gbStop();
+  const t=TABS.find(x=>x.id===activeTab);
+  document.documentElement.style.setProperty('--tab',t.colour);
+  document.documentElement.style.setProperty('--tint',t.tint);
+  renderTabs();t.render();
+}
+
+/* ---------- Horse race data ---------- */
+const R=(a,b)=>{const r=[];for(let i=a;i<=b;i++)r.push(i);return r};
+const LEVELS={
+  foundation:[
+    {a:R(1,6),b:R(1,6),extra:[1]},
+    {a:R(1,4),b:R(1,4)},
+    {a:R(1,4),b:R(1,6)},
+    {a:R(1,3),b:R(1,6)},
+    {a:R(1,5),b:R(1,5)},
+    {a:[1,1,2,2,3,3],b:R(1,6)},
+    {a:[2,4,6,8],b:R(1,4)},
+    {a:[0,0,1,1,2,2],b:R(1,4)},
+    {a:R(1,6),b:[0,1,2]},
+    {a:[1,1,1,2,2,3],b:[1,1,1,2,2,3]}
+  ],
+  higher:[
+    {a:[-2,-1,0,1,2,3],b:R(1,6)},
+    {a:R(1,8),b:R(1,4)},
+    {a:[1,1,5,5],b:R(1,6)},
+    {a:[1,1,1,1,6,6],b:R(1,6)},
+    {a:[1,2,2,3,3,3],b:[1,2,2,3,3,3]},
+    {a:[0,0,0,5,5,10],b:R(1,6)},
+    {a:[1,3,5,7,9,11],b:[2,4,6,8,10,12]},
+    {a:[-3,-2,-1,1,2,3],b:[-3,-2,-1,1,2,3]},
+    {a:[1,1,2,2,3,3,4,4],b:[-1,-1,0,0,1,1]},
+    {a:[1,2,2,3,3,4],b:[1,3,4,5,6,8]}
+  ]
+};
+const TARGET=8, NEED=3, MAXPTS=10, OK_PTS=7, BLANK_FRACTION=0.3, MIN_BLANKS=4;
+const SILKS=['#d64545','#1e63d6','#8e44ad','#e8a317','#00897b','#e0731b','#c2185b','#3949ab','#6d4c41','#7cb342','#16a5a5','#5d6d7e','#ab47bc','#ef6c00','#455a64','#9e9d24','#f06292','#26a69a','#795548','#5c6bc0'];
+const SPEEDS={slow:650,medium:260,fast:70};
+
+let level='foundation', qi=0, Q=null, raceTimer=null, speed='medium';
+const progress={foundation:Array(10).fill(null),higher:Array(10).fill(null)};
+let custom={a:R(1,6),b:R(1,6),target:8,need:3};
+
+const gcd=(x,y)=>{x=Math.abs(x);y=Math.abs(y);while(y){[x,y]=[y,x%y]}return x||1};
+const simp=(n,d)=>{if(n===0)return '0';const g=gcd(n,d);return `${n/g}/${d/g}`};
+const fmt=n=>n<0?'−'+Math.abs(n):String(n);
+const silk=(s,i)=>SILKS[i%SILKS.length];
+
+function build(def,target,need){
+  const counts=new Map();
+  def.a.forEach(x=>def.b.forEach(y=>counts.set(x+y,(counts.get(x+y)||0)+1)));
+  const extra=def.extra||[];
+  const all=[...counts.keys(),...extra];
+  const lo=Math.min(...all),hi=Math.max(...all);
+  let lanes;
+  if(hi-lo+1<=13) lanes=R(lo,hi);
+  else lanes=[...new Set(all)].sort((p,q)=>p-q);
+  const pos={};lanes.forEach(s=>pos[s]=0);
+  return {a:def.a,b:def.b,counts,lanes,total:def.a.length*def.b.length,maxC:Math.max(...counts.values()),target,
+    checksUsed:0,gridDone:false,gridPts:0,pick:null,locked:false,horsePts:0,racePts:0,probTries:0,probDone:false,probPts:0,bestTries:0,bestDone:false,bestPts:0,
+    pos,rolls:0,winner:null,need,raceWins:Object.fromEntries(lanes.map(s=>[s,0])),raceNo:0,matchWinner:null,racing:false,raced:false,sim:null};
+}
+const cnt=s=>Q.counts.get(s)||0;
+
+/* ---------- Render ---------- */
+function renderHorseTab(){
+  stopRace();
+  const app=document.getElementById('app');
+  const isCustom=level==='custom';
+  const prog=progress[level];
+  const scoreTxt=isCustom?'Practice mode':`Score: ${prog?prog.reduce((t,v)=>t+(v||0),0):0} / ${MAXPTS*10}`;
+  app.innerHTML=`
+  <div class="toolbar">
+    <div class="seg" id="levels">
+      <button data-l="foundation" class="${level==='foundation'?'on':''}">Foundation</button>
+      <button data-l="higher" class="${level==='higher'?'on':''}">Higher</button>
+      <button data-l="custom" class="${level==='custom'?'on':''}">Make your own</button>
+    </div>
+    ${isCustom?'':`<div class="bubbles">${prog.map((v,i)=>`<button class="bub ${i===qi?'cur':''} ${v===null?'':(v>=OK_PTS?'ok':'part')}" data-q="${i}">${i+1}</button>`).join('')}</div>`}
+    <div class="score">${scoreTxt}</div>
+  </div>
+  ${isCustom?customPanel():''}
+  <div id="q"></div>`;
+  app.querySelectorAll('#levels button').forEach(b=>b.onclick=()=>{level=b.dataset.l;qi=0;loadQuestion();});
+  app.querySelectorAll('.bub').forEach(b=>b.onclick=()=>{qi=+b.dataset.q;loadQuestion();});
+  if(isCustom){
+    document.getElementById('cBuild').onclick=buildCustom;
+  }
+  renderQuestion();
+}
+function customPanel(){
+  return `<div class="card custom"><h3>Make your own race</h3>
+  <div class="crow">
+    <label>Die A numbers (comma separated)<input id="cA" value="${custom.a.join(', ')}"></label>
+    <label>Die B numbers (comma separated)<input id="cB" value="${custom.b.join(', ')}"></label>
+    <label>Spaces to finish<input id="cT" type="number" min="2" max="20" value="${custom.target}" style="min-width:80px;width:90px"></label>
+    <label>Race wins needed<input id="cW" type="number" min="1" max="5" value="${custom.need}" style="min-width:80px;width:90px"></label>
+    <button class="primary" id="cBuild">Build race</button>
+  </div>
+  <p class="small" id="cMsg" style="margin:8px 0 0">Each die can have 2 to 12 sides, using whole numbers from −20 to 50.</p></div>`;
+}
+function buildCustom(){
+  const parse=v=>v.split(/[,\s]+/).filter(Boolean).map(x=>x.replace('−','-')).map(Number);
+  const a=parse(document.getElementById('cA').value),b=parse(document.getElementById('cB').value);
+  const t=Math.round(+document.getElementById('cT').value),w=Math.round(+document.getElementById('cW').value);
+  const ok=arr=>arr.length>=2&&arr.length<=12&&arr.every(x=>Number.isInteger(x)&&x>=-20&&x<=50);
+  const m=document.getElementById('cMsg');
+  if(!ok(a)||!ok(b)){m.textContent='Check the dice: each needs 2 to 12 whole numbers between −20 and 50.';m.style.color='var(--bad)';return}
+  if(!(t>=2&&t<=20)){m.textContent='Spaces to finish must be between 2 and 20.';m.style.color='var(--bad)';return}
+  if(!(w>=1&&w<=5)){m.textContent='Race wins needed must be between 1 and 5.';m.style.color='var(--bad)';return}
+  custom={a,b,target:t,need:w};loadQuestion();
+}
+function loadQuestion(){
+  stopRace();
+  if(level==='custom') Q=build(custom,custom.target,custom.need);
+  else Q=build(LEVELS[level][qi],TARGET,NEED);
+  renderHorseTab();
+}
+
+function renderQuestion(){
+  if(!Q) Q=level==='custom'?build(custom,custom.target,custom.need):build(LEVELS[level][qi],TARGET,NEED);
+  const box=document.getElementById('q');
+  const title=level==='custom'?'Your race':`Question ${qi+1}`;
+  box.innerHTML=`
+  <div class="card intro">
+    <div><h3 style="margin-bottom:4px">${title}</h3>
+    <p>Both dice are rolled and the numbers are <b>added</b>. The horse with that total moves forward one space, and the first to reach <b>${Q.target}</b> wins the race. The first horse to win <b>${Q.need} race${Q.need>1?'s':''}</b> wins the match. Which horse will you back?</p></div>
+    <div class="dicebox">
+      <div class="dline"><span class="dlabel" style="color:var(--a)">Die A<br><small>${Q.a.length} sides</small></span>${Q.a.map(v=>dieSVG(v,'A',54)).join('')}</div>
+      <div class="dline"><span class="dlabel" style="color:var(--b)">Die B<br><small>${Q.b.length} sides</small></span>${Q.b.map(v=>dieSVG(v,'B',54)).join('')}</div>
+      ${[...Q.a,...Q.b].some(v=>v<0)?'<div class="small">Red dots with a minus sign are negative numbers.</div>':''}
+    </div>
+  </div>
+  <section class="card" id="s1">
+    <div class="racehead">
+      <h3><span class="num">1</span>Pick your horse</h3>
+      <span class="hint" id="pickHint">Click a horse on the track, then lock it in.</span>
+      <button class="primary" id="lock" disabled>Lock in</button>
+      <span class="msg" id="pmsg"></span>
+    </div>
+    <div class="racebar">
+      <h3 style="margin:0;font-size:1.05rem;display:flex;align-items:center;gap:8px"><span class="num">2</span>Race <span id="raceLbl" class="small" style="font-weight:600"></span></h3>
+      <button class="primary" id="go" disabled>Start race</button>
+      <button id="skip" disabled>Skip race</button>
+      <button id="skipAll" disabled>Skip to end of match</button>
+      <label class="small">Speed <select id="spd">${Object.keys(SPEEDS).map(k=>`<option value="${k}" ${k===speed?'selected':''}>${k[0].toUpperCase()+k.slice(1)}</option>`).join('')}</select></label>
+      <div class="rollbox" id="roll"></div>
+    </div>
+    <div class="track" id="track">${trackHTML()}</div>
+    <div id="raceMsg"></div>
+  </section>
+  <div class="layout" id="analysis" style="display:none">
+    <section class="card" id="s3">
+      <h3><span class="num">3</span>Was it a good choice? Fill in the missing totals</h3>
+      <div class="gridwrap">${gridHTML()}</div>
+      <div class="axis"><span style="color:var(--a);font-weight:700">Die A</span> across, <span style="color:var(--b);font-weight:700">Die B</span> down. Fill in the empty cells.</div>
+      <div class="row"><button class="primary" id="chk">Check</button><span class="msg" id="gmsg"></span></div>
+    </section>
+    <div>
+      <section class="card" id="s4">
+        <h3><span class="num">4</span>Probability</h3>
+        <div id="probQ" class="hint">What is the probability your horse moves on any one roll?</div>
+        <div class="row"><span>P =</span><span class="frac"><input id="pn" inputmode="numeric" aria-label="numerator"><span class="bar"></span><input id="pd" inputmode="numeric" aria-label="denominator"></span>
+        <button class="primary" id="pchk">Check</button><span class="msg" id="prmsg"></span></div>
+        <p class="hint" style="margin-top:10px">Tip: hover over a horse on the track to light up its cells in your diagram.</p>
+      </section>
+      <section class="card" id="s5">
+        <h3><span class="num">5</span>Which horse or horses are most likely to win?</h3>
+        <p class="hint">Select every horse you think is most likely. There may be more than one.</p>
+        <div class="bestpick" id="bestpick">${Q.lanes.map((s,i)=>`<button class="bp" data-s="${s}" style="--c:${silk(s,i)}">${fmt(s)}</button>`).join('')}</div>
+        <div class="row"><button class="primary" id="bchk">Check</button><span class="msg" id="bmsg"></span></div>
+      </section>
+      <section class="card" id="res" style="display:none"></section>
+    </div>
+  </div>`;
+  wireGrid();wireTrack();wireSteps();wireBest();refreshSteps();
+}
+
+function pickBlanks(){
+  const total=Q.a.length*Q.b.length;
+  const k=Math.min(total,Math.max(MIN_BLANKS,Math.round(total*BLANK_FRACTION)));
+  const idx=R(0,total-1);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]]}
+  return new Set(idx.slice(0,k));
+}
+function gridHTML(){
+  if(!Q.blanks) Q.blanks=pickBlanks();
+  let h='<table class="ss"><tr><th class="corner">+</th>'+Q.a.map(v=>`<th class="A">${fmt(v)}</th>`).join('')+'</tr>';
+  Q.b.forEach((bv,r)=>{
+    h+=`<tr><th class="B">${fmt(bv)}</th>`+Q.a.map((av,c)=>{const blank=Q.blanks.has(r*Q.a.length+c);
+      return blank?`<td data-sum="${av+bv}" data-r="${r}" data-c="${c}" class="blank"><input autocomplete="off" inputmode="text" aria-label="Die A ${av} plus die B ${bv}"></td>`
+        :`<td data-sum="${av+bv}" data-r="${r}" data-c="${c}" class="given"><input value="${fmt(av+bv)}" readonly tabindex="-1" aria-label="Die A ${av} plus die B ${bv}"></td>`}).join('')+'</tr>';
+  });
+  return h+'</table>';
+}
+
+/* Racehorse drawing (faces right). Coat colours vary; jockey wears the lane's silks. */
+const COATS=[['#8b5a2b','#4a2c14'],['#5a3a22','#2a1a0e'],['#a0522d','#5c2e14'],['#3b2a20','#140c08'],['#c08a4f','#6b4523'],['#8d8d8d','#4a4a4a']];
+/* Real dice with dots. Negative numbers use red dots and a minus sign. */
+const PIPS=(()=>{const L=25,M=50,H=75,g=[[L,L],[H,H],[M,M],[H,L],[L,H],[L,M],[H,M],[M,L],[M,H]];
+  const t=(...k)=>k.map(i=>g[i]);
+  const X=[22,50,78],Y=[18,39,61,82],G=[];Y.forEach(y=>X.forEach(x=>G.push([x,y])));
+  return {0:[],1:t(2),2:t(0,1),3:t(0,2,1),4:t(0,1,3,4),5:t(0,1,3,4,2),6:t(0,1,3,4,5,6),7:t(0,1,3,4,5,6,2),8:t(0,1,3,4,5,6,7,8),9:t(0,1,2,3,4,5,6,7,8),
+    10:G.filter((_,i)=>i!==4&&i!==7),11:G.filter((_,i)=>i!==4),12:G};})();
+function dieSVG(v,which,size){
+  const edge=which==='A'?'#1e63d6':'#e0731b';
+  const neg=v<0,abs=Math.abs(v),pips=PIPS[abs];
+  const pipCol=neg?'#d32f2f':'#1d2433';
+  const r=abs>9?6.5:8.5;
+  let inner;
+  if(pips) inner=pips.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${pipCol}"/>`).join('')+(neg?`<rect x="38" y="8" width="24" height="5.5" rx="2.5" fill="#d32f2f"/>`:'');
+  else inner=`<text x="50" y="64" text-anchor="middle" font-size="40" font-weight="800" font-family="system-ui,sans-serif" fill="${pipCol}">${fmt(v)}</text>`;
+  return `<svg class="pdie" width="${size}" height="${size}" viewBox="-4 -4 108 108" role="img" aria-label="${fmt(v)}">
+    <rect x="0" y="0" width="100" height="100" rx="18" fill="${edge}"/>
+    <rect x="4" y="4" width="92" height="90" rx="15" fill="#fff"/>
+    <rect x="4" y="4" width="92" height="90" rx="15" fill="url(#dshade)"/>${inner}</svg>`;
+}
+function legSVG(p,col,w1,w2){
+  const [a,b,c,d]=p,[hx,hy]=d.split(',');
+  return `<path d="M${a} L${b}" stroke="${col}" stroke-width="${w1}" stroke-linecap="round"/><path d="M${b} L${c} L${d}" stroke="${col}" stroke-width="${w2}" stroke-linecap="round" stroke-linejoin="round" fill="none"/><ellipse cx="${hx}" cy="${hy}" rx="1.5" ry="1.1" fill="#1b1b1b"/>`;
+}
+const POSE_A={hf:['19,24','12,31','6,35','3,35.5'],hn:['22,25','17,33','10,38.5','7,39.5'],ff:['44,24','50,30','56,31.5','58.5,30'],fn:['46,25','53,32','59,35.5','61,34']};
+const POSE_B={hf:['19,24','22,32','19,38','21,40.5'],hn:['22,25','26,33','24,39.5','26.5,41'],ff:['44,24','41,32','42,38.5','44.5,39.5'],fn:['46,25','45,33','47.5,39','50,40']};
+function horseSVG(s,i){
+  const [coat,dark]=COATS[i%COATS.length], c=silk(s,i), n=fmt(s);
+  const fs=n.length>2?5.6:(n.length>1?6.8:7.5);
+  const far=(P,cls)=>`<g class="${cls}">${legSVG(P.hf,dark,4.2,2.6)}${legSVG(P.ff,dark,4.2,2.6)}</g>`;
+  const near=(P,cls)=>`<g class="${cls}">${legSVG(P.hn,coat,4.6,2.8)}${legSVG(P.fn,coat,4.6,2.8)}</g>`;
+  return `<svg viewBox="0 0 72 46" aria-hidden="true">
+  ${far(POSE_A,'legsA')}${far(POSE_B,'legsB')}
+  <path d="M16 19 C10 18 6 22 3 29 C7 27 10 25 15 25 Z" fill="${dark}"/>
+  <path d="M15 20 C16 14 23 13.5 31 14.5 C38 15 42 14 45 12 L51 4.5 C53 2.5 57 2.5 59 4.5 L65 10 C66.2 11.4 65.5 13 63.6 13.2 L58.5 12.6 C56 14.5 54 18 51 23 C48.5 27 44 28.5 36 28.5 L26 28.5 C19 28.5 14.5 26 15 20 Z" fill="${coat}"/>
+  <path d="M45 12 L51 4.5 C52 3.5 54 3 55.5 3.6 L50.5 10.5 L47 16 Z" fill="${dark}"/>
+  <path d="M54.5 3.2 L55.6 -0.6 L57.6 3.4 Z" fill="${coat}"/>
+  <circle cx="59.6" cy="7" r="1.05" fill="#111"/>
+  ${near(POSE_A,'legsA')}${near(POSE_B,'legsB')}
+  <rect x="24" y="15" width="13" height="11" rx="2" fill="#fff" stroke="${c}" stroke-width="1.6"/>
+  <text x="30.5" y="${23.4-(7.5-fs)/2}" text-anchor="middle" font-size="${fs}" font-weight="800" font-family="system-ui,sans-serif" fill="#111">${n}</text>
+  <path d="M33 14 L28 8 L33 1 L39 4 L38 9 Z" fill="${c}"/>
+  <path d="M36 5 L43 9 L45.5 11" stroke="${c}" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <path d="M30 13 L37 16 L36 20" stroke="#f3f3f3" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <circle cx="38" cy="0" r="3.4" fill="#f1c9a5"/>
+  <path d="M34.4 -0.5 A3.7 3.7 0 0 1 41.6 -0.8 L42.8 0 Z" fill="${c}"/>
+  <path d="M45.5 11 L52.5 7" stroke="#222" stroke-width=".8"/>
+  </svg>`;
+}
+function trackHTML(){
+  const n=Q.target+1;
+  return Q.lanes.map((s,i)=>`<div class="lane" data-s="${s}">
+    <div class="lname" style="background:${silk(s,i)}">${fmt(s)}</div>
+    <div class="ltrack"><div class="cells" style="grid-template-columns:repeat(${n},1fr)">${R(0,Q.target).map(k=>`<div class="${k===0?'gate':(k===Q.target?'fin':'')}"></div>`).join('')}</div>
+      <div class="horse" id="h${s}" style="width:${100/n}%;left:0">${horseSVG(s,i)}</div></div>
+    <div class="lwins" id="lw${s}">${'<i></i>'.repeat(Q.need)}</div>
+    <div class="lprob" id="lp${s}"></div></div>`).join('');
+}
+
+/* ---------- Step 1: pick ---------- */
+function wireTrack(){
+  document.querySelectorAll('.lane').forEach(l=>{
+    const s=+l.dataset.s;
+    l.addEventListener('mouseenter',()=>{if(Q.raced) highlight(s)});
+    l.addEventListener('mouseleave',()=>highlight(null));
+    l.addEventListener('click',()=>{
+      if(Q.locked) return;
+      Q.pick=s;
+      document.querySelectorAll('.lane').forEach(x=>x.classList.toggle('picked',+x.dataset.s===s));
+      const b=document.getElementById('lock');b.disabled=false;b.textContent=`Lock in horse ${fmt(s)}`;
+    });
+  });
+}
+function highlight(s){
+  document.querySelectorAll('table.ss td').forEach(td=>td.classList.toggle('hl',s!==null&&+td.dataset.sum===s));
+}
+function wireSteps(){
+  document.getElementById('lock').onclick=()=>{
+    if(Q.pick===null) return;
+    Q.locked=true;Q.horsePts=cnt(Q.pick)===Q.maxC?2:0;
+    document.getElementById('lock').style.display='none';
+    document.getElementById('pickHint').style.display='none';
+    const m=document.getElementById('pmsg');m.className='msg';m.textContent=`You're backing horse ${fmt(Q.pick)}. Good luck!`;
+    document.getElementById('probQ').innerHTML=`What is the probability that <b>horse ${fmt(Q.pick)}</b> moves on any one roll?`;
+    refreshSteps();
+  };
+  document.getElementById('chk').onclick=checkGrid;
+  document.getElementById('pchk').onclick=checkProb;
+  ['pn','pd'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')checkProb()}));
+  document.getElementById('go').onclick=startRace;
+  document.getElementById('skip').onclick=skipRace;
+  document.getElementById('skipAll').onclick=skipMatch;
+  document.getElementById('spd').onchange=e=>{speed=e.target.value};
+}
+function refreshSteps(){
+  const set=(id,on)=>document.getElementById(id).classList.toggle('locked',!on);
+  document.getElementById('analysis').style.display=Q.raced?'':'none';
+  set('s4',Q.gridDone);
+  set('s5',Q.probDone);
+  document.querySelectorAll('.lane').forEach(l=>l.classList.toggle('pickable',!Q.locked));
+  setButtons();
+}
+
+/* ---------- Step 3: sample space ---------- */
+function wireGrid(){
+  const inputs=[...document.querySelectorAll('table.ss td.blank input')];
+  inputs.forEach((inp,i)=>{
+    inp.addEventListener('keydown',e=>{
+      let j=null;
+      if(e.key==='Enter'||e.key==='ArrowRight'&&inp.selectionStart===inp.value.length||e.key==='ArrowDown') j=i+1;
+      else if(e.key==='ArrowLeft'&&inp.selectionStart===0||e.key==='ArrowUp') j=i-1;
+      if(j!==null&&inputs[j]){e.preventDefault();inputs[j].focus();inputs[j].select()}
+    });
+    inp.addEventListener('input',()=>inp.parentElement.classList.remove('wrong','right'));
+  });
+}
+function checkGrid(){
+  if(Q.gridDone) return;
+  Q.checksUsed++;
+  let wrong=0;
+  document.querySelectorAll('table.ss td.blank').forEach(td=>{
+    const v=td.querySelector('input').value.trim().replace('−','-');
+    const ok=v!==''&&/^-?\d+$/.test(v)&&+v===+td.dataset.sum;
+    td.classList.toggle('right',ok);td.classList.toggle('wrong',!ok);
+    if(!ok) wrong++;
+  });
+  const m=document.getElementById('gmsg');
+  const left=3-Q.checksUsed;
+  if(wrong===0){
+    Q.gridDone=true;Q.gridPts=4-Q.checksUsed;
+    m.className='msg good';m.textContent=`All correct! +${Q.gridPts} point${Q.gridPts>1?'s':''}`;
+  } else if(left>0){
+    m.className='msg bad';m.textContent=`${wrong} cell${wrong>1?'s are':' is'} wrong or empty. ${left} check${left>1?'s':''} left.`;
+  } else {
+    Q.gridDone=true;Q.gridPts=0;
+    document.querySelectorAll('table.ss td.wrong').forEach(td=>{td.classList.remove('wrong');td.classList.add('revealed');td.querySelector('input').value=fmt(+td.dataset.sum)});
+    m.className='msg warn';m.textContent='Out of checks. The correct totals are shown in yellow.';
+  }
+  if(Q.gridDone){
+    document.querySelectorAll('table.ss input').forEach(i=>i.readOnly=true);
+    refreshSteps();setTimeout(()=>document.getElementById('pn').focus(),50);
+  }
+}
+
+/* ---------- Step 4: probability ---------- */
+function checkProb(){
+  if(Q.probDone||!Q.gridDone) return;
+  const ns=document.getElementById('pn').value.trim(),ds=document.getElementById('pd').value.trim();
+  const n=+ns,d=+ds;
+  const m=document.getElementById('prmsg');
+  const k=cnt(Q.pick);
+  if(ns===''||ds===''||!Number.isInteger(n)||!Number.isInteger(d)||d<=0){m.className='msg bad';m.textContent='Enter a whole number on top and bottom.';return}
+  Q.probTries++;
+  if(n*Q.total===k*d){
+    Q.probDone=true;Q.probPts=Q.probTries===1?1:0;
+    m.className='msg good';m.textContent=Q.probTries===1?'Correct! +1 point':'Correct!';
+  } else if(Q.probTries<2){
+    m.className='msg bad';m.textContent='Not quite. Count the cells for your horse, and the total number of cells. One more try.';
+  } else {
+    Q.probDone=true;Q.probPts=0;
+    m.className='msg warn';m.textContent=`It's ${k}/${Q.total}${k&&gcd(k,Q.total)>1?' = '+simp(k,Q.total):''}.`;
+  }
+  if(Q.probDone){
+    document.getElementById('pn').readOnly=true;document.getElementById('pd').readOnly=true;
+    refreshSteps();
+  }
+}
+
+/* ---------- Step 5: most likely winner(s) ---------- */
+function wireBest(){
+  document.querySelectorAll('.bp').forEach(b=>b.onclick=()=>{if(!Q.bestDone)b.classList.toggle('sel')});
+  document.getElementById('bchk').onclick=checkBest;
+}
+function checkBest(){
+  if(Q.bestDone||!Q.probDone) return;
+  const sel=[...document.querySelectorAll('.bp.sel')].map(b=>+b.dataset.s);
+  const m=document.getElementById('bmsg');
+  if(!sel.length){m.className='msg bad';m.textContent='Select at least one horse.';return}
+  const best=Q.lanes.filter(s=>cnt(s)===Q.maxC);
+  const ok=sel.length===best.length&&best.every(s=>sel.includes(s));
+  Q.bestTries++;
+  if(ok){
+    Q.bestDone=true;Q.bestPts=Q.bestTries===1?1:0;
+    m.className='msg good';m.textContent=Q.bestTries===1?'Correct! +1 point':'Correct!';
+  } else if(Q.bestTries<2){
+    m.className='msg bad';m.textContent=best.length>1&&sel.length<best.length?'Not quite. Is there a tie? One more try.':'Not quite. Which total appears most often in the diagram? One more try.';
+  } else {
+    Q.bestDone=true;Q.bestPts=0;
+    m.className='msg warn';m.textContent=`The answer is horse${best.length>1?'s':''} ${best.map(fmt).join(', ').replace(/, (?=[^,]*$)/,' and ')}.`;
+  }
+  if(Q.bestDone){
+    document.querySelectorAll('.bp').forEach(b=>{const s=+b.dataset.s;b.classList.toggle('right',best.includes(s));b.classList.toggle('miss',best.includes(s)&&!b.classList.contains('sel'))});
+    if(level!=='custom'){
+      const tot=Q.gridPts+Q.horsePts+Q.racePts+Q.probPts+Q.bestPts, prev=progress[level][qi];
+      progress[level][qi]=prev===null?tot:Math.max(prev,tot);
+      updateToolbar();
+    }
+    Q.lanes.forEach(s=>{document.getElementById('lp'+s).textContent=`${cnt(s)}/${Q.total}`});
+    renderResults();
+    setTimeout(()=>scrollToEl(document.getElementById('res'),'nearest'),100);
+  }
+}
+
+/* ---------- Step 2: race ---------- */
+const rnd=arr=>arr[Math.floor(Math.random()*arr.length)];
+function resetRace(){
+  Q.lanes.forEach(s=>Q.pos[s]=0);Q.rolls=0;Q.winner=null;
+  Q.lanes.forEach(s=>placeHorse(s));
+  document.querySelectorAll('.lane').forEach(l=>l.classList.remove('win'));
+}
+function placeHorse(s,anim){
+  const n=Q.target+1;
+  const el=document.getElementById('h'+s);
+  if(!el) return;
+  el.style.left=(100*Q.pos[s]/n)+'%';
+  if(anim){el.classList.remove('run');void el.offsetWidth;el.classList.add('run');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('run'),300)}
+}
+function step(){
+  const x=rnd(Q.a),y=rnd(Q.b),s=x+y;Q.rolls++;
+  const moves=s in Q.pos;
+  if(moves){Q.pos[s]++;if(Q.pos[s]>=Q.target)Q.winner=s}
+  return {x,y,s,moves};
+}
+function showRoll(r){
+  document.getElementById('roll').innerHTML=`${dieSVG(r.x,'A',56)}+${dieSVG(r.y,'B',56)}= ${fmt(r.s)}
+   <span class="rollcount">${r.moves?`→ horse ${fmt(r.s)} moves`:'→ no horse moves'} · roll ${Q.rolls}</span>`;
+}
+function setButtons(){
+  const go=document.getElementById('go');
+  const over=Q.matchWinner!==null;
+  go.textContent=over?'New match':(Q.raceNo===0?'Start race 1':`Start race ${Q.raceNo+1}`);
+  go.disabled=!Q.locked||Q.racing;
+  document.getElementById('skip').disabled=!Q.racing;
+  document.getElementById('skipAll').disabled=!Q.locked||over;
+  document.getElementById('raceLbl').textContent=Q.raceNo?`· race ${Q.raceNo}${Q.racing?' in progress':''}`:'';
+}
+function paintWins(){
+  Q.lanes.forEach(s=>{
+    const el=document.getElementById('lw'+s);if(!el)return;
+    [...el.children].forEach((d,i)=>d.classList.toggle('on',i<Q.raceWins[s]));
+  });
+  document.querySelectorAll('.lane').forEach(l=>l.classList.toggle('champ',+l.dataset.s===Q.matchWinner));
+}
+function newMatch(){
+  Q.lanes.forEach(s=>Q.raceWins[s]=0);Q.raceNo=0;Q.matchWinner=null;
+  paintWins();resetRace();document.getElementById('raceMsg').innerHTML='';
+}
+function startRace(){
+  if(Q.racing||!Q.locked) return;
+  if(Q.matchWinner!==null) newMatch();
+  resetRace();Q.racing=true;Q.raceNo++;
+  setButtons();
+  const tick=()=>{
+    const r=step();showRoll(r);if(r.moves)placeHorse(r.s,true);
+    if(Q.winner!==null) endRace();
+    else raceTimer=setTimeout(tick,SPEEDS[speed]);
+  };
+  raceTimer=setTimeout(tick,200);
+}
+function skipRace(){
+  if(!Q.racing) return;
+  clearTimeout(raceTimer);
+  let r;while(Q.winner===null){r=step()}
+  showRoll(r);Q.lanes.forEach(s=>placeHorse(s));endRace();
+}
+function skipMatch(){
+  if(!Q.locked||Q.matchWinner!==null) return;
+  clearTimeout(raceTimer);
+  if(!Q.racing){resetRace();Q.raceNo++;}
+  Q.racing=false;
+  let r;
+  for(;;){
+    while(Q.winner===null){r=step()}
+    Q.raceWins[Q.winner]++;
+    if(Q.raceWins[Q.winner]>=Q.need) break;
+    resetRace();Q.raceNo++;
+  }
+  if(r) showRoll(r);
+  Q.lanes.forEach(s=>placeHorse(s));
+  document.querySelectorAll('.lane').forEach(l=>l.classList.toggle('win',+l.dataset.s===Q.winner));
+  Q.matchWinner=Q.winner;finishMatch();
+}
+function stopRace(){clearTimeout(raceTimer);if(Q)Q.racing=false}
+function endRace(){
+  Q.racing=false;clearTimeout(raceTimer);
+  document.querySelector(`.lane[data-s="${Q.winner}"]`).classList.add('win');
+  Q.raceWins[Q.winner]++;
+  if(Q.raceWins[Q.winner]>=Q.need){Q.matchWinner=Q.winner;finishMatch();return}
+  paintWins();setButtons();
+  const mine=Q.winner===Q.pick;
+  document.getElementById('raceMsg').innerHTML=`<div class="banner ${mine?'good':'neutral'}" style="margin:10px 0 0">Race ${Q.raceNo}: horse ${fmt(Q.winner)} wins after ${Q.rolls} rolls${mine?` — that's your horse!${level==='custom'||Q.raced?'':' +1 point'}`:'.'}
+    <span style="font-weight:600">Your horse has ${Q.raceWins[Q.pick]} race win${Q.raceWins[Q.pick]===1?'':'s'}. First to ${Q.need} wins the match.</span></div>`;
+}
+function finishMatch(){
+  paintWins();setButtons();
+  const first=!Q.raced;Q.raced=true;
+  const won=Q.matchWinner===Q.pick;
+  if(first) Q.racePts=Math.min(Q.raceWins[Q.pick],Q.need);
+  const ptsTxt=level==='custom'||!first?'':` <span style="font-weight:600">+${Q.racePts} point${Q.racePts===1?'':'s'} for race wins.</span>`;
+  document.getElementById('raceMsg').innerHTML=`<div class="banner ${won?'good':'neutral'}" style="margin:10px 0 0">${won
+    ?`🏆 Horse ${fmt(Q.matchWinner)} wins the match after ${Q.raceNo} races, and that's your horse!`
+    :`🏆 Horse ${fmt(Q.matchWinner)} wins the match after ${Q.raceNo} races. Your horse ${fmt(Q.pick)} won ${Q.raceWins[Q.pick]} race${Q.raceWins[Q.pick]===1?'':'s'}.`}${ptsTxt}
+    ${Q.probDone?'':' <span style="font-weight:600">Now use the sample space diagram to find out if you made a good choice.</span>'}</div>`;
+  refreshSteps();
+  if(first) setTimeout(()=>{scrollToEl(document.getElementById('analysis'),'start');const f=document.querySelector('table.ss td.blank input');if(f)f.focus({preventScroll:true})},900);
+}
+function updateToolbar(){
+  const prog=progress[level];
+  document.querySelector('.score').textContent=`Score: ${prog.reduce((t,v)=>t+(v||0),0)} / ${MAXPTS*10}`;
+  document.querySelectorAll('.bub').forEach((b,i)=>{const v=prog[i];b.classList.toggle('ok',v!==null&&v>=OK_PTS);b.classList.toggle('part',v!==null&&v<OK_PTS)});
+}
+function renderResults(){
+  const res=document.getElementById('res');res.style.display='';
+  const best=Q.lanes.filter(s=>cnt(s)===Q.maxC);
+  const bestTxt=best.map(fmt).join(', ').replace(/, (?=[^,]*$)/,' and ');
+  const pickBest=best.includes(Q.pick);
+  const tot=Q.gridPts+Q.horsePts+Q.racePts+Q.probPts+Q.bestPts;
+  let advice;
+  if(cnt(Q.pick)===0) advice=`Horse ${fmt(Q.pick)} can never move: no cell in the diagram adds up to ${fmt(Q.pick)}. The best choice was horse${best.length>1?'s':''} ${bestTxt}.`;
+  else if(pickBest) advice=`<b>Good choice!</b> Horse ${fmt(Q.pick)} ${best.length>1?'is joint most likely':'is the most likely horse'} to move, with probability ${simp(Q.maxC,Q.total)} each roll.${Q.matchWinner!==Q.pick?' Even the favourite doesn’t always win. Try the 1000-match simulation.':''}`;
+  else advice=`The best choice was horse${best.length>1?'s':''} ${bestTxt}, with probability ${simp(Q.maxC,Q.total)} each roll. Your horse had ${simp(cnt(Q.pick),Q.total)}.`;
+  res.innerHTML=`<h3>Verdict</h3><p style="margin:0 0 6px">${advice}</p>
+   ${level==='custom'?'':`<div class="pts"><span class="pt">Horse choice <b>${Q.horsePts}</b>/2</span><span class="pt">Race wins <b>${Q.racePts}</b>/${Q.need}</span><span class="pt">Sample space <b>${Q.gridPts}</b>/3</span><span class="pt">Probability <b>${Q.probPts}</b>/1</span><span class="pt">Most likely <b>${Q.bestPts}</b>/1</span><span class="pt" style="background:var(--goodSoft)">Total <b>${tot}</b>/${MAXPTS}</span></div>`}
+   <div id="dist"></div>
+   <div class="row"><button id="sim">Simulate 1000 matches</button>
+   ${level==='custom'?'':(qi<9?`<button class="primary" id="next">Next question →</button>`:`<span class="msg good">Last question! Final score: ${progress[level].reduce((t,v)=>t+(v||0),0)} / ${MAXPTS*10}</span>`)}</div>`;
+  renderDist();
+  document.getElementById('sim').onclick=simulate;
+  const nx=document.getElementById('next');if(nx)nx.onclick=()=>{qi++;loadQuestion();scrollTopPage()};
+}
+function renderDist(){
+  const sim=Q.sim;
+  const maxSim=sim?Math.max(...Object.values(sim)):1;
+  let h=`<div class="dist"><span class="hd">Horse</span><span class="hd">Chance of moving each roll</span><span class="hd">${sim?'Match wins out of 1000':''}</span>`;
+  Q.lanes.forEach((s,i)=>{
+    const k=cnt(s);
+    h+=`<span class="lnum" style="background:${silk(s,i)}">${fmt(s)}</span>
+    <div class="barwrap"><div class="barfill th" style="width:${100*k/Q.maxC}%"></div><span class="barlab">${k}/${Q.total}</span></div>
+    <div>${sim?`<div class="barwrap"><div class="barfill sim" style="width:${100*(sim[s]||0)/maxSim}%"></div><span class="barlab">${sim[s]||0}</span></div>`:''}</div>`;
+  });
+  document.getElementById('dist').innerHTML=h+'</div>';
+}
+function simulate(){
+  const wins={};Q.lanes.forEach(s=>wins[s]=0);
+  for(let m=0;m<1000;m++){
+    const rw={};Q.lanes.forEach(s=>rw[s]=0);
+    for(;;){
+      const p={};Q.lanes.forEach(s=>p[s]=0);let w;
+      for(;;){const s=rnd(Q.a)+rnd(Q.b);if(s in p&&++p[s]>=Q.target){w=s;break}}
+      if(++rw[w]>=Q.need){wins[w]++;break}
+    }
+  }
+  Q.sim=wins;renderDist();
+  document.getElementById('sim').textContent='Simulate another 1000';
+}
+
+/* ================= SPINNER SHOWDOWN ================= */
+const SC={Red:'#e53935',Blue:'#1e88e5',Green:'#43a047',Yellow:'#fbc02d',Purple:'#8e24aa',Orange:'#fb8c00'};
+const NUMCOLS=['#ef9a9a','#90caf9','#a5d6a7','#fff59d','#ce93d8','#ffcc80','#80deea','#f48fb1','#bcaaa4','#c5e1a5','#b39ddb','#ffab91'];
+const CL={R:'Red',B:'Blue',G:'Green',Y:'Yellow',P:'Purple',O:'Orange'};
+const cs=str=>[...str].map(ch=>({label:CL[ch],colour:SC[CL[ch]],w:1}));
+const ns=n=>R(1,n).map(i=>({label:String(i),colour:NUMCOLS[(i-1)%12],w:1,num:true}));
+const ang=list=>list.map(([l,a])=>({label:l,colour:SC[l],w:a,angle:true}));
+
+const SP_LEVELS={
+  foundation:[
+    {type:'A',secs:cs('RBGY'),target:['Red'],tt:'red',n:40},
+    {type:'A',secs:ns(6),target:['2','4','6'],tt:'an even number',n:60},
+    {type:'A',secs:cs('RRRBBGGG'),target:['Blue'],tt:'blue',n:80},
+    {type:'B',cands:['RRRB','RBBB','RRBB','RBGY'].map(cs),ans:2},
+    {type:'A',secs:cs('RRBBB'),target:['Red'],tt:'red',n:50},
+    {type:'A',secs:ns(10),target:['2','3','5','7'],tt:'a prime number',n:50},
+    {type:'B',cands:['RRRBBG','RBBBGG','RRBBGG','RGGGGB'].map(cs),ans:1},
+    {type:'A',secs:ang([['Red',180],['Blue',90],['Green',90]]),target:['Red'],tt:'red',n:30},
+    {type:'A',secs:ns(12),target:['3','6','9','12'],tt:'a multiple of 3',n:60},
+    {type:'B',cands:['RRRRBBGG','RRBBBBGG','RRRRRRBG','RRBBGGGG'].map(cs),ans:0}
+  ],
+  higher:[
+    {type:'A',secs:cs('RRRBBGGY'),target:['Blue','Green','Yellow'],tt:'not red',n:120},
+    {type:'C',table:[['Red','0.2'],['Blue','0.35'],['Green','<i>x</i>'],['Yellow','0.15']],probs:{Red:.2,Blue:.35,Green:.3,Yellow:.15},x:0.3,target:['Green'],tt:'green',n:200},
+    {type:'B',cands:['RRRRRBBBGG','RRRRBBBBGG','RRRBBBBBGG','RRRRRBBGGG'].map(cs),ans:1},
+    {type:'D',secs:ns(5),weights:[1,1,1,1,3],label:'5',fair:false},
+    {type:'C',table:[['Red','0.1'],['Blue','2<i>x</i>'],['Green','3<i>x</i>'],['Yellow','0.4']],probs:{Red:.1,Blue:.2,Green:.3,Yellow:.4},x:0.1,target:['Blue','Green'],tt:'blue or green',n:150},
+    {type:'N',parts:10,counts:{Red:4,Blue:3,Green:2,Yellow:1}},
+    {type:'A',secs:ang([['Red',150],['Blue',120],['Green',90]]),target:['Blue'],tt:'blue',n:90},
+    {type:'D',secs:cs('RBGY'),weights:[1,1,1,1],label:'Red',fair:true},
+    {type:'C',table:[['Red','0.25'],['Blue','<i>x</i>'],['Green','<i>x</i>'],['Yellow','0.35']],probs:{Red:.25,Blue:.2,Green:.2,Yellow:.35},x:0.2,target:['Blue'],tt:'blue',n:300},
+    {type:'N',parts:12,counts:{Red:5,Blue:4,Green:2,Yellow:1}}
+  ]
+};
+const SP_MAX=5, SP_OK=4;
+const SP={level:'foundation',qi:0,Q:null,busy:false,
+  progress:{foundation:Array(10).fill(null),higher:Array(10).fill(null)},
+  free:{Red:3,Blue:2,Green:1,Yellow:0,Purple:0,Orange:0}};
+
+function spFreeSecs(){const s=[];Object.entries(SP.free).forEach(([l,c])=>{for(let i=0;i<c;i++)s.push({label:l,colour:SC[l],w:1})});return s}
+function spBuild(def){
+  let secs;
+  if(def.type==='B') secs=def.cands[def.ans];
+  else if(def.type==='N'){secs=[];Object.entries(def.counts).forEach(([l,c])=>{for(let i=0;i<c;i++)secs.push({label:l,colour:SC[l],w:1})})}
+  else if(def.type==='C') secs=Object.entries(def.probs).map(([l,p])=>({label:l,colour:SC[l],w:p}));
+  else secs=def.secs;
+  const wsum=secs.reduce((t,s)=>t+s.w,0);
+  const draw=def.type==='D'?def.weights:secs.map(s=>s.w);
+  const dsum=draw.reduce((t,w)=>t+w,0);
+  const labels=[...new Set(secs.map(s=>s.label))];
+  const prob={};labels.forEach(l=>prob[l]=0);secs.forEach((s,i)=>prob[s.label]+=draw[i]/dsum);
+  const starts=[0];secs.forEach(s=>starts.push(starts[starts.length-1]+360*s.w/wsum));
+  const Q={def,type:def.type,secs,wsum,draw,dsum,labels,prob,starts,
+    counts:Object.fromEntries(labels.map(l=>[l,0])),hist:[],total:0,rot:0,last:null,
+    hidden:['B','N','C'].includes(def.type),si:0,tries:[],pts:[],msgs:[],done:false,recorded:false};
+  if(def.target){
+    const k=secs.filter(s=>def.target.includes(s.label)).reduce((t,s)=>t+s.w,0);
+    if(def.type==='C'){Q.P=Math.round(k*1e6)/1e6}else{Q.Pk=k;Q.Pd=wsum;Q.P=k/wsum}
+  }
+  Q.lcount=l=>Q.counts[l]||0;
+  Q.tcount=()=>def.target.reduce((t,l)=>t+Q.lcount(l),0);
+  Q.steps=spSteps(Q);
+  return Q;
+}
+const pStr=Q=>Q.Pk!=null?simp(Q.Pk,Q.Pd):String(Q.P);
+function spSteps(Q){
+  const d=Q.def,t=d.type,st=[],tt=d.tt;
+  if(t==='A') st.push({kind:'frac',pts:[2,1],prompt:`What is the probability that the spinner lands on <b>${tt}</b>?`,
+    check:(a,b)=>a*Q.Pd===Q.Pk*b,answer:()=>`The probability is ${simp(Q.Pk,Q.Pd)}.`,ref:true});
+  if(t==='C') st.push({kind:'dec',pts:[2,1],prompt:`The probabilities add up to 1. Find the value of <i>x</i>.`,
+    check:v=>Math.abs(v-d.x)<1e-9,answer:()=>`<i>x</i> = ${d.x}.`,reveal:true,ref:true});
+  if(t==='A'||t==='C'){
+    const E=Math.round(Q.P*d.n);
+    st.push({kind:'int',pts:[2,1],prompt:`The spinner is spun <b>${d.n}</b> times. How many times would you expect it to land on <b>${tt}</b>?`,
+      check:v=>v===E,answer:()=>`Expected number = ${pStr(Q)} × ${d.n} = ${E}.`});
+    st.push({kind:'frac',pts:[1,0],need:d.n,prompt:`Spin the spinner at least <b>${d.n}</b> times. What is the relative frequency of <b>${tt}</b> in your results?`,
+      check:(a,b)=>a*Q.total===Q.tcount()*b,answer:()=>`It's ${Q.tcount()}/${Q.total}.`,
+      after:()=>`In ${Q.total} spins you'd expect about ${+(Q.P*Q.total).toFixed(1)}, and you got ${Q.tcount()}. Try spinning 1000 more and watch the graph settle close to ${pStr(Q)}.`});
+  }
+  if(t==='B') st.push({kind:'cands',pts:[5,2],need:10,prompt:`It is one of these four spinners. Spin at least 10 times, then choose. More spins give better evidence!`,
+    check:v=>v===d.ans,answer:()=>`It was spinner ${'ABCD'[d.ans]}.`,reveal:true});
+  if(t==='N') st.push({kind:'counts',pts:[5],need:10,prompt:`Spin at least 10 times, then estimate how many of the ${d.parts} sections are each colour.`,reveal:true});
+  if(t==='D'){
+    st.push({kind:'dec',pts:[2,1],need:100,prompt:`Spin at least <b>100</b> times. What is the relative frequency of <b>${d.label}</b>? Give it as a decimal to 2 decimal places.`,
+      check:v=>Math.abs(v-Q.lcount(d.label)/Q.total)<=0.0051,answer:()=>`It's ${Q.lcount(d.label)}/${Q.total} = ${(Q.lcount(d.label)/Q.total).toFixed(2)}.`});
+    const L=Q.labels.length;
+    st.push({kind:'fair',pts:[3],prompt:`If the spinner were fair, each of the ${L} outcomes would have probability ${simp(1,L)} = ${(1/L).toFixed(2)}. Is Sam right? Is the spinner fair?`,
+      check:v=>v===d.fair,reveal:true,
+      answer:()=>d.fair?`The spinner was fair. Every outcome had probability ${(1/L).toFixed(2)}; any differences were just chance.`
+        :`The spinner was biased. ${d.label} really had probability ${simp(d.weights[Q.labels.indexOf(d.label)],Q.dsum)} ≈ ${Q.prob[d.label].toFixed(2)}, not ${(1/L).toFixed(2)}.`});
+  }
+  return st;
+}
+
+/* ---------- drawing ---------- */
+function spinnerSVG(secs,o={}){
+  const wsum=secs.reduce((t,s)=>t+s.w,0),r=100;
+  const pt=(a,rr)=>[rr*Math.sin(a*Math.PI/180),-rr*Math.cos(a*Math.PI/180)];
+  let a=0,h='';
+  const small=secs.length>8;
+  secs.forEach(s=>{
+    const da=360*s.w/wsum;
+    if(secs.length===1) h+=`<circle r="${r}" fill="${s.colour}"/>`;
+    else{
+      const [x0,y0]=pt(a,r),[x1,y1]=pt(a+da,r);
+      h+=`<path d="M0 0 L${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 ${da>180?1:0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z" fill="${s.colour}" stroke="#fff" stroke-width="${o.mini?2:1.6}"/>`;
+    }
+    if(!o.mini){
+      const [lx,ly]=pt(a+da/2,s.angle?58:66);
+      const txt=s.angle?`${s.w}°`:(s.num?s.label:s.label[0]);
+      const fs=s.angle?17:(small?17:22);
+      h+=`<text x="${lx.toFixed(1)}" y="${(ly+fs*0.35).toFixed(1)}" text-anchor="middle" font-size="${fs}" font-weight="800" font-family="system-ui,sans-serif" fill="${s.num?'#1d2433':'rgba(255,255,255,.95)'}" style="paint-order:stroke" stroke="${s.num?'none':'rgba(0,0,0,.25)'}" stroke-width="2" ${s.num&&(txt==='6'||txt==='9')?'text-decoration="underline"':''}>${txt}</text>`;
+    }
+    a+=da;
+  });
+  return `<svg viewBox="-104 -104 208 208" width="100%" height="100%" aria-hidden="true">${h}<circle r="${r}" fill="none" stroke="#2b2b2b" stroke-width="${o.mini?4:3}"/></svg>`;
+}
+function coverSVG(){
+  let h='';for(let i=0;i<12;i++){const a=i*30,b=a+30,p=(x)=>[100*Math.sin(x*Math.PI/180),-100*Math.cos(x*Math.PI/180)];
+    const [x0,y0]=p(a),[x1,y1]=p(b);h+=`<path d="M0 0 L${x0} ${y0} A100 100 0 0 1 ${x1} ${y1} Z" fill="${i%2?'#8f97a6':'#a7aebb'}"/>`}
+  return `<svg viewBox="-104 -104 208 208" width="100%" height="100%">${h}<circle r="100" fill="none" stroke="#2b2b2b" stroke-width="3"/></svg>`;
+}
+
+/* ---------- render ---------- */
+function renderSpinnerTab(){
+  const app=document.getElementById('app');
+  const free=SP.level==='free';
+  const prog=SP.progress[SP.level];
+  if(!SP.Q) SP.Q=spBuild(free?{type:'F',secs:spFreeSecs()}:SP_LEVELS[SP.level][SP.qi]);
+  const Q=SP.Q,d=Q.def;
+  app.innerHTML=`
+  <div class="toolbar">
+    <div class="seg" id="splevels">
+      <button data-l="foundation" class="${SP.level==='foundation'?'on':''}">Foundation</button>
+      <button data-l="higher" class="${SP.level==='higher'?'on':''}">Higher</button>
+      <button data-l="free" class="${free?'on':''}">Make your own</button>
+    </div>
+    ${free?'':`<div class="bubbles">${prog.map((v,i)=>`<button class="bub ${i===SP.qi?'cur':''} ${v===null?'':(v>=SP_OK?'ok':'part')}" data-q="${i}">${i+1}</button>`).join('')}</div>`}
+    <div class="score" id="spscore">${free?'Practice mode':`Score: ${prog.reduce((t,v)=>t+(v||0),0)} / ${SP_MAX*10}`}</div>
+  </div>
+  <div class="card"><h3 style="margin-bottom:4px">${free?'Make your own spinner':`Question ${SP.qi+1}`}</h3>${spIntro()}</div>
+  <div class="splayout">
+    <section class="card spcard">
+      <div class="spinwrap">
+        <div class="spdisc" id="spdisc" style="transform:rotate(${Q.rot}deg)">
+          <div class="spface" id="spface" style="${Q.hidden?'display:none':''}">${spinnerSVG(Q.secs)}</div>
+          <div class="spface" id="spcover" style="${Q.hidden?'':'display:none'}">${coverSVG()}</div>
+        </div>
+        <div class="spq-mark" id="spmark" style="${Q.hidden?'':'display:none'}">?</div>
+        <div class="sphub"></div>
+        <svg class="sppointer" viewBox="0 0 30 34"><path d="M2 2 L28 2 L15 32 Z" fill="#222" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="landed" id="splanded">${Q.last?landedHTML(Q.last):'<span class="hint">Press Spin!</span>'}</div>
+      <div class="spbtns">
+        <button class="primary" data-n="1">Spin</button><button data-n="10">Spin ×10</button><button data-n="100">×100</button><button data-n="1000">×1000</button>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:6px"><button id="spclear" class="small">Clear results</button></div>
+    </section>
+    <section class="card" id="spsteps"></section>
+  </div>
+  <section class="card"><h3>Results <span class="small" id="sptotal" style="font-weight:600"></span></h3>
+    <div id="sptable" class="gridwrap"></div>
+    <div id="spchart" style="margin-top:12px"></div>
+  </section>`;
+  app.querySelectorAll('#splevels button').forEach(b=>b.onclick=()=>{SP.level=b.dataset.l;SP.qi=0;spLoad()});
+  app.querySelectorAll('.bub').forEach(b=>b.onclick=()=>{SP.qi=+b.dataset.q;spLoad()});
+  app.querySelectorAll('.spbtns button').forEach(b=>b.onclick=()=>spSpin(+b.dataset.n));
+  document.getElementById('spclear').onclick=()=>{if(SP.busy)return;Object.keys(Q.counts).forEach(k=>Q.counts[k]=0);Q.hist=[];Q.total=0;Q.last=null;document.getElementById('splanded').innerHTML='<span class="hint">Press Spin!</span>';spResults();spReq()};
+  spRenderSteps();spResults();spButtons();
+}
+function spLoad(){SP.busy=false;SP.Q=null;renderSpinnerTab();scrollTopPage()}
+function spIntro(){
+  const Q=SP.Q,d=Q.def;
+  const t=d.type;
+  if(t==='F') return `<p class="hint">Choose how many equal sections of each colour, then spin to see how the results compare with the probabilities.</p>`;
+  if(t==='A') return `<p class="hint">${Q.secs.some(s=>s.angle)?'The angles of the sectors are shown on the spinner.':'All the sections of this spinner are the same size.'} Answer the questions, then test them by spinning.</p>`;
+  if(t==='B') return `<p class="hint">This spinner is hidden! Spin it to collect evidence, then work out which spinner it is.</p>`;
+  if(t==='N') return `<p class="hint">This spinner is hidden. It has <b>${d.parts}</b> equal sections, each coloured red, blue, green or yellow. Spin it to collect evidence.</p>`;
+  if(t==='C') return `<p class="hint">The table shows the probability that this spinner lands on each colour. The spinner stays hidden until you find <i>x</i>.</p>
+    <table class="ptab"><tr><th>Colour</th>${d.table.map(([l])=>`<td><span class="sw" style="background:${SC[l]}"></span>${l}</td>`).join('')}</tr>
+    <tr><th>Probability</th>${d.table.map(([,p])=>`<td>${p}</td>`).join('')}</tr></table>`;
+  if(t==='D') return `<p class="hint">Sam says this spinner is <b>fair</b>. It could be weighted, so you can't tell just by looking. Test it!</p>`;
+}
+function landedHTML(i){const s=SP.Q.secs[i];return `Landed on <span class="lchip" style="background:${s.colour};color:${s.num?'#1d2433':'#fff'}">${s.label}</span>`}
+
+/* ---------- steps ---------- */
+function spInput(st,i){
+  const Q=SP.Q;
+  if(st.kind==='frac') return `<span class="frac"><input id="spa${i}" inputmode="numeric"><span class="bar"></span><input id="spb${i}" inputmode="numeric"></span>`;
+  if(st.kind==='int'||st.kind==='dec') return `<input class="spnum" id="spa${i}" inputmode="decimal">`;
+  if(st.kind==='cands') return `<div class="cands">${Q.def.cands.map((c,k)=>`<button class="cand" data-k="${k}"><span class="cmini">${spinnerSVG(c,{mini:true})}</span>${'ABCD'[k]}</button>`).join('')}</div>`;
+  if(st.kind==='counts') return `<div class="counts">${Object.keys(Q.def.counts).map(l=>`<label><span class="sw" style="background:${SC[l]}"></span>${l}<input type="number" min="0" max="${Q.def.parts}" value="0" data-l="${l}"></label>`).join('')}<span class="small" id="spcsum"></span></div>`;
+  if(st.kind==='fair') return `<div class="seg fairseg"><button data-v="1">Fair</button><button data-v="0">Biased</button></div>`;
+}
+function spRenderSteps(){
+  const Q=SP.Q,box=document.getElementById('spsteps');
+  if(Q.type==='F'){
+    box.innerHTML=`<h3>Build your spinner</h3><div class="counts">${Object.keys(SC).map(l=>`<label><span class="sw" style="background:${SC[l]}"></span>${l}<input type="number" min="0" max="12" value="${SP.free[l]}" data-l="${l}"></label>`).join('')}</div>
+      <div class="row"><button class="primary" id="spfree">Make spinner</button><span class="msg" id="spfm"></span></div>
+      <p class="hint" style="margin-top:12px">Each section is equally likely, so the probability of a colour is <i>number of sections ÷ total sections</i>. The dashed lines on the graph show these probabilities.</p>`;
+    document.getElementById('spfree').onclick=()=>{
+      const v={};let tot=0;box.querySelectorAll('.counts input').forEach(inp=>{const n=Math.max(0,Math.min(12,Math.round(+inp.value||0)));v[inp.dataset.l]=n;tot+=n});
+      const m=document.getElementById('spfm');
+      if(tot<2||tot>24){m.className='msg bad';m.textContent='Use between 2 and 24 sections in total.';return}
+      SP.free=v;spLoad();
+    };
+    return;
+  }
+  let h=Q.steps.map((st,i)=>{
+    const m=Q.msgs[i];
+    const cls=i<Q.si?'done':(i>Q.si?'locked':'');
+    return `<div class="spstep ${cls}" id="sps${i}">
+      <div class="spq"><span class="num">${i+1}</span><div>${st.prompt}</div></div>
+      ${i<Q.si?'':`<div class="row">${spInput(st,i)}${st.kind==='fair'?'':`<button class="primary" id="spc${i}">Check</button>`}</div>`}
+      <div class="msg ${m?m.c:''}" id="spm${i}" style="margin-top:6px">${m?m.t:''}</div>
+      ${i===Q.si?`<div class="hint" id="spn${i}"></div>`:''}</div>`;
+  }).join('');
+  if(Q.done){
+    const tot=Q.pts.reduce((t,v)=>t+(v||0),0);
+    h+=`<div class="spdone"><div class="banner good" style="margin:0">Question complete: ${tot} / ${SP_MAX} points</div>
+      <div class="row">${SP.qi<9?`<button class="primary" id="spnext">Next question →</button>`:`<span class="msg good">Last question! Final score: ${SP.progress[SP.level].reduce((t,v)=>t+(v||0),0)} / ${SP_MAX*10}</span>`}</div></div>`;
+  }
+  box.innerHTML=h;
+  const nx=document.getElementById('spnext');if(nx)nx.onclick=()=>{SP.qi++;spLoad()};
+  if(Q.done) return;
+  const i=Q.si,st=Q.steps[i];
+  const c=document.getElementById('spc'+i);if(c)c.onclick=()=>spCheck(i);
+  box.querySelectorAll(`#sps${i} input`).forEach(inp=>inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&st.kind!=='counts')spCheck(i)}));
+  if(st.kind==='cands') box.querySelectorAll('.cand').forEach(b=>b.onclick=()=>{box.querySelectorAll('.cand').forEach(x=>x.classList.toggle('sel',x===b))});
+  if(st.kind==='fair') box.querySelectorAll('.fairseg button').forEach(b=>b.onclick=()=>{if(SP.Q.total<(st.need||0))return;spCheck(i,b.dataset.v==='1')});
+  if(st.kind==='counts'){const upd=()=>{let s=0;box.querySelectorAll('.counts input').forEach(x=>s+=+x.value||0);document.getElementById('spcsum').textContent=`Total: ${s} / ${Q.def.parts}`};box.querySelectorAll('.counts input').forEach(x=>x.oninput=upd);upd()}
+  spReq();
+}
+function spReq(){
+  const Q=SP.Q;if(!Q||Q.done||Q.type==='F')return;
+  const st=Q.steps[Q.si],n=document.getElementById('spn'+Q.si);if(!n)return;
+  const need=st.need||0,ok=Q.total>=need;
+  const c=document.getElementById('spc'+Q.si);if(c)c.disabled=!ok;
+  document.querySelectorAll('.fairseg button').forEach(b=>b.disabled=!ok);
+  n.textContent=need?(ok?`Spins so far: ${Q.total}.`:`Spins so far: ${Q.total} of at least ${need}. Use the spin buttons.`):'';
+}
+function spCheck(i,val){
+  const Q=SP.Q,st=Q.steps[i];
+  if(i!==Q.si||Q.done||Q.total<(st.need||0))return;
+  const m=document.getElementById('spm'+i);
+  const bad=t=>{m.className='msg bad';m.textContent=t};
+  let ok;
+  if(st.kind==='frac'){
+    const as=document.getElementById('spa'+i).value.trim(),bs=document.getElementById('spb'+i).value.trim();
+    const a=+as,b=+bs;
+    if(as===''||bs===''||!Number.isInteger(a)||!Number.isInteger(b)||b<=0)return bad('Enter a whole number on the top and the bottom.');
+    ok=st.check(a,b);
+  } else if(st.kind==='int'||st.kind==='dec'){
+    const s=document.getElementById('spa'+i).value.trim();const v=+s;
+    if(s===''||isNaN(v))return bad('Enter a number.');
+    if(st.kind==='int'&&!Number.isInteger(v))return bad('Enter a whole number.');
+    ok=st.check(v);
+  } else if(st.kind==='cands'){
+    const sel=document.querySelector('.cand.sel');if(!sel)return bad('Click a spinner first.');
+    ok=st.check(+sel.dataset.k);
+  } else if(st.kind==='fair'){
+    ok=st.check(val);
+  } else if(st.kind==='counts'){
+    const g={};let s=0;document.querySelectorAll('.counts input').forEach(x=>{g[x.dataset.l]=Math.round(+x.value||0);s+=g[x.dataset.l]});
+    if(s!==Q.def.parts)return bad(`Your sections must add up to ${Q.def.parts}.`);
+    let err=0;Object.entries(Q.def.counts).forEach(([l,c])=>err+=Math.abs((g[l]||0)-c));
+    const p=Math.max(0,5-err);Q.pts[i]=p;
+    Q.msgs[i]={c:err===0?'good':(p>0?'warn':'bad'),t:(err===0?'Exactly right! +5 points':`Close${p?'':' but no points'}: you were ${err/2} section${err===2?'':'s'} out. +${p} point${p===1?'':'s'}`)+`. It was ${Object.entries(Q.def.counts).map(([l,c])=>`${c} ${l.toLowerCase()}`).join(', ')}.`};
+    return spAdvance(i);
+  }
+  Q.tries[i]=(Q.tries[i]||0)+1;
+  const tr=Q.tries[i];
+  if(ok){
+    const p=st.pts[tr-1]||0;Q.pts[i]=p;
+    Q.msgs[i]={c:'good',t:`Correct!${p?` +${p} point${p>1?'s':''}.`:''}${st.kind==='fair'?' '+st.answer():''}${st.after?' '+st.after():''}`};
+    return spAdvance(i);
+  }
+  if(tr<st.pts.length){
+    const hint=st.kind==='cands'?'Not that one. Look at which colour comes up most often. One more try.':
+      (st.kind==='frac'&&st.need?'Not quite. Relative frequency = number of times it happened ÷ total number of spins. One more try.':'Not quite. One more try.');
+    return bad(hint);
+  }
+  Q.pts[i]=0;
+  Q.msgs[i]={c:'warn',t:(st.kind==='fair'?'Not this time. ':'')+st.answer()+(st.after?' '+st.after():'')};
+  spAdvance(i);
+}
+function spAdvance(i){
+  const Q=SP.Q,st=Q.steps[i];
+  if(st.reveal&&Q.hidden){Q.hidden=false;document.getElementById('spface').style.display='';document.getElementById('spcover').style.display='none';document.getElementById('spmark').style.display='none';
+    if(Q.last!=null)document.getElementById('splanded').innerHTML=landedHTML(Q.last)}
+  Q.si=i+1;
+  if(Q.si>=Q.steps.length){
+    Q.done=true;
+    if(Q.hidden){Q.hidden=false;document.getElementById('spface').style.display='';document.getElementById('spcover').style.display='none';document.getElementById('spmark').style.display='none'}
+    const tot=Q.pts.reduce((t,v)=>t+(v||0),0),pr=SP.progress[SP.level],prev=pr[SP.qi];
+    pr[SP.qi]=prev===null?tot:Math.max(prev,tot);
+    document.getElementById('spscore').textContent=`Score: ${pr.reduce((t,v)=>t+(v||0),0)} / ${SP_MAX*10}`;
+    document.querySelectorAll('.bub').forEach((b,k)=>{const v=pr[k];b.classList.toggle('ok',v!==null&&v>=SP_OK);b.classList.toggle('part',v!==null&&v<SP_OK)});
+  }
+  spRenderSteps();spResults();
+}
+
+/* ---------- spinning ---------- */
+function spDraw(Q){let r=Math.random()*Q.dsum;for(let i=0;i<Q.draw.length;i++){r-=Q.draw[i];if(r<0)return i}return Q.draw.length-1}
+function spButtons(){document.querySelectorAll('.spbtns button,#spclear').forEach(b=>b.disabled=SP.busy)}
+function spSpin(n){
+  const Q=SP.Q;if(SP.busy||!Q)return;
+  SP.busy=true;spButtons();
+  const res=[];for(let k=0;k<n;k++)res.push(spDraw(Q));
+  const last=res[res.length-1];
+  const a0=Q.starts[last],a1=Q.starts[last+1],mg=Math.min(5,(a1-a0)*0.2);
+  const t=a0+mg+Math.random()*(a1-a0-2*mg);
+  const turns=n===1?5:(n===10?3:2),dur=n===1?2.2:(n===10?1.3:0.9);
+  const want=(360-t)%360;
+  let target=Q.rot-(Q.rot%360)+360*turns+want;
+  if(target<Q.rot+360*turns-1)target+=360;
+  Q.rot=target;
+  const disc=document.getElementById('spdisc');
+  disc.style.transition=`transform ${dur}s cubic-bezier(.12,.7,.18,1)`;
+  disc.style.transform=`rotate(${target}deg)`;
+  setTimeout(()=>{
+    res.forEach(i=>{const l=Q.secs[i].label;Q.counts[l]++;Q.hist.push(Q.labels.indexOf(l));Q.total++});
+    Q.last=last;
+    if(SP.Q!==Q||activeTab!=='spinner'){SP.busy=false;return}
+    SP.busy=false;
+    document.getElementById('splanded').innerHTML=Q.hidden?`Landed on <span class="lchip" style="background:${Q.secs[last].colour};color:${Q.secs[last].num?'#1d2433':'#fff'}">${Q.secs[last].label}</span>`:landedHTML(last);
+    spResults();spReq();spButtons();
+  },dur*1000+60);
+}
+
+/* ---------- results ---------- */
+function spShowRef(){
+  const Q=SP.Q;
+  if(Q.type==='F')return true;
+  if(Q.type==='A'||Q.type==='C')return Q.si>0;
+  return Q.done;
+}
+function spResults(){
+  const Q=SP.Q,T=Q.total;
+  document.getElementById('sptotal').textContent=`· ${T} spin${T===1?'':'s'}`;
+  const tgt=Q.def.target;
+  const col=l=>SC[l]||NUMCOLS[(+l-1)%12];
+  let h=`<table class="ftab"><tr><th>Outcome</th>${Q.labels.map(l=>`<td class="${tgt&&tgt.includes(l)?'tg':''}"><span class="sw" style="background:${col(l)}"></span>${l}</td>`).join('')}${tgt?`<td class="tg tsum">${Q.def.tt}</td>`:''}</tr>
+   <tr><th>Frequency</th>${Q.labels.map(l=>`<td class="${tgt&&tgt.includes(l)?'tg':''}">${Q.counts[l]}</td>`).join('')}${tgt?`<td class="tg tsum">${Q.tcount()}</td>`:''}</tr>
+   <tr><th>Relative frequency</th>${Q.labels.map(l=>`<td class="${tgt&&tgt.includes(l)?'tg':''}">${T?(Q.counts[l]/T).toFixed(2):'–'}</td>`).join('')}${tgt?`<td class="tg tsum">${T?(Q.tcount()/T).toFixed(2):'–'}</td>`:''}</tr></table>`;
+  document.getElementById('sptable').innerHTML=h;
+  spChart();
+}
+function spChart(){
+  const Q=SP.Q,T=Q.total,el=document.getElementById('spchart');
+  if(!T){el.innerHTML='<p class="hint">Spin the spinner to see how the relative frequency changes.</p>';return}
+  const ref=spShowRef(),d=Q.def;
+  let series;
+  if(d.target) series=[{name:d.tt,col:'#6a3fb5',idx:d.target.map(l=>Q.labels.indexOf(l)),p:ref?Q.P:null}];
+  else if(Q.type==='D') series=[{name:d.label,col:SC[d.label]||'#6a3fb5',idx:[Q.labels.indexOf(d.label)],p:ref?Q.prob[d.label]:null}];
+  else series=Q.labels.map((l,k)=>({name:l,col:SC[l]||NUMCOLS[k%12],idx:[k],p:ref?Q.prob[l]:null}));
+  const W=680,H=240,L=44,Rr=14,Tp=12,B=34,pw=W-L-Rr,ph=H-Tp-B;
+  const X=n=>L+pw*n/T,Y=v=>Tp+ph*(1-v);
+  const step=Math.max(1,Math.ceil(T/320));
+  const cum=series.map(()=>0),pts=series.map(()=>[]);
+  for(let j=1;j<=T;j++){
+    const o=Q.hist[j-1];
+    series.forEach((s,k)=>{if(s.idx.includes(o))cum[k]++});
+    if(j%step===0||j===T||j<=20) series.forEach((s,k)=>pts[k].push(`${X(j).toFixed(1)},${Y(cum[k]/j).toFixed(1)}`));
+  }
+  let g='';
+  [0,.25,.5,.75,1].forEach(v=>g+=`<line x1="${L}" x2="${W-Rr}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e3e7ee"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="#5b6475">${v}</text>`);
+  [0,Math.round(T/2),T].forEach((n,k)=>{if(k===1&&T<4)return;g+=`<text x="${X(n)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="#5b6475">${n}</text>`});
+  g+=`<text x="${L+pw/2}" y="${H-4}" text-anchor="middle" font-size="11.5" fill="#5b6475">Number of spins</text>`;
+  g+=`<text transform="translate(12 ${Tp+ph/2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="#5b6475">Relative frequency</text>`;
+  if(Q.type==='D'&&Q.done){const f=1/Q.labels.length;g+=`<line x1="${L}" x2="${W-Rr}" y1="${Y(f)}" y2="${Y(f)}" stroke="#888" stroke-dasharray="2 4" stroke-width="1.5"/><text x="${W-Rr-4}" y="${Y(f)-5}" text-anchor="end" font-size="11" fill="#666">if fair</text>`}
+  series.forEach((s,k)=>{
+    if(s.p!=null) g+=`<line x1="${L}" x2="${W-Rr}" y1="${Y(s.p)}" y2="${Y(s.p)}" stroke="${s.col}" stroke-dasharray="7 5" stroke-width="1.6" opacity=".75"/>`;
+    g+=`<polyline points="${pts[k].join(' ')}" fill="none" stroke="${s.col}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  });
+  g+=`<line x1="${L}" x2="${L}" y1="${Tp}" y2="${Tp+ph}" stroke="#9aa3b2"/><line x1="${L}" x2="${W-Rr}" y1="${Tp+ph}" y2="${Tp+ph}" stroke="#9aa3b2"/>`;
+  const leg=series.map(s=>`<span class="lg"><i style="background:${s.col}"></i>${s.name}</span>`).join('')+(series.some(s=>s.p!=null)?`<span class="lg"><i class="dash"></i>probability</span>`:'');
+  el.innerHTML=`<div class="legend">${leg}</div><svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:900px;display:block">${g}</svg>`;
+}
+
+/* ================= GALTON BOARD ================= */
+const GB_LEVELS={
+  foundation:[{n:2,t:[1],N:40},{n:3,t:[0],N:80},{n:3,t:[2],N:40},{n:4,t:[2],N:80},{n:4,t:[0,4],N:160},
+    {n:3,t:[0,1,2],N:80,tt:'not D'},{n:4,t:[0],N:320},{n:5,t:[2],N:64},{n:5,t:[0,5],N:160},{n:6,t:[3],N:128}],
+  higher:[{n:5,t:[2,3],N:200},{n:6,t:[0,1,2],N:320},{n:2,p:.7,t:[1],N:200},{n:7,t:[3,4],N:256},{n:3,p:.6,t:[3],N:500},
+    {n:6,t:[0,1,5,6],N:320,tt:'not in C, D or E'},{n:2,p:.2,t:[0,1],N:250},{n:8,t:[4],N:256},{n:3,p:.3,t:[0],N:1000},{n:4,t:[1,3],N:300}]
+};
+const GB_MAX=10,GB_OK=7,LET='ABCDEFGHIJK';
+const GB={level:'foundation',qi:0,Q:null,busy:false,balls:[],raf:null,
+  progress:{foundation:Array(10).fill(null),higher:Array(10).fill(null)},free:{n:6,p:.5}};
+const binom=(n,k)=>{let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;return Math.round(r)};
+const r6=v=>Math.round(v*1e6)/1e6;
+const ttOf=t=>t.map(k=>LET[k]).join(t.length>2?', ':' or ').replace(/, (?=[^,]*$)/,' or ');
+
+function gbBuild(def){
+  const n=def.n,biased=def.p!=null&&def.p!==.5,p=def.p??.5;
+  const tri=[];for(let r=0;r<=n;r++){const row=[];for(let k=0;k<=r;k++)row.push(biased?r6(binom(r,k)*p**k*(1-p)**(r-k)):binom(r,k));tri.push(row)}
+  const prob=R(0,n).map(k=>biased?tri[n][k]:binom(n,k)/2**n);
+  const Q={def,n,p,biased,tri,prob,free:!!def.free,counts:Array(n+1).fill(0),total:0,pick:null,locked:false,snap:null,
+    maxP:Math.max(...prob),triChecks:0,triDone:false,pickPts:0,mostPts:0,triPts:0,probPts:0,expPts:0,probTries:0,probDone:false,expTries:0,expDone:false,done:false};
+  if(def.t){
+    Q.tt=def.tt||ttOf(def.t);
+    if(biased) Q.P=r6(def.t.reduce((s,k)=>s+tri[n][k],0));
+    else{Q.Pk=def.t.reduce((s,k)=>s+tri[n][k],0);Q.Pd=2**n;Q.P=Q.Pk/Q.Pd}
+    Q.E=Math.round(Q.P*def.N);
+    const pos=[];for(let r=1;r<=n;r++)for(let k=0;k<=r;k++)pos.push([r,k]);
+    const sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+    let bl;
+    if(biased){const rest=sh(pos.filter(([r])=>r<n));bl=[...pos.filter(([r])=>r===n),...rest.slice(0,1)]}
+    else{const cnt=Math.max(2,Math.round(pos.length*.45));bl=sh(pos.slice()).slice(0,cnt);if(!bl.some(([r])=>r===n)){const b=pos.filter(([r])=>r===n);bl[0]=b[Math.floor(Math.random()*b.length)]}}
+    Q.blanks=new Set(bl.map(([r,k])=>r+','+k));
+  }
+  return Q;
+}
+function gbDef(){return GB.level==='free'?{n:GB.free.n,p:GB.free.p,free:true}:GB_LEVELS[GB.level][GB.qi]}
+
+/* ---------- geometry ---------- */
+function gbGeom(n){
+  const W=640,dx=Math.min(64,560/(n+1)),dy=Math.min(42,300/n),top=34,pegR=Math.max(4,Math.min(6,dx/9)),ballR=Math.max(4.5,Math.min(8,dx/7));
+  const binTop=top+n*dy+6,binH=190,H=binTop+binH+30,cx=W/2;
+  return {W,H,dx,dy,top,pegR,ballR,binTop,binH,cx,
+    peg:(r,k)=>[cx+(k-r/2)*dx,top+r*dy],binX:k=>cx+(k-n/2)*dx};
+}
+function gbBoardSVG(){
+  const Q=GB.Q,n=Q.n,G=gbGeom(n);GB.G=G;
+  let h=`<rect x="0" y="0" width="${G.W}" height="${G.H}" rx="16" fill="url(#gbwood)"/>`;
+  // funnel
+  h+=`<path d="M${G.cx-40} 4 L${G.cx-10} ${G.top-14} M${G.cx+40} 4 L${G.cx+10} ${G.top-14}" stroke="#6d4c2f" stroke-width="4" stroke-linecap="round"/>`;
+  // bins
+  const bl=G.binX(0)-G.dx/2,br=G.binX(n)+G.dx/2,bot=G.binTop+G.binH;
+  for(let k=0;k<=n;k++){
+    const x=G.binX(k);
+    h+=`<rect class="gbbin" id="gbhit${k}" data-k="${k}" x="${x-G.dx/2+1}" y="${G.binTop}" width="${G.dx-2}" height="${G.binH+26}" rx="4" fill="transparent"/>`;
+    h+=`<rect id="gbbar${k}" x="${x-G.dx/2+5}" y="${bot}" width="${G.dx-10}" height="0" rx="3" fill="url(#gbball)" pointer-events="none"/>`;
+    h+=`<line id="gbexp${k}" x1="${x-G.dx/2+3}" x2="${x+G.dx/2-3}" y1="${bot}" y2="${bot}" stroke="#1d2433" stroke-width="2.5" stroke-dasharray="5 3" opacity="0" pointer-events="none"/>`;
+    h+=`<text id="gbcnt${k}" x="${x}" y="${bot-6}" text-anchor="middle" font-size="${G.dx<50?11:13}" font-weight="800" fill="#1d2433" pointer-events="none"></text>`;
+    h+=`<text x="${x}" y="${bot+20}" text-anchor="middle" font-size="16" font-weight="800" fill="#fff" pointer-events="none">${LET[k]}</text>`;
+  }
+  for(let k=0;k<=n+1;k++){const x=bl+k*G.dx;h+=`<line x1="${x}" x2="${x}" y1="${G.binTop}" y2="${bot}" stroke="#5a3d22" stroke-width="3"/>`}
+  h+=`<line x1="${bl}" x2="${br}" y1="${bot}" y2="${bot}" stroke="#5a3d22" stroke-width="4"/>`;
+  // pegs
+  for(let r=0;r<n;r++)for(let k=0;k<=r;k++){const [x,y]=G.peg(r,k);h+=`<circle cx="${x}" cy="${y}" r="${G.pegR}" fill="url(#gbpeg)"/>`}
+  h+=`<g id="gbballs"></g>`;
+  return `<svg id="gbsvg" viewBox="0 0 ${G.W} ${G.H}" width="100%" style="max-width:${G.W}px;display:block;margin:0 auto">
+   <defs><linearGradient id="gbwood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8a274"/><stop offset="1" stop-color="#a77d4e"/></linearGradient>
+   <radialGradient id="gbpeg" cx=".35" cy=".35"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#c9ced6"/><stop offset="1" stop-color="#6b7280"/></radialGradient>
+   <radialGradient id="gbballg" cx=".35" cy=".35"><stop offset="0" stop-color="#e6fbfd"/><stop offset=".45" stop-color="#26a6b5"/><stop offset="1" stop-color="#00616b"/></radialGradient>
+   <linearGradient id="gbball" x1="0" x2="1"><stop offset="0" stop-color="#2bb3c2"/><stop offset="1" stop-color="#00838f"/></linearGradient></defs>${h}</svg>`;
+}
+function gbBars(){
+  const Q=GB.Q,G=GB.G;if(!G||!document.getElementById('gbbar0'))return;
+  const bot=G.binTop+G.binH,room=G.binH-24;
+  const showExp=Q.free||Q.done;
+  const expMax=showExp?Math.max(...Q.prob)*Q.total:0;
+  const scale=Math.max(8,...Q.counts,expMax);
+  Q.counts.forEach((c,k)=>{
+    const h=room*c/scale,b=document.getElementById('gbbar'+k);
+    b.setAttribute('y',bot-h);b.setAttribute('height',h);
+    const t=document.getElementById('gbcnt'+k);t.textContent=c||'';t.setAttribute('y',bot-h-6);
+    const e=document.getElementById('gbexp'+k);
+    if(showExp&&Q.total){const ey=bot-room*Q.prob[k]*Q.total/scale;e.setAttribute('y1',ey);e.setAttribute('y2',ey);e.setAttribute('opacity','.85')}else e.setAttribute('opacity','0');
+    document.getElementById('gbhit'+k).classList.toggle('picked',Q.pick===k);
+  });
+  const tc=document.getElementById('gbtotal');if(tc)tc.textContent=`Balls dropped: ${Q.total}`;
+  const nd=document.getElementById('gbneed');if(nd&&!Q.free&&!Q.snap)nd.textContent=`Drop at least ${Q.def.N} balls. So far: ${Q.total}.`;
+}
+
+/* ---------- dropping ---------- */
+function gbPath(){const Q=GB.Q;let k=0;const steps=[];for(let r=0;r<Q.n;r++){const right=Math.random()<Q.p;steps.push(right);if(right)k++}return {k,steps}}
+function gbLand(k){
+  const Q=GB.Q;Q.counts[k]++;Q.total++;
+  if(!Q.free&&!Q.snap&&Q.total>=Q.def.N) gbSnap();
+}
+function gbDrop(m){
+  const Q=GB.Q;if(GB.busy||!Q||(!Q.free&&!Q.locked))return;
+  if(m>=1000){for(let i=0;i<m;i++)gbLand(gbPath().k);gbBars();gbAfterDrop();return}
+  GB.busy=true;gbButtons();
+  const G=GB.G,layer=document.getElementById('gbballs');
+  const seg=m===1?150:(m===10?110:70),gap=m===1?0:(m===10?160:45);
+  const now=performance.now();
+  for(let i=0;i<m;i++){
+    const {k,steps}=gbPath();
+    const pts=[[G.cx,4]];let pos=0;
+    for(let r=0;r<Q.n;r++){const [x,y]=G.peg(r,pos);pts.push([x,y-G.pegR-G.ballR]);if(steps[r])pos++}
+    const fx=G.binX(k),bot=G.binTop+G.binH;
+    pts.push([fx,G.binTop+8]);pts.push([fx,bot-G.ballR-2]);
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('r',G.ballR);c.setAttribute('fill','url(#gbballg)');c.setAttribute('cx',G.cx);c.setAttribute('cy',-20);
+    layer.appendChild(c);
+    GB.balls.push({c,pts,k,t0:now+i*gap,seg});
+  }
+  if(!GB.raf)GB.raf=requestAnimationFrame(gbTick);
+}
+function gbTick(t){
+  GB.raf=null;
+  const done=[];
+  GB.balls.forEach(b=>{
+    const e=(t-b.t0)/b.seg;if(e<0)return;
+    const i=Math.floor(e),f=e-i;
+    if(i>=b.pts.length-1){done.push(b);return}
+    const [x0,y0]=b.pts[i],[x1,y1]=b.pts[i+1];
+    const bounce=i>0&&i<b.pts.length-2?Math.sin(Math.PI*f)*GB.G.dy*.35:0;
+    b.c.setAttribute('cx',x0+(x1-x0)*f);b.c.setAttribute('cy',y0+(y1-y0)*(i===0?f*f:f)-bounce);
+  });
+  if(done.length){done.forEach(b=>{b.c.remove();gbLand(b.k)});GB.balls=GB.balls.filter(b=>!done.includes(b));gbBars()}
+  if(GB.balls.length)GB.raf=requestAnimationFrame(gbTick);
+  else{GB.busy=false;gbButtons();gbAfterDrop()}
+}
+function gbStop(){
+  if(GB.raf)cancelAnimationFrame(GB.raf);GB.raf=null;
+  if(GB.Q)GB.balls.forEach(b=>gbLand(b.k));GB.balls=[];GB.busy=false;
+}
+function gbButtons(){
+  const Q=GB.Q;const en=!GB.busy&&(Q.free||Q.locked);
+  document.querySelectorAll('.gbdrop button').forEach(b=>b.disabled=!en);
+  const cl=document.getElementById('gbclear');if(cl)cl.disabled=GB.busy;
+}
+function gbAfterDrop(){
+  const Q=GB.Q;
+  const m=document.getElementById('gbneed');
+  if(m&&!Q.free&&!Q.snap) m.textContent=`Drop at least ${Q.def.N} balls. So far: ${Q.total}.`;
+}
+function gbSnap(){
+  const Q=GB.Q;Q.snap=[...Q.counts];
+  const mx=Math.max(...Q.snap),leaders=R(0,Q.n).filter(k=>Q.snap[k]===mx);
+  Q.mostPts=leaders.includes(Q.pick)?1:0;
+  const lead=leaders.map(k=>LET[k]).join(' and ');
+  const mine=Q.pick;
+  Q.snapMsg=Q.mostPts?`After ${Q.def.N} balls, bin ${lead} ${leaders.length>1?'have':'has'} the most (${mx}), and that includes your bin! +1 point.`
+    :`After ${Q.def.N} balls, bin ${lead} ${leaders.length>1?'have':'has'} the most (${mx}). Your bin ${LET[mine]} has ${Q.snap[mine]}.`;
+  setTimeout(()=>{if(GB.Q!==Q||activeTab!=='galton')return;
+    const el=document.getElementById('gbneed');if(el){el.className='banner '+(Q.mostPts?'good':'neutral');el.innerHTML=Q.snapMsg+' <span style="font-weight:600">Now work out the probabilities below.</span>'}
+    document.getElementById('gbanalysis').style.display='';
+    setTimeout(()=>scrollToEl(document.getElementById('gbanalysis'),'start'),400);
+  },GB.busy?0:10);
+}
+
+/* ---------- render ---------- */
+function renderGaltonTab(){
+  gbStop();
+  const app=document.getElementById('app');
+  const free=GB.level==='free';
+  if(!GB.Q)GB.Q=gbBuild(gbDef());
+  const Q=GB.Q,d=Q.def,prog=GB.progress[GB.level];
+  const intro=Q.biased?`This board is <b>tilted</b>. At every peg the ball goes <b>right</b> with probability <b>${Q.p}</b> and <b>left</b> with probability <b>${r6(1-Q.p)}</b>.`
+    :`At every peg the ball is equally likely to bounce left or right.`;
+  app.innerHTML=`
+  <div class="toolbar">
+    <div class="seg" id="gblevels">
+      <button data-l="foundation" class="${GB.level==='foundation'?'on':''}">Foundation</button>
+      <button data-l="higher" class="${GB.level==='higher'?'on':''}">Higher</button>
+      <button data-l="free" class="${free?'on':''}">Make your own</button>
+    </div>
+    ${free?'':`<div class="bubbles">${prog.map((v,i)=>`<button class="bub ${i===GB.qi?'cur':''} ${v===null?'':(v>=GB_OK?'ok':'part')}" data-q="${i}">${i+1}</button>`).join('')}</div>`}
+    <div class="score" id="gbscore">${free?'Practice mode':`Score: ${prog.reduce((t,v)=>t+(v||0),0)} / ${GB_MAX*10}`}</div>
+  </div>
+  <div class="card"><h3 style="margin-bottom:4px">${free?'Make your own board':`Question ${GB.qi+1}`}</h3>
+    <p class="hint" style="margin:0">Balls drop through <b>${Q.n}</b> row${Q.n>1?'s':''} of pegs and land in one of the bins ${LET[0]} to ${LET[Q.n]}. ${intro}</p>
+    ${free?`<div class="row gbfree"><label>Rows <input type="number" id="gbrows" min="1" max="10" value="${GB.free.n}"></label>
+      <label>P(right) <input type="range" id="gbp" min="0.1" max="0.9" step="0.05" value="${GB.free.p}"><b id="gbpv">${GB.free.p}</b></label>
+      <button class="primary" id="gbmake">Make board</button></div>`:''}
+  </div>
+  <section class="card">
+    ${free?'':`<div class="racehead"><h3><span class="num">1</span>Which bin will collect the most balls?</h3>
+      <span class="hint" id="gbpickhint" style="${Q.locked?'display:none':''}">Click a bin, then lock it in.</span>
+      <button class="primary" id="gblock" ${Q.pick===null||Q.locked?'disabled':''} style="${Q.locked?'display:none':''}">${Q.pick===null?'Lock in':'Lock in bin '+LET[Q.pick]}</button>
+      <span class="msg" id="gbpmsg">${Q.locked?`You picked bin ${LET[Q.pick]}.`:''}</span></div>`}
+    <div class="racebar" style="min-height:0">
+      ${free?'':'<h3 style="margin:0;font-size:1.05rem;display:flex;align-items:center;gap:8px"><span class="num">2</span>Drop the balls</h3>'}
+      <div class="gbdrop"><button class="primary" data-m="1">Drop 1</button><button data-m="10">Drop 10</button><button data-m="100">Drop 100</button><button data-m="1000">Drop 1000</button></div>
+      ${free?'<button id="gbclear">Clear</button>':''}
+      <span class="rollcount" id="gbtotal"></span>
+    </div>
+    ${free?'':`<div id="gbneed" class="${Q.snap?'banner '+(Q.mostPts?'good':'neutral'):'hint'}" style="margin-bottom:10px">${Q.snap?Q.snapMsg:`Drop at least ${d.N} balls. So far: ${Q.total}.`}</div>`}
+    <div class="gbboard">${gbBoardSVG()}</div>
+    ${free?'<p class="hint" style="text-align:center">The dashed lines show the expected number of balls in each bin.</p>':''}
+  </section>
+  ${free?'':`<div class="layout" id="gbanalysis" style="${Q.snap?'':'display:none'}">
+    <section class="card" id="gb3"><h3><span class="num">3</span>${Q.biased?'Probability of reaching each peg':'Count the routes'}</h3>
+      <p class="hint">${Q.biased?`Each number is the probability of reaching that position. Going right multiplies by ${Q.p}, going left by ${r6(1-Q.p)}. Where two routes meet, add them.`:'Each number is how many different routes lead to that position. Each number is the sum of the two above it.'}</p>
+      <div class="gbtri">${gbTriHTML()}</div>
+      <div class="row"><button class="primary" id="gbtchk">Check</button><span class="msg" id="gbtmsg"></span></div></section>
+    <div>
+      <section class="card" id="gb4"><h3><span class="num">4</span>Probability</h3>
+        <p class="hint">${Q.biased?'':`There are 2<sup>${Q.n}</sup> = ${2**Q.n} equally likely routes through the board. `}What is the probability that a ball lands in <b>${Q.tt}</b>?</p>
+        <div class="row">${Q.biased?'<span>P =</span><input class="spnum" id="gbpa" inputmode="decimal">':'<span>P =</span><span class="frac"><input id="gbpa" inputmode="numeric"><span class="bar"></span><input id="gbpb" inputmode="numeric"></span>'}
+        <button class="primary" id="gbpchk">Check</button><span class="msg" id="gbpmsg2"></span></div></section>
+      <section class="card" id="gb5"><h3><span class="num">5</span>Expected frequency</h3>
+        <p class="hint">${d.N} balls are dropped. How many would you expect to land in <b>${Q.tt}</b>?</p>
+        <div class="row"><input class="spnum" id="gbe" inputmode="numeric"><button class="primary" id="gbechk">Check</button><span class="msg" id="gbemsg"></span></div></section>
+      <section class="card" id="gbres" style="display:none"></section>
+    </div></div>`}`;
+  app.querySelectorAll('#gblevels button').forEach(b=>b.onclick=()=>{GB.level=b.dataset.l;GB.qi=0;gbLoad()});
+  app.querySelectorAll('.bub').forEach(b=>b.onclick=()=>{GB.qi=+b.dataset.q;gbLoad()});
+  app.querySelectorAll('.gbdrop button').forEach(b=>b.onclick=()=>gbDrop(+b.dataset.m));
+  if(free){
+    document.getElementById('gbp').oninput=e=>document.getElementById('gbpv').textContent=(+e.target.value).toFixed(2);
+    document.getElementById('gbmake').onclick=()=>{const n=Math.max(1,Math.min(10,Math.round(+document.getElementById('gbrows').value||6)));GB.free={n,p:r6(+document.getElementById('gbp').value)};gbLoad()};
+    document.getElementById('gbclear').onclick=()=>{if(GB.busy)return;Q.counts=Q.counts.map(()=>0);Q.total=0;gbBars()};
+  } else {
+    app.querySelectorAll('.gbbin').forEach(r=>r.onclick=()=>{if(Q.locked)return;Q.pick=+r.dataset.k;gbBars();const b=document.getElementById('gblock');b.disabled=false;b.textContent='Lock in bin '+LET[Q.pick]});
+    document.getElementById('gblock').onclick=()=>{if(Q.pick===null)return;Q.locked=true;Q.pickPts=Q.prob[Q.pick]===Q.maxP?2:0;
+      document.getElementById('gblock').style.display='none';document.getElementById('gbpickhint').style.display='none';
+      document.getElementById('gbpmsg').textContent=`You picked bin ${LET[Q.pick]}. Now drop the balls!`;gbButtons()};
+    document.getElementById('gbtchk').onclick=gbCheckTri;
+    document.getElementById('gbpchk').onclick=gbCheckProb;
+    document.getElementById('gbechk').onclick=gbCheckExp;
+    ['gbpa','gbpb'].forEach(id=>{const e=document.getElementById(id);if(e)e.onkeydown=ev=>{if(ev.key==='Enter')gbCheckProb()}});
+    document.getElementById('gbe').onkeydown=ev=>{if(ev.key==='Enter')gbCheckExp()};
+    gbSteps();
+  }
+  gbBars();gbButtons();
+}
+function gbLoad(){gbStop();GB.Q=null;renderGaltonTab();scrollTopPage()}
+function gbTriHTML(){
+  const Q=GB.Q;
+  const fmtv=v=>Q.biased?String(v):String(v);
+  return Q.tri.map((row,r)=>`<div class="gbrow">${row.map((v,k)=>{
+    const key=r+','+k;
+    if(r>0&&Q.blanks.has(key))return `<span class="gbcell blank" data-v="${v}"><input inputmode="decimal" aria-label="row ${r} position ${k+1}"></span>`;
+    return `<span class="gbcell given">${fmtv(v)}</span>`;}).join('')}</div>`).join('')+
+    `<div class="gbrow gbbinrow">${Q.tri[Q.n].map((_,k)=>`<span class="gbcell lab">${LET[k]}</span>`).join('')}</div>`;
+}
+function gbSteps(){
+  const Q=GB.Q;
+  const set=(id,on)=>{const e=document.getElementById(id);if(e)e.classList.toggle('locked',!on)};
+  set('gb4',Q.triDone);set('gb5',Q.probDone);
+}
+function gbCheckTri(){
+  const Q=GB.Q;if(Q.triDone)return;Q.triChecks++;
+  let wrong=0;
+  document.querySelectorAll('.gbcell.blank').forEach(c=>{
+    const s=c.querySelector('input').value.trim(),v=+s,ok=s!==''&&!isNaN(v)&&Math.abs(v-(+c.dataset.v))<1e-9;
+    c.classList.toggle('right',ok);c.classList.toggle('wrong',!ok);if(!ok)wrong++;
+  });
+  const m=document.getElementById('gbtmsg'),left=3-Q.triChecks;
+  if(!wrong){Q.triDone=true;Q.triPts=4-Q.triChecks;m.className='msg good';m.textContent=`All correct! +${Q.triPts} point${Q.triPts>1?'s':''}`}
+  else if(left>0){m.className='msg bad';m.textContent=`${wrong} wrong or empty. ${left} check${left>1?'s':''} left.`}
+  else{Q.triDone=true;Q.triPts=0;document.querySelectorAll('.gbcell.wrong').forEach(c=>{c.classList.remove('wrong');c.classList.add('revealed');c.querySelector('input').value=c.dataset.v});m.className='msg warn';m.textContent='Out of checks. The answers are shown in yellow.'}
+  if(Q.triDone){document.querySelectorAll('.gbcell input').forEach(i=>i.readOnly=true);gbSteps();const f=document.getElementById('gbpa');if(f)f.focus()}
+}
+function gbCheckProb(){
+  const Q=GB.Q;if(Q.probDone||!Q.triDone)return;
+  const m=document.getElementById('gbpmsg2');let ok;
+  if(Q.biased){const s=document.getElementById('gbpa').value.trim();if(s===''||isNaN(+s)){m.className='msg bad';m.textContent='Enter a decimal.';return}ok=Math.abs(+s-Q.P)<1e-9}
+  else{const a=document.getElementById('gbpa').value.trim(),b=document.getElementById('gbpb').value.trim();
+    if(a===''||b===''||!Number.isInteger(+a)||!Number.isInteger(+b)||+b<=0){m.className='msg bad';m.textContent='Enter a whole number on the top and the bottom.';return}
+    ok=(+a)*Q.Pd===Q.Pk*(+b)}
+  Q.probTries++;
+  const ans=Q.biased?`P = ${Q.def.t.map(k=>Q.tri[Q.n][k]).join(' + ')}${Q.def.t.length>1?' = '+Q.P:''}.`:`There ${Q.Pk===1?'is':'are'} ${Q.Pk} route${Q.Pk===1?'':'s'} out of ${Q.Pd}, so P = ${simp(Q.Pk,Q.Pd)}.`;
+  if(ok){Q.probDone=true;Q.probPts=Q.probTries===1?2:1;m.className='msg good';m.textContent=`Correct! +${Q.probPts} point${Q.probPts>1?'s':''}.`}
+  else if(Q.probTries<2){m.className='msg bad';m.textContent=Q.biased?'Not quite. Add the probabilities in the bottom row for those bins. One more try.':'Not quite. Add the routes to those bins, then divide by the total number of routes. One more try.'}
+  else{Q.probDone=true;Q.probPts=0;m.className='msg warn';m.textContent=ans}
+  if(Q.probDone){document.querySelectorAll('#gb4 input').forEach(i=>i.readOnly=true);gbSteps();document.getElementById('gbe').focus()}
+}
+function gbCheckExp(){
+  const Q=GB.Q;if(Q.expDone||!Q.probDone)return;
+  const s=document.getElementById('gbe').value.trim(),m=document.getElementById('gbemsg');
+  if(s===''||!Number.isInteger(+s)){m.className='msg bad';m.textContent='Enter a whole number.';return}
+  Q.expTries++;
+  if(+s===Q.E){Q.expDone=true;Q.expPts=Q.expTries===1?2:1;m.className='msg good';m.textContent=`Correct! +${Q.expPts} point${Q.expPts>1?'s':''}.`}
+  else if(Q.expTries<2){m.className='msg bad';m.textContent='Not quite. Expected number = probability × number of balls. One more try.'}
+  else{Q.expDone=true;Q.expPts=0;m.className='msg warn';m.textContent=`Expected number = ${Q.biased?Q.P:simp(Q.Pk,Q.Pd)} × ${Q.def.N} = ${Q.E}.`}
+  if(Q.expDone){document.getElementById('gbe').readOnly=true;gbFinish()}
+}
+function gbFinish(){
+  const Q=GB.Q;Q.done=true;
+  const tot=Q.pickPts+Q.mostPts+Q.triPts+Q.probPts+Q.expPts,pr=GB.progress[GB.level],prev=pr[GB.qi];
+  pr[GB.qi]=prev===null?tot:Math.max(prev,tot);
+  document.getElementById('gbscore').textContent=`Score: ${pr.reduce((t,v)=>t+(v||0),0)} / ${GB_MAX*10}`;
+  document.querySelectorAll('.bub').forEach((b,k)=>{const v=pr[k];b.classList.toggle('ok',v!==null&&v>=GB_OK);b.classList.toggle('part',v!==null&&v<GB_OK)});
+  const best=R(0,Q.n).filter(k=>Q.prob[k]===Q.maxP),bt=best.map(k=>LET[k]).join(' and ');
+  const pv=k=>Q.biased?String(Q.tri[Q.n][k]):simp(Q.tri[Q.n][k],2**Q.n);
+  const good=best.includes(Q.pick);
+  const res=document.getElementById('gbres');res.style.display='';
+  res.innerHTML=`<h3>Verdict</h3><p style="margin:0 0 8px">${good?`<b>Good choice!</b> Bin ${LET[Q.pick]} ${best.length>1?'is joint most likely':'is the most likely bin'}, with probability ${pv(Q.pick)}.`
+    :`The most likely bin${best.length>1?'s were':' was'} ${bt}, with probability ${pv(best[0])}. Your bin ${LET[Q.pick]} had ${pv(Q.pick)}.`}${Q.biased?'':' The middle bins have the most routes leading to them.'}</p>
+    <div class="pts"><span class="pt">Bin choice <b>${Q.pickPts}</b>/2</span><span class="pt">Most balls <b>${Q.mostPts}</b>/1</span><span class="pt">${Q.biased?'Probabilities':'Routes'} <b>${Q.triPts}</b>/3</span><span class="pt">Probability <b>${Q.probPts}</b>/2</span><span class="pt">Expected <b>${Q.expPts}</b>/2</span><span class="pt" style="background:var(--goodSoft)">Total <b>${tot}</b>/${GB_MAX}</span></div>
+    <p class="hint">The dashed lines on the board now show the expected number of balls in each bin. Drop 1000 more and watch the bars match them.</p>
+    <div class="row">${GB.qi<9?'<button class="primary" id="gbnext">Next question →</button>':`<span class="msg good">Last question! Final score: ${pr.reduce((t,v)=>t+(v||0),0)} / ${GB_MAX*10}</span>`}</div>`;
+  const nx=document.getElementById('gbnext');if(nx)nx.onclick=()=>{GB.qi++;gbLoad()};
+  gbBars();
+  setTimeout(()=>scrollToEl(res,'nearest'),100);
+}
+
+showTab();
+<\/script>
+</body>
+</html>
+</script>
+<script>
+/* ---------- Maths Compendium: Geometry / Statistics sections ---------- */
+(()=>{
+const STATS={horse:{tab:'tabHorse',hash:'horse-race'},spinner:{tab:'tabSpin',hash:'spinner-showdown'},galton:{tab:'tabGalton',hash:'galton-board'}};
+const TITLES={geo:'Shape and Construction interactives',stats:'Probability and Statistics interactives'};
+const frame=document.getElementById('statsFrame');
+let statsTab='horse',loaded=false;
+function loadStats(){
+  if(loaded)return;loaded=true;
+  const src=document.getElementById('statsSrc').textContent.replace(/<\\\/script/g,'</'+'script');
+  frame.srcdoc=src.replace('<head>','<head><script>window.EMBED={tab:"'+statsTab+'"}</'+'script>');
+}
+function showStatsTab(k){
+  statsTab=k;document.body.dataset.app=k;
+  for(const t in STATS)document.getElementById(STATS[t].tab).setAttribute('aria-selected',t===k);
+  if(loaded&&frame.contentWindow)frame.contentWindow.postMessage({statsTab:k},'*');
+}
+function showSection(sec){
+  document.body.dataset.section=sec;
+  document.getElementById('secGeo').setAttribute('aria-selected',sec==='geo');
+  document.getElementById('secStats').setAttribute('aria-selected',sec==='stats');
+  document.getElementById('secGeoWrap').hidden=sec!=='geo';
+  document.getElementById('secStatsWrap').hidden=sec!=='stats';
+  document.getElementById('mainTitle').textContent=TITLES[sec];
+  if(sec==='stats'){loadStats();showStatsTab(statsTab);}
+  else{const cur=document.querySelector('#secGeoWrap .apptabs [aria-selected="true"]');if(cur)cur.click();}
+}
+document.getElementById('secGeo').onclick=()=>showSection('geo');
+document.getElementById('secStats').onclick=()=>showSection('stats');
+for(const k in STATS)document.getElementById(STATS[k].tab).onclick=()=>showStatsTab(k);
+addEventListener('message',e=>{
+  const d=e.data;if(!d||e.source!==frame.contentWindow)return;
+  if(d.statsHeight)frame.style.height=Math.max(500,d.statsHeight)+'px';
+  if(d.statsScroll!=null){
+    const ftop=frame.getBoundingClientRect().top+scrollY;
+    if(d.statsScroll===0){const w=document.getElementById('secStatsWrap');scrollTo({top:w.getBoundingClientRect().top+scrollY-8,behavior:'smooth'});return}
+    const y=ftop+d.statsScroll,vh=innerHeight;
+    if(d.block==='nearest'){if(y+d.h>scrollY+vh)scrollTo({top:Math.min(y-12,y+d.h-vh+16),behavior:'smooth'});else if(y<scrollY)scrollTo({top:y-12,behavior:'smooth'})}
+    else scrollTo({top:y-12,behavior:'smooth'});
+  }
+});
+const h=location.hash.replace('#','');
+const st=Object.keys(STATS).find(k=>STATS[k].hash===h);
+if(st){statsTab=st;showSection('stats');}
+else if(h==='statistics')showSection('stats');
+else document.body.dataset.section='geo';
 })();
 </script>
 

@@ -4233,12 +4233,12 @@ function renderResults(){
   const tot=Q.gridPts+Q.horsePts+Q.racePts+Q.probPts+Q.bestPts;
   let advice;
   if(cnt(Q.pick)===0) advice=`Horse ${fmt(Q.pick)} can never move: no cell in the diagram adds up to ${fmt(Q.pick)}. The best choice was horse${best.length>1?'s':''} ${bestTxt}.`;
-  else if(pickBest) advice=`<b>Good choice!</b> Horse ${fmt(Q.pick)} ${best.length>1?'is joint most likely':'is the most likely horse'} to move, with probability ${simp(Q.maxC,Q.total)} each roll.${Q.matchWinner!==Q.pick?' Even the favourite doesn’t always win. Try the 1000-match simulation.':''}`;
+  else if(pickBest) advice=`<b>Good choice!</b> Horse ${fmt(Q.pick)} ${best.length>1?'is joint most likely':'is the most likely horse'} to move, with probability ${simp(Q.maxC,Q.total)} each roll.${Q.matchWinner!==Q.pick?' Even the favourite doesn’t always win. Try simulating 1000 races.':''}`;
   else advice=`The best choice was horse${best.length>1?'s':''} ${bestTxt}, with probability ${simp(Q.maxC,Q.total)} each roll. Your horse had ${simp(cnt(Q.pick),Q.total)}.`;
   res.innerHTML=`<h3>Verdict</h3><p style="margin:0 0 6px">${advice}</p>
    ${level==='custom'?'':`<div class="pts"><span class="pt">Horse choice <b>${Q.horsePts}</b>/2</span><span class="pt">Race wins <b>${Q.racePts}</b>/${Q.need}</span><span class="pt">Sample space <b>${Q.gridPts}</b>/3</span><span class="pt">Probability <b>${Q.probPts}</b>/1</span><span class="pt">Most likely <b>${Q.bestPts}</b>/1</span><span class="pt" style="background:var(--goodSoft)">Total <b>${tot}</b>/${MAXPTS}</span></div>`}
    <div id="dist"></div>
-   <div class="row"><button id="sim">Simulate 1000 matches</button>
+   <div class="row"><button id="sim">Simulate 1000 races</button>
    ${level==='custom'?'':(qi<9?`<button class="primary" id="next">Next question →</button>`:`<span class="msg good">Last question! Final score: ${progress[level].reduce((t,v)=>t+(v||0),0)} / ${MAXPTS*10}</span>`)}</div>`;
   renderDist();
   document.getElementById('sim').onclick=simulate;
@@ -4247,7 +4247,7 @@ function renderResults(){
 function renderDist(){
   const sim=Q.sim;
   const maxSim=sim?Math.max(...Object.values(sim)):1;
-  let h=`<div class="dist"><span class="hd">Horse</span><span class="hd">Chance of moving each roll</span><span class="hd">${sim?'Match wins out of 1000':''}</span>`;
+  let h=`<div class="dist"><span class="hd">Horse</span><span class="hd">Chance of moving each roll</span><span class="hd">${sim?'Race wins out of 1000':''}</span>`;
   Q.lanes.forEach((s,i)=>{
     const k=cnt(s);
     h+=`<span class="lnum" style="background:${silk(s,i)}">${fmt(s)}</span>
@@ -4259,12 +4259,8 @@ function renderDist(){
 function simulate(){
   const wins={};Q.lanes.forEach(s=>wins[s]=0);
   for(let m=0;m<1000;m++){
-    const rw={};Q.lanes.forEach(s=>rw[s]=0);
-    for(;;){
-      const p={};Q.lanes.forEach(s=>p[s]=0);let w;
-      for(;;){const s=rnd(Q.a)+rnd(Q.b);if(s in p&&++p[s]>=Q.target){w=s;break}}
-      if(++rw[w]>=Q.need){wins[w]++;break}
-    }
+    const p={};Q.lanes.forEach(s=>p[s]=0);
+    for(;;){const s=rnd(Q.a)+rnd(Q.b);if(s in p&&++p[s]>=Q.target){wins[s]++;break}}
   }
   Q.sim=wins;renderDist();
   document.getElementById('sim').textContent='Simulate another 1000';

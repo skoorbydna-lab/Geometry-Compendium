@@ -511,7 +511,7 @@ body[data-app="cd"]{--paper:var(--t-cd);--app:var(--c-cd)}
 .cd-tile.big{background:var(--cd-big);color:#1E2B3F}
 .cd-tile.neg{background:var(--tile-neg)}
 button.cd-tile{cursor:pointer;touch-action:manipulation}
-button.cd-tile:hover:not(:disabled){transform:translateY(-2px)}
+button.cd-tile:hover:not(:disabled){filter:brightness(1.12);box-shadow:0 3px 0 rgba(0,0,0,.25),0 0 0 3px rgba(255,255,255,.35)}
 button.cd-tile:disabled{opacity:.35;cursor:default}
 .cd-tile.made{background:var(--sheet);color:var(--ink);border-color:var(--ink)}
 .cd-tile.sel{outline:4px solid var(--accent);outline-offset:2px}
@@ -556,6 +556,95 @@ button.cd-tile:disabled{opacity:.35;cursor:default}
 .cd-solhead{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between}
 @media (max-width:700px){.apptabs.few{grid-template-columns:repeat(2,minmax(0,1fr));justify-self:stretch}}
 @media (max-width:900px){.cd-playwork .board{order:-1}}
+
+/* puzzles section: traffic maze */
+:root{--tm-arrow:#4FD3FF;--c-tm:#5B3FA0;--t-tm:#EEE9F8;--tm-road:#4A515B;--tm-pave:#CFCBC2;--tm-lot:#E6E0D2;--tm-park:#A8D08C;--tm-tree:#4C9440;--tm-treehi:#7DBE63;--tm-pond:#8EC5E8;--tm-ppath:#E9DFC4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--c-tm:#B19BF0;--t-tm:#16111F;--tm-road:#30363F;--tm-pave:#56534D;--tm-lot:#47433B;--tm-park:#3F6835;--tm-tree:#2F6B2A;--tm-treehi:#4F8F44;--tm-pond:#3D6F92;--tm-ppath:#6B6250}}
+:root[data-theme="dark"]{--c-tm:#B19BF0;--t-tm:#16111F;--tm-road:#30363F;--tm-pave:#56534D;--tm-lot:#47433B;--tm-park:#3F6835;--tm-tree:#2F6B2A;--tm-treehi:#4F8F44;--tm-pond:#3D6F92;--tm-ppath:#6B6250}
+.sections{grid-template-columns:repeat(5,1fr)}
+.sections .t{font-size:clamp(20px,2vw,26px)}
+@media (max-width:1100px){.sections{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:700px){.sections{grid-template-columns:repeat(2,1fr)}}
+body:is([data-section="puz"]) .tb-cells{display:none}
+body:is([data-section="puz"]) .titleblock{grid-template-columns:1fr}
+#tabTraffic{--tc:var(--c-tm);--tt:var(--t-tm)}
+body[data-app="traffic"]{--paper:var(--t-tm);--app:var(--c-tm)}
+.tm-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tm-route{margin:0;padding-left:22px;display:grid;gap:2px;font-size:15px;max-height:260px;overflow:auto;columns:2}
+.tm-route li.on{font-weight:700;color:var(--app)}
+.tm-where{margin:0;min-height:1.4em}
+.tm-solctl{display:grid;gap:8px}
+@media (min-width:701px){.tm-levels{grid-template-columns:repeat(4,1fr)}}
+.tm-stage:fullscreen{background:var(--sheet);padding:24px 32px;overflow:auto;align-content:start}
+.tm-stage:fullscreen .tm-svg{max-height:84vh}
+
+.tm-pad{display:grid;grid-template-columns:repeat(3,minmax(0,84px));grid-template-areas:". n ." "w . e" ". s .";gap:6px;justify-content:center}
+.tm-pad button{min-height:48px;display:grid;justify-items:center;gap:0;font-size:22px;line-height:1;padding:4px}
+.tm-pad button span{font-size:11px;font-family:var(--display);letter-spacing:.06em;text-transform:uppercase}
+.tm-pad [data-d="0"]{grid-area:n}.tm-pad [data-d="3"]{grid-area:w}.tm-pad [data-d="1"]{grid-area:e}.tm-pad [data-d="2"]{grid-area:s}
+.tm-pad button:not(:disabled){border-color:#2E9E4F;color:#1F7A3A}
+@media (min-width:901px){.tm-stage:not(:fullscreen) .tm-pad{grid-template-columns:repeat(3,minmax(0,70px))}}
+
+.tm-mapbox{border:1.5px solid var(--line);border-radius:8px;overflow:hidden;background:var(--tm-pave);box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)}
+.tm-svg{display:block;width:100%;height:auto;max-height:74vh;user-select:none}
+.tm-pave{fill:var(--tm-pave)}.tm-lot{fill:var(--tm-lot)}.tm-park{fill:var(--tm-park)}
+.tm-roof{stroke:rgba(0,0,0,.25);stroke-width:1}.tm-ridge{stroke:rgba(0,0,0,.28);stroke-width:1.2}
+.tm-tree{fill:var(--tm-tree)}.tm-treehi{fill:var(--tm-treehi);opacity:.85}
+.tm-pond{fill:var(--tm-pond);stroke:rgba(255,255,255,.55);stroke-width:2}
+.tm-ppath{fill:none;stroke:var(--tm-ppath);stroke-width:5;stroke-linecap:round}
+.tm-road{stroke:var(--tm-road);stroke-width:50;stroke-linecap:butt}
+.tm-stubpave{stroke:var(--tm-pave);stroke-width:66}
+.tm-road-fill{fill:var(--tm-road)}
+.tm-centre{stroke:#F4F1EA;stroke-width:2.5;stroke-dasharray:12 10;opacity:.8}
+.tm-stop{stroke:#F4F1EA;stroke-width:3.5;opacity:.9}
+.tm-owpaint{fill:none;stroke:#F4F1EA;stroke-width:2.6;stroke-linecap:round;opacity:.9}
+.tm-owhead{fill:#F4F1EA;stroke:#F4F1EA;stroke-width:.8;stroke-linejoin:round;opacity:.9}
+.tm-owsign{fill:#1D5FB8;stroke:#fff;stroke-width:1.8}
+.tm-owarrow{fill:#fff;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.tm-ne{fill:#D7262B;stroke:#fff;stroke-width:2}.tm-nebar{fill:#fff}
+.tm-gl{fill:none;stroke:var(--tm-arrow);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.tm-gh{fill:var(--tm-arrow);stroke:var(--tm-arrow);stroke-width:.8;stroke-linejoin:round}
+.tm-halo .tm-gl{stroke:#16202B;stroke-width:5.6;opacity:.75}.tm-halo .tm-gh{fill:#16202B;stroke:#16202B;stroke-width:3;opacity:.75}
+.tm-glyph.cur g:last-child .tm-gl{stroke:#FFD23F;stroke-width:3.2}.tm-glyph.cur g:last-child .tm-gh{fill:#FFD23F;stroke:#FFD23F}
+.tm-plate{fill:#1E2B3F;stroke:#fff;stroke-width:1.5}
+.tm-plate-t{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.12em;fill:#fff}
+.tm-finline{stroke:#151515;stroke-width:1}
+.tm-labbg{fill:rgba(30,43,63,.82)}
+.tm-lab{font-family:var(--mono);font-size:11.5px;font-weight:700;fill:#fff;text-anchor:middle}
+.tm-path{stroke:var(--app);stroke-width:5;stroke-linecap:round;opacity:.7}
+.tm-pathdir{stroke:none;fill:none}
+.tm-trailhead{fill:var(--app)}
+.tm-car{transition:transform .4s cubic-bezier(.45,.05,.35,1)}
+.tm-body{fill:#E23B32;stroke:#7E1A15;stroke-width:1.2}
+.tm-roofc{fill:#C42E26}
+.tm-glass{fill:#BFE1F6;stroke:#5A7A92;stroke-width:.6}
+.tm-wheel{fill:#1A1A1A}.tm-light{fill:#FFE38A}
+.tm-exit{cursor:pointer}
+.tm-exit .tm-ring{fill:none;stroke:#2E9E4F;stroke-width:3;opacity:0;animation:tmring 1.8s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes tmring{0%{opacity:.7;transform:scale(.75)}100%{opacity:0;transform:scale(1.15)}}
+.tm-exit .tm-btn{fill:#249447;stroke:#fff;stroke-width:3}
+.tm-exit .tm-btnarrow{fill:#fff}
+.tm-exit:hover .tm-btn,.tm-exit:focus-visible .tm-btn{fill:#17733A;stroke-width:4}
+.tm-exit:focus{outline:none}
+.tm-exit.hint .tm-btn{fill:#E8A317}
+.tm-exit.hint .tm-ring{stroke:#E8A317}
+@media (prefers-reduced-motion:reduce){.tm-car{transition:none}.tm-exit .tm-ring{animation:none}}
+.tm-stats{grid-template-columns:repeat(3,1fr)}
+.tm-pts .at-big{color:var(--app);font-weight:700}
+.tm-pts.zero .at-big{color:var(--bad)}
+.tm-rules{margin:0}
+.tm-champ{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline;padding:10px 12px;border-radius:6px;background:var(--ink);color:var(--sheet)}
+.tm-champ .lbl{color:inherit;opacity:.8}
+.tm-champv{font-family:var(--mono);font-size:20px;text-align:right}
+.tm-champv b{font-size:26px;color:#FFD23F}
+.tm-champ .small{grid-column:1/-1;color:inherit;opacity:.75}
+.tm-win{display:grid;gap:4px}
+.tm-stars{font-size:26px;letter-spacing:.08em;color:#E8A317;line-height:1}
+.tm-tick{color:#E8A317;letter-spacing:.04em}
+.tm-gpath{stroke:#F08A24;stroke-width:4;stroke-dasharray:9 6;stroke-linecap:round;opacity:.95}
+.tm-gnum rect{fill:#F08A24;stroke:#fff;stroke-width:1.5}
+.tm-gnum text{font-family:var(--mono);font-size:11.5px;font-weight:700;fill:#fff;text-anchor:middle}
+.btn.arm{background:var(--bad);border-color:var(--bad);color:var(--sheet)}
 </style>
 
 <style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -578,6 +667,7 @@ button.cd-tile:disabled{opacity:.35;cursor:default}
     <button role="tab" id="secStats" aria-selected="false"><span class="sico" aria-hidden="true">▥</span><span class="stx"><span class="n">Section 2</span><span class="t">Statistics</span><span class="m">Probability and statistics · 3 activities</span></span></button>
     <button role="tab" id="secNum" aria-selected="false"><span class="sico" aria-hidden="true">×</span><span class="stx"><span class="n">Section 3</span><span class="t">Number</span><span class="m">Times tables, ratio, negatives, Countdown · 4 activities</span></span></button>
     <button role="tab" id="secAlg" aria-selected="false"><span class="sico" aria-hidden="true">𝑥</span><span class="stx"><span class="n">Section 4</span><span class="t">Algebra</span><span class="m">Algebra tiles and lessons · 2 activities</span></span></button>
+    <button role="tab" id="secPuz" aria-selected="false"><span class="sico" aria-hidden="true">⌖</span><span class="stx"><span class="n">Section 5</span><span class="t">Puzzles</span><span class="m">Traffic maze · 8 levels</span></span></button>
   </nav>
 
   <div id="secGeoWrap" class="secwrap">
@@ -700,6 +790,13 @@ button.cd-tile:disabled{opacity:.35;cursor:default}
     </nav>
     <div id="appTiles" class="app"></div>
     <div id="appTileLessons" class="app" hidden></div>
+  </div>
+
+  <div id="secPuzWrap" class="secwrap" hidden>
+    <nav class="apptabs few" style="--n:1" role="tablist" aria-label="Puzzles">
+      <button role="tab" id="tabTraffic" aria-selected="true"><span class="ico" aria-hidden="true">⌖</span>Traffic maze</button>
+    </nav>
+    <div id="appTraffic" class="app"></div>
   </div>
 </div>
 
@@ -7570,6 +7667,340 @@ window.__cdTest={makeSolver,solutions,deal,canon};
 
 </script>
 <script>
+
+/* ---------- Puzzles: traffic maze ---------- */
+(()=>{
+const root=document.getElementById('appTraffic');if(!root)return;
+const NS='http://www.w3.org/2000/svg';
+const sv=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e};
+const h=html=>{const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstElementChild};
+const DR=[-1,0,1,0],DC=[0,1,0,-1],DIRN=['North','East','South','West'];
+
+/* ===== generator: random streets and turn rules, kept only if the shortest route is the right length ===== */
+function rng(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const segKey=(r,c,d)=>{const r2=r+DR[d],c2=c+DC[d];return r<r2||(r===r2&&c<c2)?`${r},${c},${r2},${c2}`:`${r2},${c2},${r},${c}`};
+function build(R,C,opt,rand){
+  const{p,ow,uturn}=opt;const sr=Math.floor(rand()*R),fr=Math.floor(rand()*R);const seg={};
+  for(let r=0;r<R;r++)for(let c=0;c<C;c++)for(const d of[1,2]){const r2=r+DR[d],c2=c+DC[d];if(r2>=R||c2>=C)continue;seg[segKey(r,c,d)]=rand()<ow?(rand()<.5?d:(d+2)%4):'both'}
+  const inGrid=(r,c)=>r>=0&&c>=0&&r<R&&c<C;const isFinish=(r,c,d)=>r===fr&&c===C-1&&d===1;
+  const canDrive=(r,c,d)=>{if(isFinish(r,c,d))return true;const r2=r+DR[d],c2=c+DC[d];if(!inGrid(r2,c2))return false;const s=seg[segKey(r,c,d)];return s==='both'||s===d};
+  const arrives=(r,c,hh)=>{if(r===sr&&c===0&&hh===1)return true;const r0=r-DR[hh],c0=c-DC[hh];return inGrid(r0,c0)&&canDrive(r0,c0,hh)};
+  const rules={};
+  for(let pass=0;pass<6;pass++){let changed=false;
+    for(let r=0;r<R;r++)for(let c=0;c<C;c++)for(let hh=0;hh<4;hh++){
+      const k=`${r},${c},${hh}`;if(!arrives(r,c,hh)){delete rules[k];continue}
+      const opts=[hh,(hh+3)%4,(hh+1)%4];if(uturn&&rand()<uturn)opts.push((hh+2)%4);
+      const okOpts=opts.filter(d=>canDrive(r,c,d));
+      if(!okOpts.length){if(r===sr&&c===0&&hh===1)continue;seg[segKey(r-DR[hh],c-DC[hh],hh)]=(hh+2)%4;changed=true;delete rules[k];continue}
+      if(rules[k]){rules[k]=rules[k].filter(d=>canDrive(r,c,d));if(rules[k].length)continue}
+      let pick=okOpts.filter(()=>rand()<p);if(!pick.length)pick=[okOpts[Math.floor(rand()*okOpts.length)]];rules[k]=pick;}
+    if(!changed)break;}
+  return{R,C,sr,fr,seg,rules};
+}
+/* shortest route from any state (breadth-first search) */
+function route(m,from){
+  const{fr,C,rules}=m;const start=from||`${m.sr},0,1`;const prev=new Map([[start,null]]);const q=[start];let end=null;
+  while(q.length&&!end){const s=q.shift();const[r,c,hh]=s.split(',').map(Number);
+    for(const d of rules[s]||[]){if(r===fr&&c===C-1&&d===1){end=s;break}const n=`${r+DR[d]},${c+DC[d]},${d}`;if(!prev.has(n)){prev.set(n,s);q.push(n)}}}
+  if(!end)return null;const path=[];for(let s=end;s;s=prev.get(s))path.unshift(s);return path;
+}
+function stats(m){const p=route(m);if(!p)return null;const cnt={};p.forEach(s=>{const j=s.split(',').slice(0,2).join();cnt[j]=(cnt[j]||0)+1});return{path:p,moves:p.length,revisits:Object.values(cnt).filter(v=>v>1).length}}
+/* the moves along a route: each state's next heading, ending with East into FINISH */
+const routeMoves=p=>p.map((s,i)=>i<p.length-1?+p[i+1].split(',')[2]:1);
+const LEVELS=[
+  {R:3,C:3,min:5,max:7,rev:0,maxRev:0,p:.55,ow:.15,uturn:0,t:'Quiet lanes'},
+  {R:3,C:3,min:7,max:10,rev:0,maxRev:1,p:.45,ow:.2,uturn:0,t:'Village'},
+  {R:3,C:4,min:9,max:12,rev:1,maxRev:2,p:.45,ow:.2,uturn:0,t:'First loop'},
+  {R:4,C:4,min:11,max:15,rev:1,maxRev:3,p:.42,ow:.2,uturn:0,t:'Market town'},
+  {R:4,C:4,min:13,max:17,rev:1,maxRev:4,p:.4,ow:.25,uturn:.1,t:'U-turns'},
+  {R:4,C:5,min:15,max:20,rev:2,maxRev:5,p:.4,ow:.25,uturn:.1,t:'Rush hour'},
+  {R:5,C:5,min:18,max:24,rev:2,maxRev:6,p:.38,ow:.25,uturn:.12,t:'City centre'},
+  {R:5,C:5,min:22,max:30,rev:3,maxRev:9,p:.36,ow:.25,uturn:.15,t:'Floyd’s Knob level'}];
+function makeMaze(L,seed){
+  const sp=LEVELS[L],rand=rng(seed*97+L*1009);let best=null;
+  for(let t=0;t<4000;t++){const m=build(sp.R,sp.C,sp,rand);const s=stats(m);if(!s)continue;
+    if(s.moves>=sp.min&&s.moves<=sp.max&&s.revisits>=sp.rev&&s.revisits<=sp.maxRev)return{...m,best:s,level:L,seed};
+    if(!best||s.moves>best.best.moves)best={...m,best:s,level:L,seed}}
+  return best;
+}
+/* states from which FINISH can still be reached */
+function canFinish(m){
+  const back=new Map();const add=(a,b)=>{if(!back.has(b))back.set(b,[]);back.get(b).push(a)};
+  for(const s in m.rules){const[r,c]=s.split(',').map(Number);for(const d of m.rules[s]){if(r===m.fr&&c===m.C-1&&d===1)add(s,'FIN');else add(s,`${r+DR[d]},${c+DC[d]},${d}`)}}
+  const ok=new Set(['FIN']);const q=['FIN'];while(q.length){const x=q.shift();for(const y of back.get(x)||[])if(!ok.has(y)){ok.add(y);q.push(y)}}return ok;
+}
+
+/* ===== drawing the town ===== */
+const S=178,W=50,MX=150,MY=62,PAVE=8;
+const jx=(m,c)=>MX+c*S,jy=(m,r)=>MY+r*S;
+const label=(r,c)=>String.fromCharCode(65+c)+(r+1);
+/* road-marking arrows, drawn pointing up (the heading) then rotated into place */
+function glyph(parent,x,y,hh,outs,key){
+  const g=sv('g',{class:'tm-glyph',transform:`translate(${x} ${y}) rotate(${hh*90})`,'data-k':key},parent);
+  const rel=outs.map(d=>(d-hh+4)%4);/* 0 straight, 1 right, 3 left, 2 U-turn */
+  const halo=sv('g',{class:'tm-halo'},g),top=sv('g',{},g);
+  const line=d=>{sv('path',{d,class:'tm-gl'},halo);sv('path',{d,class:'tm-gl'},top)};const head=pts=>{sv('polygon',{points:pts,class:'tm-gh'},halo);sv('polygon',{points:pts,class:'tm-gh'},top)};
+  line('M0 12 L0 3');
+  if(rel.includes(0)){line('M0 3 L0 -10');head('0,-20 -4.5,-10 4.5,-10')}
+  if(rel.includes(3)){line('M0 4 Q0 -7 -10 -7');head('-20,-7 -10,-11.5 -10,-2.5')}
+  if(rel.includes(1)){line('M0 4 Q0 -7 10 -7');head('20,-7 10,-11.5 10,-2.5')}
+  if(rel.includes(2)){line('M0 4 L0 -4 Q0 -13 -8 -13 Q-16 -13 -16 -4 L-16 2');head('-16,12 -20.5,2 -11.5,2')}
+  return g;
+}
+function drawTown(svg,m,opts={}){
+  svg.textContent='';const{R,C,sr,fr,seg,rules}=m;
+  const WID=2*MX+(C-1)*S,HEI=2*MY+(R-1)*S;svg.setAttribute('viewBox',`0 0 ${WID} ${HEI}`);
+  const rand=rng(m.seed*13+m.level);
+  svg.insertAdjacentHTML('beforeend',`<defs>
+    <filter id="tmShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="2.5" dy="3" stdDeviation="2" flood-color="#000" flood-opacity=".28"/></filter>
+    <filter id="tmSoft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000" flood-opacity=".35"/></filter>
+    <filter id="tmGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="tmArrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="tm-trailhead"/></marker>
+    <pattern id="tmChk" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#fff"/><rect width="6" height="6" fill="#151515"/><rect x="6" y="6" width="6" height="6" fill="#151515"/></pattern></defs>`);
+  sv('rect',{x:0,y:0,width:WID,height:HEI,class:'tm-pave'},svg);
+  /* city blocks, including the edge of town so the map is full */
+  const gB=sv('g',{},svg);const ROOFS=['#C8754E','#8C9BAA','#B9A37E','#9A6B55','#6F8796','#A88A6A'];
+  const xs=[0,...Array.from({length:C},(_,c)=>jx(m,c)),WID],ys=[0,...Array.from({length:R},(_,r)=>jy(m,r)),HEI];
+  for(let i=0;i<xs.length-1;i++)for(let j=0;j<ys.length-1;j++){
+    const edgeL=i===0,edgeR=i===xs.length-2,edgeT=j===0,edgeB=j===ys.length-2;const ins=W/2+PAVE;
+    const x=xs[i]+(edgeL?-6:ins),y=ys[j]+(edgeT?-6:ins),w=xs[i+1]-(edgeR?-6:ins)-x,hh=ys[j+1]-(edgeB?-6:ins)-y;if(w<14||hh<14)continue;
+    const kind=edgeL||edgeR||edgeT||edgeB?(rand()<.75?'b':'p'):(rand()<.62?'b':rand()<.7?'p':'w');
+    sv('rect',{x,y,width:w,height:hh,rx:edgeL||edgeR||edgeT||edgeB?0:7,class:kind==='b'?'tm-lot':'tm-park'},gB);
+    if(kind==='b'){/* buildings with pitched roofs */
+      const cols=w>90?2:1,rows=hh>90?2:1;for(let a=0;a<cols;a++)for(let b=0;b<rows;b++){if(rand()<.18)continue;
+        const cw=w/cols,ch=hh/rows,bw=cw*(.55+rand()*.3),bh=ch*(.55+rand()*.3),bx=x+a*cw+(cw-bw)/2,by=y+b*ch+(ch-bh)/2,col=ROOFS[Math.floor(rand()*ROOFS.length)];
+        const g=sv('g',{filter:'url(#tmShadow)'},gB);const horiz=bw>=bh;
+        sv('rect',{x:bx,y:by,width:bw,height:bh,rx:1.5,fill:col,class:'tm-roof'},g);
+        if(horiz){sv('rect',{x:bx,y:by,width:bw,height:bh/2,fill:'#fff',opacity:.16},g);sv('line',{x1:bx+3,y1:by+bh/2,x2:bx+bw-3,y2:by+bh/2,class:'tm-ridge'},g)}
+        else{sv('rect',{x:bx,y:by,width:bw/2,height:bh,fill:'#fff',opacity:.16},g);sv('line',{x1:bx+bw/2,y1:by+3,x2:bx+bw/2,y2:by+bh-3,class:'tm-ridge'},g)}}}
+    else{/* park: a path, maybe a pond, and trees */
+      if(kind==='w')sv('ellipse',{cx:x+w/2,cy:y+hh/2,rx:w*.28,ry:hh*.22,class:'tm-pond'},gB);
+      else sv('path',{d:`M${x} ${y+hh*(.3+rand()*.4)} Q${x+w/2} ${y+hh*(rand())} ${x+w} ${y+hh*(.3+rand()*.4)}`,class:'tm-ppath'},gB);
+      const n=Math.max(2,Math.round(w*hh/1800));for(let t=0;t<n;t++){const tx=x+10+rand()*(w-20),ty=y+10+rand()*(hh-20);if(kind==='w'&&Math.hypot((tx-x-w/2)/(w*.3),(ty-y-hh/2)/(hh*.25))<1.1)continue;const r=6+rand()*5;
+        const g=sv('g',{filter:'url(#tmSoft)'},gB);sv('circle',{cx:tx,cy:ty,r,class:'tm-tree'},g);sv('circle',{cx:tx-r*.3,cy:ty-r*.3,r:r*.45,class:'tm-treehi'},g)}}
+  }
+  /* roads */
+  const gR=sv('g',{},svg);
+  const road=(x1,y1,x2,y2)=>sv('line',{x1,y1,x2,y2,class:'tm-road'},gR);
+  sv('line',{x1:0,y1:jy(m,sr),x2:jx(m,0),y2:jy(m,sr),class:'tm-stubpave'},gR);sv('line',{x1:jx(m,C-1),y1:jy(m,fr),x2:WID,y2:jy(m,fr),class:'tm-stubpave'},gR);
+  for(const k in seg){const[r1,c1,r2,c2]=k.split(',').map(Number);road(jx(m,c1),jy(m,r1),jx(m,c2),jy(m,r2))}
+  road(0,jy(m,sr),jx(m,0),jy(m,sr));road(jx(m,C-1),jy(m,fr),WID,jy(m,fr));
+  for(let r=0;r<R;r++)for(let c=0;c<C;c++)sv('rect',{x:jx(m,c)-W/2,y:jy(m,r)-W/2,width:W,height:W,class:'tm-road-fill'},gR);
+  /* lane lines, one-way markings and signs */
+  const gM=sv('g',{},svg),gS=sv('g',{},svg);
+  for(const k in seg){const[r1,c1,r2,c2]=k.split(',').map(Number);const x1=jx(m,c1),y1=jy(m,r1),x2=jx(m,c2),y2=jy(m,r2),dx=Math.sign(x2-x1),dy=Math.sign(y2-y1);
+    if(seg[k]!=='both'){const d=seg[k];const mx=(x1+x2)/2,my=(y1+y2)/2;
+      sv('path',{class:'tm-owpaint',d:'M0 16 L0 -4',transform:`translate(${mx} ${my}) rotate(${d*90})`},gM);sv('polygon',{class:'tm-owhead',points:'0,-15 -4.5,-4 4.5,-4',transform:`translate(${mx} ${my}) rotate(${d*90})`},gM);
+      const from=d===1||d===2?[r1,c1]:[r2,c2],to=d===1||d===2?[r2,c2]:[r1,c1];
+      /* blue one-way sign where the street begins */
+      const lf=(d+3)%4,sx=jx(m,from[1])+DC[d]*(W/2+20)+DC[lf]*(W/2+15),sy=jy(m,from[0])+DR[d]*(W/2+20)+DR[lf]*(W/2+15);
+      const ow=sv('g',{transform:`translate(${sx} ${sy})`,filter:'url(#tmSoft)'},gS);sv('rect',{x:-11,y:-11,width:22,height:22,rx:3,class:'tm-owsign'},ow);
+      sv('path',{d:'M0 7 L0 -2 M-5 -1 L0 -7 L5 -1 Z',class:'tm-owarrow',transform:`rotate(${d*90})`},ow);
+      /* no-entry sign at the far end, for cars that would drive the wrong way */
+      const back=(d+2)%4,side=(back+3)%4,ex=jx(m,to[1])+DC[back]*(W/2+20)+DC[side]*(W/2+15),ey=jy(m,to[0])+DR[back]*(W/2+20)+DR[side]*(W/2+15);
+      const ne=sv('g',{transform:`translate(${ex} ${ey})`,filter:'url(#tmSoft)'},gS);sv('circle',{r:11,class:'tm-ne'},ne);sv('rect',{x:-7,y:-2.2,width:14,height:4.4,rx:1,class:'tm-nebar'},ne);}}
+  /* stop lines and lane arrows for every way into every junction */
+  const gG=sv('g',{},svg);
+  for(const k in rules){const[r,c,hh]=k.split(',').map(Number);const back=(hh+2)%4,lr=(hh+3)%4;
+    const two=(r===sr&&c===0&&hh===1)||seg[segKey(r,c,back)]==='both';const off=0;
+    const sx=jx(m,c)+DC[back]*(W/2+3),sy=jy(m,r)+DR[back]*(W/2+3);
+    const ax=DC[lr]*(two?0:-W/2),ay=DR[lr]*(two?0:-W/2),bx=DC[lr]*(two?W/2:W/2),by=DR[lr]*(two?W/2:W/2);
+    sv('line',{x1:sx+ax,y1:sy+ay,x2:sx+bx-DC[lr]*3,y2:sy+by-DR[lr]*3,class:'tm-stop'},gG);
+    glyph(gG,jx(m,c)+DC[back]*(W/2+27)+DC[lr]*off,jy(m,r)+DR[back]*(W/2+27)+DR[lr]*off,hh,rules[k],k)}
+  /* start and finish */
+  const plate=(x,y,txt,anchor)=>{const g=sv('g',{filter:'url(#tmSoft)'},svg);const t=sv('text',{x,y,class:'tm-plate-t','text-anchor':anchor},g);t.textContent=txt;
+    const bb={w:txt.length*12.5+16};sv('rect',{x:anchor==='end'?x-bb.w+8:x-8,y:y-19,width:bb.w,height:26,rx:4,class:'tm-plate'},g).parentNode.insertBefore(g.lastChild,t)};
+  plate(16,jy(m,sr)-W/2-14,'START','start');
+  sv('rect',{x:WID-30,y:jy(m,fr)-W/2,width:24,height:W,fill:'url(#tmChk)',class:'tm-finline'},svg);
+  plate(WID-14,jy(m,fr)-W/2-14,'FINISH','end');
+  if(opts.labels)for(let r=0;r<R;r++)for(let c=0;c<C;c++){const g=sv('g',{},svg);const x=jx(m,c)-13,y=jy(m,r)-8.5;sv('rect',{x,y,width:26,height:17,rx:8.5,class:'tm-labbg'},g);const t=sv('text',{x:x+13,y:y+12.5,class:'tm-lab'},g);t.textContent=label(r,c)}
+  const ghost=sv('g',{class:'tm-ghost'},svg);const trail=sv('g',{class:'tm-trail'},svg);const exits=sv('g',{},svg);
+  /* the car, drawn facing east */
+  const car=sv('g',{class:'tm-car'},svg);const ci=sv('g',{filter:'url(#tmShadow)'},car);
+  [[-10,-11],[6,-11],[-10,8],[6,8]].forEach(([x,y])=>sv('rect',{x,y,width:7,height:3.5,rx:1.5,class:'tm-wheel'},ci));
+  sv('rect',{x:-17,y:-10,width:34,height:20,rx:7,class:'tm-body'},ci);
+  sv('path',{d:'M3 -7.5 L9 -6 L9 6 L3 7.5 Z',class:'tm-glass'},ci);sv('path',{d:'M-10 -6.5 L-13 -5.5 L-13 5.5 L-10 6.5 Z',class:'tm-glass'},ci);
+  sv('rect',{x:-9,y:-7,width:11,height:14,rx:2.5,class:'tm-roofc'},ci);
+  sv('rect',{x:14.5,y:-8,width:2.5,height:4,rx:1,class:'tm-light'},ci);sv('rect',{x:14.5,y:4,width:2.5,height:4,rx:1,class:'tm-light'},ci);
+  return{ghost,trail,exits,car,WID,HEI,glyphs:gG};
+}
+
+/* ===== the game ===== */
+const SAVE='mbmc.traffic.v1';let saved={};try{saved=JSON.parse(localStorage.getItem(SAVE)||'{}')||{}}catch(e){}
+const persist=()=>{try{localStorage.setItem(SAVE,JSON.stringify(saved))}catch(e){}};
+const defaultSeed=L=>101+L*13;
+const BASE=[100,150,200,300,400,550,700,1000],MAXTOTAL=BASE.reduce((a,b)=>a+b);
+const MOVE_COST=.04,HINT_COST=.25,FLOOR=.1;
+const starsFor=(pts,L)=>pts>=BASE[L]?3:pts>=BASE[L]*.6?2:pts>0?1:0;
+const starText=n=>'★'.repeat(n)+'☆'.repeat(3-n);
+saved.scores=saved.scores||{};
+root.insertAdjacentHTML('beforeend',`<nav class="levels tm-levels" role="tablist" aria-label="Level">${LEVELS.map((L,i)=>`<button class="lv" role="tab" data-l="${i}"><span class="n">Level ${i+1}<span class="tm-tick" aria-label="completed"></span></span><span class="t">${L.t}</span><span class="m tm-lvm">${BASE[i]} points</span></button>`).join('')}</nav>
+<main class="work">
+  <section class="task">
+    <div class="qbar"><span class="qlabel" id="tmTitle">Level 1</span></div>
+    <div class="tm-champ"><span class="lbl">Championship total</span><span class="tm-champv"><b id="tmTotal">0</b> / ${MAXTOTAL}</span><span class="small" id="tmTotalNote">Your best score on each level’s class maze</span></div>
+    <p class="note">Drive from START to FINISH. At each junction you may only go the ways the arrows on your lane show. We drive on the left. A red sign means no entry.</p>
+    <div class="tm-stats">
+      <div class="at-expr"><span class="lbl">Par</span><span class="at-big" id="tmBest">?</span></div>
+      <div class="at-expr"><span class="lbl">Moves driven</span><span class="at-big" id="tmMoves">0</span></div>
+      <div class="at-expr tm-pts"><span class="lbl">Points available</span><span class="at-big" id="tmPts">0</span></div></div>
+    <p class="small tm-rules" id="tmRules"></p>
+    <div class="feedback" id="tmFb" aria-live="polite"></div>
+    <div class="row"><button class="btn" id="tmUndo">Undo</button><button class="btn" id="tmRestart">Start again</button><button class="btn" id="tmHint">Hint (−25%)</button></div>
+    <div class="row"><button class="btn" id="tmSol">Show solution (0 points)</button><button class="btn" id="tmNew">New maze at this level</button></div>
+    <div class="tm-solctl" id="tmSolCtl" hidden><div class="row"><button class="btn" id="tmSBack">← Back</button><button class="btn primary" id="tmSNext">Next move →</button><button class="btn" id="tmSPlay">Play</button><button class="btn" id="tmSExit">Back to playing</button></div><ol class="tm-route" id="tmRoute"></ol></div>
+    <details class="tips"><summary>How scoring works</summary><ul>
+      <li>Each level is worth more: ${BASE.join(', ')} points.</li>
+      <li>Par is the shortest possible route. Every move over par loses 4% of the level’s points, even moves you undo.</li>
+      <li>Each hint loses 25%. Showing the solution means 0 points for that maze.</li>
+      <li>Finish at par with no hints for three stars. Finishing always earns at least 10%.</li>
+      <li>Your best score on each level’s class maze adds up to your championship total, out of ${MAXTOTAL}.</li></ul></details>
+    <details class="tips"><summary>Reading the road markings</summary><ul>
+      <li>The white arrows on your lane, just before a junction, show every way you may leave it.</li>
+      <li>A road with arrows down the middle is one-way. You can’t drive past a red no-entry sign.</li>
+      <li>You can pass through the same junction more than once. Coming in a different way changes your choices.</li>
+      <li>Use the arrow buttons on the map, or the arrow keys on your keyboard.</li></ul></details>
+    <div class="at-ansrow"><label class="lbl" for="tmCode">Maze code</label><input id="tmCode" class="short" style="width:8em" autocomplete="off" spellcheck="false"><button class="btn" id="tmLoad">Load</button></div>
+    <p class="small">Share the code so everyone in the class gets the same maze.</p>
+  </section>
+  <section class="board tm-stage" id="tmStage" tabindex="-1">
+    <div class="toolbar"><span class="lbl">Traffic maze</span><span class="spacer"></span><label class="cn-chk"><input type="checkbox" id="tmLabels"> Junction names</label><button class="btn" id="tmFull">Full screen</button></div>
+    <div class="tm-mapbox"><svg class="tm-svg" id="tmSvg" role="img" aria-label="Map of the town"></svg></div>
+    <div class="tm-pad" id="tmPad" role="group" aria-label="Drive">${['North','West','East','South'].map(n=>`<button class="btn" data-d="${DIRN.indexOf(n)}" aria-label="Drive ${n}">${{North:'↑',West:'←',East:'→',South:'↓'}[n]}<span>${n}</span></button>`).join('')}</div>
+    <p class="small tm-where" id="tmWhere" aria-live="polite"></p>
+  </section>
+</main>`);
+const $=s=>root.querySelector(s);
+let maze=null,layer=null,state=null,path=[],okSet=null,sol=null,solMode=false,solK=0,playT=0,done=false,level=0,att={driven:0,hints:0,sol:false},code='';
+const classCode=L=>`${L+1}-${defaultSeed(L)}`;
+function ticks(){let total=0;root.querySelectorAll('[data-l]').forEach(b=>{const L=+b.dataset.l;b.setAttribute('aria-selected',L===level);
+  const best=saved.scores[classCode(L)];total+=best?best.pts:0;
+  b.querySelector('.tm-tick').textContent=best?' '+starText(best.stars):'';
+  b.querySelector('.tm-lvm').textContent=best?`Best ${best.pts} of ${BASE[L]}`:`${BASE[L]} points`});
+  $('#tmTotal').textContent=total}
+function available(){if(att.sol)return 0;const par=maze.best.moves,over=Math.max(0,att.driven-par);
+  return Math.max(Math.round(BASE[level]*FLOOR),Math.round(BASE[level]*(1-MOVE_COST*over-HINT_COST*att.hints)))}
+function scoreUI(){
+  $('#tmMoves').textContent=att.driven;$('#tmPts').textContent=att.sol?'0':available();
+  $('#tmPts').parentNode.classList.toggle('zero',att.sol);
+  $('#tmRules').textContent=att.sol?'Solution viewed: this maze scores no points. Load it again later to try for points.':
+    `Each move over par costs ${Math.round(BASE[level]*MOVE_COST)} points and each hint costs ${Math.round(BASE[level]*HINT_COST)}. Undo and Start again don’t reset your moves.`}
+function load(L,seed){
+  level=L;maze=makeMaze(L,seed);okSet=canFinish(maze);sol=routeMoves(maze.best.path);code=`${L+1}-${seed}`;att={driven:0,hints:0,sol:false};
+  $('#tmTitle').textContent=`Level ${L+1}: ${LEVELS[L].t}`;$('#tmCode').value=code;$('#tmBest').textContent=maze.best.moves;
+  disarm();exitSolution(true);restart();ticks();scoreUI();
+}
+function render(){layer=drawTown($('#tmSvg'),maze,{labels:$('#tmLabels').checked});if(att.sol)drawGhost();drawState(false)}
+function carAt(r,c,hh,anim){
+  const x=c<0?16:c>=maze.C?layer.WID+30:jx(maze,c),y=jy(maze,r);
+  layer.car.style.transition=anim?'':'none';layer.car.style.transform=`translate(${x}px,${y}px) rotate(${(hh-1)*90}deg)`;
+}
+function stateOf(){const[r,c,hh]=state.split(',').map(Number);return{r,c,hh}}
+function drawTrail(steps){
+  layer.trail.textContent='';
+  steps.forEach(({from,d},i)=>{const[r,c]=from.split(',').map(Number);const lr=(d+3)%4,off=W/2-7;
+    const x1=jx(maze,c)+DC[lr]*off,y1=jy(maze,r)+DR[lr]*off;
+    const fin=r===maze.fr&&c===maze.C-1&&d===1;const x2=fin?layer.WID-6:jx(maze,c+DC[d])+DC[lr]*off,y2=fin?y1:jy(maze,r+DR[d])+DR[lr]*off;
+    sv('line',{x1,y1,x2,y2,class:'tm-path'},layer.trail);
+    const mx=(x1+x2)/2,my=(y1+y2)/2;sv('path',{d:`M${mx-DC[d]*6} ${my-DR[d]*6} L${mx+DC[d]*2} ${my+DR[d]*2}`,class:'tm-pathdir','marker-end':'url(#tmArrow)'},layer.trail)});
+}
+function drawState(anim=true){
+  if(!layer)return;const{r,c,hh}=stateOf();
+  drawTrail(path);carAt(r,c,hh,anim);layer.exits.textContent='';
+  layer.glyphs.querySelectorAll('.tm-glyph.cur').forEach(g=>g.classList.remove('cur'));
+  const cg=layer.glyphs.querySelector(`.tm-glyph[data-k="${state}"]`);if(cg&&!done&&!solMode){cg.classList.add('cur');cg.setAttribute('filter','url(#tmGlow)')}
+  layer.glyphs.querySelectorAll('.tm-glyph:not(.cur)').forEach(g=>g.removeAttribute('filter'));
+  const outs=maze.rules[state]||[];
+  $('#tmWhere').textContent=done?'You made it out!':`At junction ${label(r,c)}, heading ${DIRN[hh].toLowerCase()}. You can go: ${outs.map(d=>DIRN[d]).join(', ')}.`;
+  root.querySelectorAll('#tmPad button').forEach(b=>b.disabled=done||solMode||!outs.includes(+b.dataset.d));
+  if(done||solMode)return;
+  outs.forEach(d=>{const fin=r===maze.fr&&c===maze.C-1&&d===1;const dist=fin?W/2+40:S/2;const x=jx(maze,c)+DC[d]*dist,y=jy(maze,r)+DR[d]*dist;
+    const g=sv('g',{class:'tm-exit',transform:`translate(${x} ${y})`,tabindex:0,role:'button','aria-label':`Drive ${DIRN[d]}`},layer.exits);
+    sv('circle',{r:21,class:'tm-ring'},g);sv('circle',{r:16,class:'tm-btn',filter:'url(#tmSoft)'},g);sv('path',{d:'M0 -9 L8 1 L2.8 1 L2.8 9 L-2.8 9 L-2.8 1 L-8 1 Z',transform:`rotate(${d*90})`,class:'tm-btnarrow'},g);
+    g.addEventListener('click',()=>move(d));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();move(d)}})});
+}
+function feedback(cls,html){const e=$('#tmFb');e.className='feedback'+(cls?' '+cls:'');e.innerHTML=html}
+function move(d){
+  if(done||solMode)return;const outs=maze.rules[state]||[];if(!outs.includes(d)){feedback('bad',`You can’t go ${DIRN[d].toLowerCase()} from here.`);return}
+  const{r,c}=stateOf();path.push({from:state,d});att.driven++;scoreUI();
+  if(r===maze.fr&&c===maze.C-1&&d===1){done=true;drawState();carAt(r,maze.C,1,true);finish();return}
+  state=`${r+DR[d]},${c+DC[d]},${d}`;drawState();
+  if(!okSet.has(state))feedback('bad','You’re stuck in a loop: there’s no way to FINISH from here. Undo some moves.');else feedback('','');
+}
+function finish(){
+  const par=maze.best.moves,pts=available(),stars=starsFor(pts,level);const prev=saved.scores[code];
+  const better=!att.sol&&(!prev||pts>prev.pts);
+  if(better){saved.scores[code]={pts,stars,moves:att.driven,hints:att.hints,at:Date.now()};persist();ticks()}
+  const why=[];if(att.driven>par)why.push(`${att.driven-par} move${att.driven-par===1?'':'s'} over par`);if(att.hints)why.push(`${att.hints} hint${att.hints===1?'':'s'}`);
+  const isClass=code===classCode(level);
+  feedback(att.sol?'':'ok',att.sol?`<span><strong>You reached FINISH.</strong> You viewed the solution, so this maze scores 0 points.</span>`:
+    `<span class="tm-win"><span class="tm-stars" aria-label="${stars} stars">${starText(stars)}</span><span><strong>${pts} points</strong> out of ${BASE[level]}${why.length?` (${why.join(' and ')})`:': a perfect drive!'}</span>
+    <span class="small">${better?(prev?`New best, up from ${prev.pts}.`:'Saved as your best.'):`Your best on this maze is ${prev.pts}.`} ${isClass?'This counts towards your championship total.':'Practice maze: only the class maze for each level counts towards the championship.'}</span></span>`);
+}
+function restart(){done=false;path=[];state=`${maze.sr},0,1`;feedback('','');render();
+  carAt(maze.sr,-1,1,false);requestAnimationFrame(()=>requestAnimationFrame(()=>carAt(maze.sr,0,1,true)))}
+$('#tmUndo').onclick=()=>{if(solMode||!path.length||done)return;const last=path.pop();state=last.from;feedback('','');drawState()};
+$('#tmRestart').onclick=()=>{if(!solMode)restart()};
+$('#tmHint').onclick=()=>{if(solMode||done)return;const p=route(maze,state);if(!p){feedback('bad','There’s no way to FINISH from here. Undo some moves first.');return}
+  att.hints++;scoreUI();const d=p.length>1?+p[1].split(',')[2]:1;feedback('',`<span>Hint: go <strong>${DIRN[d].toLowerCase()}</strong>. From here, FINISH is ${p.length} move${p.length===1?'':'s'} away.</span>`);
+  const ex=[...layer.exits.querySelectorAll('.tm-exit')].find(g=>g.getAttribute('aria-label')===`Drive ${DIRN[d]}`);if(ex){ex.classList.add('hint');setTimeout(()=>ex.classList.remove('hint'),2400)}};
+$('#tmNew').onclick=()=>load(level,1000+Math.floor(Math.random()*9000));
+$('#tmLoad').onclick=()=>{const m=/^\s*(\d)\s*-\s*(\d+)\s*$/.exec($('#tmCode').value);if(!m||+m[1]<1||+m[1]>LEVELS.length){feedback('bad','A maze code looks like 4-1234: the level, a dash, then a number.');return}load(+m[1]-1,+m[2])};
+$('#tmCode').addEventListener('keydown',e=>{if(e.key==='Enter')$('#tmLoad').click()});
+$('#tmLabels').onchange=()=>{render();if(solMode)showSolStep(false)};
+/* solution walkthrough */
+function solSteps(){const steps=[];let s=`${maze.sr},0,1`;sol.forEach(d=>{steps.push({from:s,d});const[r,c]=s.split(',').map(Number);s=`${r+DR[d]},${c+DC[d]},${d}`});return steps}
+function showSolStep(anim=true){
+  const steps=solSteps().slice(0,solK);drawTrail(steps);
+  let s=`${maze.sr},0,1`;steps.forEach(({d})=>{const[r,c]=s.split(',').map(Number);s=`${r+DR[d]},${c+DC[d]},${d}`});
+  const[r,c,hh]=s.split(',').map(Number);const finished=solK===sol.length;
+  if(finished){const l=solSteps()[sol.length-1];const[r2,c2]=l.from.split(',').map(Number);carAt(r2,maze.C,1,anim)}else carAt(r,c,hh,anim);
+
+  $('#tmRoute').querySelectorAll('li').forEach((li,i)=>li.classList.toggle('on',i===solK-1));
+  $('#tmSBack').disabled=solK===0;$('#tmSNext').disabled=finished;
+  $('#tmWhere').textContent=finished?'FINISH reached by the shortest route.':solK?`Move ${solK}: ${$('#tmRoute').children[solK-1].textContent}`:'The car waits at START.';
+}
+function drawGhost(){
+  layer.ghost.textContent='';const steps=solSteps(),seen=new Map();
+  steps.forEach(({from,d},i)=>{const[r,c]=from.split(',').map(Number);const lr=(d+3)%4,off=W/2-7;
+    const x1=jx(maze,c)+DC[lr]*off,y1=jy(maze,r)+DR[lr]*off;const fin=r===maze.fr&&c===maze.C-1&&d===1;
+    const x2=fin?layer.WID-6:jx(maze,c+DC[d])+DC[lr]*off,y2=fin?y1:jy(maze,r+DR[d])+DR[lr]*off;
+    sv('line',{x1,y1,x2,y2,class:'tm-gpath'},layer.ghost);
+    const k=from.split(',').slice(0,2).join()+':'+d;if(!seen.has(k))seen.set(k,{x:x1+(x2-x1)*.62+DC[lr]*15,y:y1+(y2-y1)*.62+DR[lr]*15,n:[]});seen.get(k).n.push(i+1)});
+  for(const{x,y,n}of seen.values()){const t=n.join(' · '),w=Math.max(20,t.length*7.2+10);const g=sv('g',{class:'tm-gnum',filter:'url(#tmSoft)'},layer.ghost);
+    sv('rect',{x:x-w/2,y:y-10,width:w,height:20,rx:10},g);const tx=sv('text',{x,y:y+4.5},g);tx.textContent=t}
+}
+function enterSolution(){solMode=true;solK=0;layer.exits.textContent='';root.querySelectorAll('#tmPad button').forEach(b=>b.disabled=true);$('#tmSolCtl').hidden=false;$('#tmSol').disabled=true;drawGhost();
+  const steps=solSteps();$('#tmRoute').innerHTML=steps.map(({from,d})=>{const[r,c]=from.split(',').map(Number);const fin=r===maze.fr&&c===maze.C-1&&d===1;return`<li>${DIRN[d]} to ${fin?'FINISH':label(r+DR[d],c+DC[d])}</li>`}).join('');
+  feedback('',`<span>The whole route is drawn on the map, with each move numbered. Junctions you pass more than once show every move number. Step through it below.</span>`);showSolStep(false)}
+function exitSolution(silent){clearInterval(playT);playT=0;$('#tmSPlay').textContent='Play';if(!solMode&&!silent)return;solMode=false;$('#tmSolCtl').hidden=true;$('#tmSol').disabled=false;if(!silent){restart();scoreUI()}}
+let armT=0;
+function disarm(){clearTimeout(armT);const b=$('#tmSol');b.classList.remove('arm');b.textContent='Show solution (0 points)'}
+$('#tmSol').onclick=()=>{const b=$('#tmSol');
+  if(!att.sol&&!b.classList.contains('arm')){b.classList.add('arm');b.textContent='Tap again: this maze will score 0';clearTimeout(armT);armT=setTimeout(disarm,3500);return}
+  disarm();att.sol=true;scoreUI();enterSolution()};
+$('#tmSNext').onclick=()=>{if(solK<sol.length){solK++;showSolStep()}};
+$('#tmSBack').onclick=()=>{if(solK>0){solK--;showSolStep()}};
+$('#tmSPlay').onclick=()=>{if(playT){clearInterval(playT);playT=0;$('#tmSPlay').textContent='Play';return}
+  if(solK>=sol.length)solK=0;$('#tmSPlay').textContent='Pause';playT=setInterval(()=>{if(solK>=sol.length){clearInterval(playT);playT=0;$('#tmSPlay').textContent='Play';return}solK++;showSolStep()},650)};
+$('#tmSExit').onclick=()=>exitSolution(false);
+root.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>load(+b.dataset.l,defaultSeed(+b.dataset.l)));
+root.querySelectorAll('#tmPad button').forEach(b=>b.onclick=()=>move(+b.dataset.d));
+document.addEventListener('keydown',e=>{
+  if(document.body.dataset.app!=='traffic'||e.target.closest&&e.target.closest('input,select,textarea'))return;
+  const d={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3}[e.key];
+  if(d!=null){e.preventDefault();if(solMode){if(d===1)$('#tmSNext').click();if(d===3)$('#tmSBack').click()}else move(d)}
+});
+const stage=$('#tmStage');
+$('#tmFull').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else if(stage.requestFullscreen)stage.requestFullscreen().catch(()=>{})};
+document.addEventListener('fullscreenchange',()=>{$('#tmFull').textContent=document.fullscreenElement===stage?'Exit full screen':'Full screen'});
+let started=false;
+window.trafficShow=()=>{if(!started){started=true;load(0,defaultSeed(0))}};
+window.__tmTest={makeMaze,route,canFinish,LEVELS,stats,get maze(){return maze},get state(){return state}};
+})();
+
+</script>
+<script>
 /* ---------- Maths Compendium: sections (Geometry / Statistics / Number / Algebra) ---------- */
 (()=>{
 const STATS={horse:{tab:'tabHorse',hash:'horse-race'},spinner:{tab:'tabSpin',hash:'spinner-showdown'},galton:{tab:'tabGalton',hash:'galton-board'}};
@@ -7577,7 +8008,8 @@ const SECS={
   geo:{btn:'secGeo',wrap:'secGeoWrap',title:'Shape and Construction interactives'},
   stats:{btn:'secStats',wrap:'secStatsWrap',title:'Probability and Statistics interactives'},
   num:{btn:'secNum',wrap:'secNumWrap',title:'Number interactives'},
-  alg:{btn:'secAlg',wrap:'secAlgWrap',title:'Algebra interactives'}};
+  alg:{btn:'secAlg',wrap:'secAlgWrap',title:'Algebra interactives'},
+  puz:{btn:'secPuz',wrap:'secPuzWrap',title:'Puzzles'}};
 const frame=document.getElementById('statsFrame');
 let statsTab='horse',loaded=false;
 function loadStats(){
@@ -7597,6 +8029,7 @@ function showSection(sec){
   if(sec==='stats'){loadStats();showStatsTab(statsTab);}
   else if(sec==='num')showNum(numTab);
   else if(sec==='alg')showAlg(algTab);
+  else if(sec==='puz'){document.body.dataset.app='traffic';window.trafficShow&&window.trafficShow();}
   else{const cur=document.querySelector('#secGeoWrap .apptabs [aria-selected="true"]');if(cur)cur.click();}
 }
 for(const k in SECS)document.getElementById(SECS[k].btn).onclick=()=>showSection(k);
@@ -7616,6 +8049,7 @@ function showAlg(k){algTab=k;document.body.dataset.app=k;
   for(const n in ALG){document.getElementById(ALG[n].tab).setAttribute('aria-selected',n===k);document.getElementById(ALG[n].el).hidden=n!==k;}
   ALG[k].show();}
 document.getElementById('tabTiles').onclick=()=>{algTab='tiles';showSection('alg')};
+document.getElementById('tabTraffic').onclick=()=>showSection('puz');
 document.getElementById('tabTileLessons').onclick=()=>{algTab='tilelessons';showSection('alg')};
 addEventListener('message',e=>{
   const d=e.data;if(!d||e.source!==frame.contentWindow)return;
@@ -7638,6 +8072,7 @@ else if(h==='negative-numbers'){numTab='neg';showSection('num');}
 else if(h==='countdown'){numTab='cd';showSection('num');}
 else if(h==='algebra'||h==='algebra-tiles')showSection('alg');
 else if(h==='tile-lessons'){algTab='tilelessons';showSection('alg');}
+else if(h==='puzzles'||h==='traffic-maze')showSection('puz');
 else document.body.dataset.section='geo';
 })();
 </script>
